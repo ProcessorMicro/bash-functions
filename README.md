@@ -4,7 +4,7 @@
 
 This distribution is designed to work in a bash shell environment,
 The bash functions in the file `functions.sh` can be used to enhance and manage bash scripts.
-When the file `functions.sh` is included ( sourced) in a parent script more than 70 useful functions and many variables are available to the parent script.
+When the file `functions.sh` is included (sourced) in a parent script more than 70 useful functions and many variables are available to the parent script.
 Some additional gawk scripts present in this distribution are used by and provide support for `functions.sh`.
 Also included in the distribution are a few useful support scripts.
 
@@ -27,7 +27,7 @@ This makes the parent script self documenting with man-like pages.
 &nbsp;&nbsp;&nbsp;&nbsp;[Major Functions](#major-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Major Global Variables](#major-global-variables)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Documentation](#documentation)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: funtions.sh](#XXX)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: funtions](#XXX)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: FIND-FUNCTIONS](#find-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: MK-SCRIPT](#mk-script)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: EXTRA-BASH-COMMANDS.sh](#extra-bash-commands)<br>
