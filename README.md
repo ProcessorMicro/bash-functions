@@ -141,7 +141,7 @@ Some of the many variables available for use by the parent script.
 All the scripts are self documenting as they all use `GET_ARGS` to define and display options and arguments.
 And all the functions are preceded by documentation describing the function usage.
 
-### <a id="XXX">Script Documentation: functions.sh</a>
+### <a id="XXX">Script Documentation: functionssh</a>
 
 Assuming `functions.sh` was installed in a directory listed in `PATH` (/usr/local/bin), then typing:
 
