@@ -27,7 +27,7 @@ This makes the parent script self documenting with man-like pages.
 &nbsp;&nbsp;&nbsp;&nbsp;[Major Functions](#major-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Major Global Variables](#major-global-variables)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Documentation](#documentation)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: functions.sh](#XXX)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: functions script](#XXX)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: FIND-FUNCTIONS](#find-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: MK-SCRIPT](#mk-script)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: EXTRA-BASH-COMMANDS.sh](#extra-bash-commands)<br>
@@ -136,7 +136,7 @@ Some of the many variables available for use by the parent script.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-# <a id="documentation">Documentation for functions.sh</a>
+# <a id="documentation">Documentation</a>
 
 All the scripts are self documenting as they all use `GET_ARGS` to define and display options and arguments.
 And all the functions are preceded by documentation describing the function usage.
