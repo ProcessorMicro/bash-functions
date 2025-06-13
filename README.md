@@ -4,18 +4,18 @@
 
 This distribution is designed to work in a bash shell environment,
 The bash functions in the file `functions.sh` can be used to enhance and manage bash scripts.
-When the file `functions.sh` is included (sourced) in a parent script more than 70 useful functions and many variables are available to the parent script.
+When the file `functions.sh` is included ( sourced) in a parent script more than 70 useful functions and many variables are available to the parent script.
 Some additional gawk scripts present in this distribution are used by and provide support for `functions.sh`.
 Also included in the distribution are a few useful support scripts.
 
-The primary function in `functions.sh` is `GET_ARGS`. It is called with arguments that "define" the options and arguments available to a parent script.
-And it parses them when the script is invoked as a command.
-The `GET_ARGS` definition arguments also describe the script purpose and the meaning of each option/argument defined.
-This makes a script self documenting with man-like pages.
+The primary function in `functions.sh` is `GET_ARGS`. It is called with arguments (directives) that "define" the options and arguments available to a parent script.
+And it parses them when the parent script is invoked as a command.
+The `GET_ARGS` directives also describe the script purpose and the meaning of each option/argument defined.
+This makes the parent script self documenting with man-like pages.
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-## <a id="contents">Contents</a> 
+## <a id="contents">Contents</a>
 
 &nbsp;&nbsp;&nbsp;&nbsp;[Purpose](#purpose)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Contents](#contents)<br>
@@ -23,17 +23,18 @@ This makes a script self documenting with man-like pages.
 &nbsp;&nbsp;&nbsp;&nbsp;[Installation](#installation)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Required Packages](#required-packages)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Installation Procedure](#installation-procedure)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Summary of the Major Functions and Variables within `functions.sh`](#summary)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Summary of the Major Functions and Variables](#summary)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Major Functions](#major-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Major Global Variables](#major-global-variables)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Documentation](#documentation)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: functions.sh](#XXX)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: funtions.sh](#XXX)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: FIND-FUNCTIONS](#find-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: MK-SCRIPT](#mk-script)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: EXTRA-BASH-COMMANDS.sh](#extra-bash-commands)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Function Documentation: GET_ARGS](#GET_ARGS)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Function Documentation: IS_EXCLUSIVE](#IS_EXCLUSIVE)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Function Documentation: ASK, ASK_GUI, ASK_WITH_MENU, ASK_WITH_MENU_GUI](#ASK)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Function Documentation: ASK et al.](#ASK)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Function Documentation: TMP_FILE_CREATE et al.](#TMP_FILE_CREATE)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Examples of Functions](#tryme)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Example of GET_ARGS and IS_EXCLUSIVE](#example-of-get-args)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Example of help implemented by GET_ARGS](#example-of-help)<br>
@@ -50,7 +51,7 @@ This makes a script self documenting with man-like pages.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[SORT_ARGS & SORT_ARGS_WS](#sort-args-ws)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Bugs](#bugs)<br>
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 ## <a id="caveat">Caveat</a>
 
@@ -61,7 +62,7 @@ For more advanced scripting users they provide a quick way to implement some sta
 Note: The coding is not necessarily the best or the most efficient. Therefore it is recommended that `functions.sh` not be used in a production or multi-user environment.
 However, be that as it may, The functions allow one to concentrate on the purpose of a new script rather than having to duplicate common requirements.
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 ## <a id="installation">Installation</a>
 
@@ -84,7 +85,7 @@ if you don't have `gawk` then a symbolic link to awk will work as well:
 
     sudo ln -s /usr/bin/awk /usr/bin/gawk
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 ### <a id="installation-procedure">Installation Procedure</a>
 
@@ -94,7 +95,7 @@ Download the zip file, expand it and install it with:
     pkunzip ...
     sudo /tmp/.../install.sh
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 # <a id="summary">Summary of the Major Functions and Variables within `functions.sh`</a>
 
@@ -116,7 +117,7 @@ The following is a description of the functions and variables in `functions.sh` 
 | cleanup operations          | Upon parent script exit, `functions.sh` will automatically delete any temporary files/directories created by the TMP_... functions and will unmount any filesystems mounted by functions in `functions.sh`. |
 | Many other functions...     | Many other uses... |
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 ## <a id="major-global-variables">Major Global Variables</a>
 
@@ -133,7 +134,7 @@ Some of the many variables available for use by the parent script.
 | ANSWER...           | A variable containing the response(s) entered by the user when the ASK function is invoked. |
 | BLK, RED, GLD, etc. | Variables that can be used to color and format messages displayed by 'echo -e'. The function `COLOR_DISPLAY` will display the colors implemented. |
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 # <a id="documentation">Documentation</a>
 
@@ -172,7 +173,7 @@ FIND-FUNCTIONS --ns -f -l "[^_].*"    			# The pattern "[^_].*" eliminates inter
 FIND-FUNCTIONS --no-separator --function-names-only --less "[^_].*"
 ```
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 ### <a id="find-functions">Script Documentation: FIND-FUNCTIONS</a>
 
@@ -188,7 +189,7 @@ An example of `FIND-FUNCTIONS` usage:
     FIND-FUNCTIONS -c TRIM         # Shows the documentation (comments - paged with `less`)
                                    # for the `TRIM` function in `functions.sh`.
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 ### <a id="mk-script">Script Documentation: MK-SCRIPT</a>
 
@@ -207,7 +208,7 @@ MK-SCRIPT -H                 # Displays help for MK-SCRIPT (paged with less)
 MK-SCRIPT -h                 # Displays help for MK-SCRIPT (not paged)
 ```
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 ### <a id="extra-bash-commands">Script Documentation: EXTRA-BASH-COMMANDS.sh</a>
 
@@ -229,7 +230,7 @@ Documentation of function `RUNME` in `EXTRA-BASH-COMMANDS.sh` can be viewed by:
 | HIGHLIGHT    | A complex grep command that highlights, in a script, salient functions and arguments related to the major functions `GET_ARGS` and `IS_EXCLUSIVE` in this distribution.<br>&nbsp;&nbsp;&nbsp;&nbsp;Usage: `HIGHLIGHT [ path-to-script ]`<br>Where: path-to-script defaults to `/usr/local/bin/FIND-FUNCTIONS` |
 | RUNME        | A command that executes any function in `functions.sh` (or another function library) in a safe environment and displays the result(s). |
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 ### <a id="GET_ARGS">Function Documentation: GET_ARGS</a>
 
@@ -266,7 +267,7 @@ Full documentation of `GET_ARGS` (it is extensive) can be viewed by:
 
     FIND-FUNCTIONS --comments --less GET_ARGS
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 ### <a id="IS_EXCLUSIVE">Function Documentation: IS_EXCLUSIVE</a>
 
@@ -290,7 +291,7 @@ Full documentation of `IS_EXCLUSIVE` can be viewed by:
 
     FIND-FUNCTIONS -c -l IS_EXCLUSIVE
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 ### <a id="ASK">Function Documentation:<br>&nbsp;&nbsp;&nbsp;&nbsp;ASK, ASK_GUI, ASK_WITH_MENU, ASK_WITH_MENU_GUI</a>
 
@@ -323,7 +324,7 @@ Full documentation of the set of `ASK` functions can be viewed by:
 
     FIND-FUNCTIONS -c -l "ASK.*"
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 ## <a id="tryme">Examples of Functions</a>
 
@@ -352,7 +353,7 @@ The function `FUNCTIONS` "sources" `functions.sh` and calls the function `USAGE_
 This changes any `exit` commands to be the command `return` so your terminal session is not closed when an error occurs.
 Now you can freely experiment at the command line with the functions made available.
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 #### <a id="example-of-get-args">Example of GET_ARGS and IS_EXCLUSIVE</a>
 
@@ -379,7 +380,7 @@ FIND-FUNCTIONS --HELP=c        # An example of compressed and paged output (or u
 FIND-FUNCTIONS -hb             # Brief (not paged) help displaying: purpose, synopsis and options.
 ````
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 #### <a id="coding-of-get-args">Coding of GET_ARGS and IS_EXCLUSIVE</a>
 
@@ -455,7 +456,7 @@ FIND-FUNCTIONS -s /etc/profile.d/EXTRA-BASH-COMMANDS.sh               # Display 
 FIND-FUNCTIONS -s /etc/profile.d/EXTRA-BASH-COMMANDS.sh HIGHLIGHT     # Display the source code for the function `HIGHLIGHT`
 ```
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 #### <a id="experiment-with-ASK">Experiment with ASK</a>
 
@@ -489,7 +490,7 @@ ASK has much more functionality. To see the full documentation type:
 
     FIND-FUNCTIONS -c -l ASK         # Shows (with `less`) the documentation for the `ASK` function.
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 #### <a id="experiment-with-ASK-WITH-MENU">Experiment with ASK_WITH_MENU</a>
 
@@ -558,7 +559,7 @@ RUNME ASK_WITH_MENU -V QED -M -D "*" -G -H "A GUI Example\n\tMake your choice\n"
 
 Like ASK, ASK_WITH_MENU has much more functionality.
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 ## <a id="experiment-with-other-functions">Experiment with Some Other Functions</a>
 
@@ -579,7 +580,7 @@ RUNME COLORS_DISPLAY                    # See the built-in colors
 echo -e "\nExample of 'echo' using a color: A ${UL}book${BLK} that is ${GRN}read${BLK} doesn't have to be ${RED}red${BLK}.\n"
 ```
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 #### <a id="error-warning">ERROR & WARNING</a>
 
@@ -592,7 +593,7 @@ RUNME ERROR "This is an error message.\nThe error is..."
 RUNME WARNING "This is a warning message.\nThe correct..."
 ```
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 #### <a id="human-readable">HUMAN_READABLE</a>
 
@@ -606,7 +607,7 @@ FIND-FUNCTIONS -c HUMAN_READABLE            # For full documentation
 RUNME HUMAN_READABLE -L 6 123,456,789 23 9,876,543,210,987
 ```
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 #### <a id="padit-trim-zerofill">PAD_IT, TRIM & ZERO_FILL</a>
 
@@ -630,7 +631,7 @@ TRIM -V ANS -R "   abc def   " ; echo "${ANS}<== Trim (-R) the whitespace on the
 
 ZERO_FILL -V ANS -L 6 123      ; echo "${ANS}<== Zero fill."
 ```
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 
 #### <a id="pause">PAUSE</a>
@@ -643,7 +644,7 @@ FIND-FUNCTIONS -c PAUSE               # View the documentation
 RUNME PAUSE "\nAn easy way for the program to wait for user input before continuing.\n\t"
 ```
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 #### <a id="progress">PROGRESS</a>
 
@@ -665,7 +666,7 @@ echo -e "\nFinished."
 
 ```
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 #### <a id="sort-args-ws">SORT_ARGS & SORT_ARGS_WS</a>
 
@@ -709,7 +710,7 @@ RUNME SORT_ARGS_WS -V SORTED_NAMES -A "${FILE_NAMES_ARRAY[@]}"
 RUNME SORT_ARGS_WS -V SORTED_NAMES -A -S "-n -r -t- -k2,2" "${FILE_NAMES_ARRAY[@]}"
 ```
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 ## <a id="bugs"><a/> Bugs
 Where would Linux be if there weren't any bugs.
@@ -719,6 +720,6 @@ GET_IP_FROM_DOMAIN
 GET_MATCHING_NFS_DOMAIN_IN_FSTAB
 GET_ALL_UNIQUE_NFS_DOMAINS_IN_FSTAB
 
-[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 <a id="bottom"><a/>
