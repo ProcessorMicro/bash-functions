@@ -145,31 +145,37 @@ And all the functions are preceded by documentation describing the function usag
 
 Assuming `functions.sh` was installed in a directory listed in `PATH` (/usr/local/bin), then typing:
 
-    functions.sh
+```bash
+functions.sh
+```
 
 Will display the complete help for every function and variable.
 The display is paged with 'less'.
+
+```bash
+functions.sh FUNCTION              # Displays the documentation for `FUNCTION`
+```
 
 The first page displays the purpose of `functions.sh` followed by the suggested coding to implement `functions.sh`
 that should be entered into the environment and at the beginning of a parent script.
 
 To use the functions and variables within a parent script, include the following:
 
-```
+```bash
 . functions.sh									# Note the dot "."
 ```
 or
-```
+```bash
 source functions.sh
 ```
 
 To get a list of all the functions available in `functions.sh`, type:
 
-```
+```bash
 FIND-FUNCTIONS --ns -f -l "[^_].*"    			# The pattern "[^_].*" eliminates internal (reserved) functions
 ```
 
-```
+```bash
 FIND-FUNCTIONS --no-separator --function-names-only --less "[^_].*"
 ```
 
@@ -182,12 +188,16 @@ However it also can be used for any script that has a recognizable PATTERN for d
 It assumes `functions.sh` is installed in the directory /usr/local/bin.
 To see the options available for `FIND-FUNCTIONS` type:
 
-    FIND-FUNCTIONS --HELP
+```bash
+FIND-FUNCTIONS --HELP
+```
 
 An example of `FIND-FUNCTIONS` usage:
 
-    FIND-FUNCTIONS -c TRIM         # Shows the documentation (comments - paged with `less`)
-                                   # for the `TRIM` function in `functions.sh`.
+```bash
+FIND-FUNCTIONS -c TRIM         # Shows the documentation (comments) paged with "less"
+                               # for the `TRIM` function in functions.sh
+```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -196,15 +206,15 @@ An example of `FIND-FUNCTIONS` usage:
 The script MK-SCRIPT will create the beginning lines recommended for a parent script and will set execute permission on the created script.
 Examples:
 
-```
+```bash
 MK-SCRIPT My_Script          # Creates the script My_Script with execute permission.
                              # My_Script contains the code to implement functions.sh
                              # and a sample of GET_ARGS.
 ```
-```
+```bash
 MK-SCRIPT -H                 # Displays help for MK-SCRIPT (paged with less)
 ```
-```
+```bash
 MK-SCRIPT -h                 # Displays help for MK-SCRIPT (not paged)
 ```
 
@@ -217,11 +227,15 @@ Thus they are always available at the command line in a terminal session and can
 
 Full documentation of `EXTRA-BASH-COMMANDS.sh` can be viewed by:
 
-    FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-COMMANDS.sh
+```bash
+FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-COMMANDS.sh
+```
 
 Documentation of function `RUNME` in `EXTRA-BASH-COMMANDS.sh` can be viewed by:
 
-    FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-COMMANDS.sh RUNME
+```bash
+FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-COMMANDS.sh RUNME
+```
 
 | FUNCTION     | DESCRIPTION |
 |--|--|
@@ -265,7 +279,9 @@ It has three basic purposes:
 
 Full documentation of `GET_ARGS` (it is extensive) can be viewed by:
 
-    FIND-FUNCTIONS --comments --less GET_ARGS
+```bash
+FIND-FUNCTIONS --comments --less GET_ARGS
+```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -289,7 +305,9 @@ Basic `IS_EXCLUSIVE` functionality is summarized as follows:
 
 Full documentation of `IS_EXCLUSIVE` can be viewed by:
 
-    FIND-FUNCTIONS -c -l IS_EXCLUSIVE
+```bash
+FIND-FUNCTIONS -c -l IS_EXCLUSIVE
+```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -322,7 +340,9 @@ It specifies either the type of response or the type of response and a default l
 
 Full documentation of the set of `ASK` functions can be viewed by:
 
-    FIND-FUNCTIONS -c -l "ASK.*"
+```bash
+FIND-FUNCTIONS -c -l "ASK.*"
+```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -330,12 +350,16 @@ Full documentation of the set of `ASK` functions can be viewed by:
 
 Once installation is complete either open another terminal session or type the following:
 
-    source /etc/profile.d/EXTRA-BASH-COMMANDS.sh
+```bash
+source /etc/profile.d/EXTRA-BASH-COMMANDS.sh
+```
 
 There are two ways you can practice using the functions.
 The better way is to use the RUNME function as it also displays the result(s) from running a function.
 
-    RUNME <FUNCTION_AND_ARGUMENTS>     # The preferred way
+```bash
+RUNME <FUNCTION_AND_ARGUMENTS>     # The preferred way
+```
 
 RUNME creates a sub-shell, loads `functions.sh` into it, runs the function and attempts to display the contents of the variable(s) created (if any).
 You can freely experiment, in an initialized environment, at the command line with the functions made available.
@@ -343,9 +367,13 @@ RUNME can also turn on bash debugging (-x) so the function can be tested.
 
 Or, slightly less useful, by loading `functions.sh` into your environment:
 
-```
+```bash
 FUNCTIONS                          # load `functions.sh` into your environment and set every "exit" to a "return".
+```
+```bash
 <FUNCTION_AND_ARGUMENTS>           # Execute the function
+```
+```bash
 echo <VARIABLES_CREATED>           # Display the created variables
 ```
 
@@ -364,21 +392,21 @@ To see how `GET_ARGS` and `IS_EXCLUSIVE` works and to see some other features we
 Before we look at an example of the coding for `GET_ARGS`, let us see how help is implemented by `GET_ARGS`.
 We will use help for `FIND-FUNCTIONS` and to see how it works. Try the following:
 
-````
+```bash
 FIND-FUNCTIONS -h              # This will display the help text.
 ````
-````
+```bash
 FIND-FUNCTIONS -H              # So will this but paged with "less".
 ```
-```
+```bash
 COLUMNS=70 FIND-FUNCTIONS -H   # Simulate a 70-column terminal. The folding is (almost) perfect.
 ```
-```
+```bash
 FIND-FUNCTIONS --HELP=c        # An example of compressed and paged output (or use "-Hc").
 ```
-```
+```bash
 FIND-FUNCTIONS -hb             # Brief (not paged) help displaying: purpose, synopsis and options.
-````
+```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -390,14 +418,14 @@ The table below gives a brief description of the highlighted words.
 
 So type:
 
-```
+```bash
 HIGHLIGHT FIND-FUNCTIONS           # Highlight stuff
 ```
+```bash
+FIND-FUNCTIONS --highlight         # This is the same as above as I created a hidden
+                                   # option for FIND_FUNCTIONS to highlight itself.
 ```
-                                   # This is the same as above as...
-FIND-FUNCTIONS --highlight         # I created a hidden option for FIND_FUNCTIONS to highlight itself.
-```
-```
+```bash
 vim /usr/local/bin/FIND-FUNCTIONS  # Look at the code if you want
 ```
 
@@ -432,27 +460,27 @@ The highlighted words are described (briefly) as follows:
 You can use `FIND-FUNCTIONS` to display the comments or functions in another script.
 So, for the functions contained in the script `/etc/profile.d/EXTRA-BASH-COMMANDS.sh`, try:
 
-```
+```bash
 FIND-FUNCTIONS --comments --script /etc/profile.d/EXTRA-BASH-COMMANDS.sh
 ```
 or (using shorter options)
-```
+```bash
 FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-COMMANDS.sh            # Display the comments for all functions
 ```
 
-```
+```bash
 FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-COMMANDS.sh HIGHLIGHT  # Display the comments for the function HIGHLIGHT
 ```
 
-```
+```bash
 FIND-FUNCTIONS -f -s /etc/profile.d/EXTRA-BASH-COMMANDS.sh            # Display just the function names for all the functions
 ```
 
-```
+```bash
 FIND-FUNCTIONS -s /etc/profile.d/EXTRA-BASH-COMMANDS.sh               # Display the source code for all the functions
 ```
 
-```
+```bash
 FIND-FUNCTIONS -s /etc/profile.d/EXTRA-BASH-COMMANDS.sh HIGHLIGHT     # Display the source code for the function `HIGHLIGHT`
 ```
 
@@ -477,10 +505,12 @@ Try the following `ASK TYPE` command with each of the possible response types.
 | -c   | Any character |
 | -e   | Anything at all |
 
-```
+```bash
 # Try ASK. Enter the following replacing <TYPE> with one of the above TYPEs.
 RUNME ASK <TYPE>
+```
 
+```bash
 # Now, for an alphabetic response, specify a set of acceptable choices.
 # Notice how to specify ranges and how the display of choices is "normalized".
 RUNME ASK -a -C "A B C x-z d thru g D"
@@ -488,7 +518,9 @@ RUNME ASK -a -C "A B C x-z d thru g D"
 
 ASK has much more functionality. To see the full documentation type:
 
-    FIND-FUNCTIONS -c -l ASK         # Shows (with `less`) the documentation for the `ASK` function.
+```bash
+FIND-FUNCTIONS -c -l ASK         # Shows (with `less`) the documentation for the `ASK` function.
+```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -503,7 +535,7 @@ It creates a menu of choices from an array (or from the arguments) and returns t
 | `ANSWER_IDX` | The index into the array (or the arg) based upon the response. |
 | `ANSWER_VAL` | The value of the array element (or arg) based upon the response. |
 
-```
+```bash
 # First a simple example using arguments.
 RUNME ASK_WITH_MENU Arg1 Arg2 "This is argument 3"
 
@@ -514,26 +546,28 @@ Now try an array.
 Copy the code below and paste it into your terminal command line.
 Try making an invalid choice before entering a valid one.
 
-```
+```bash
 # Setup: Create a sparse array (one with some elements missing) and initiate with 4 elements.
 unset Array ; declare -a Array
 Array+=( [1]="Question1: Array index=1" )
 Array+=( [9]="Question4: Array index=9" )
 Array+=( [4]="Question2: Array index=4" )
 Array+=( [7]="Question3: Array index=7" )
+```
 
+```bash
 # Execute ASK_WITH_MENU (with a header to make it nice)
 RUNME ASK_WITH_MENU -H "\n\tMake your choice\n" Array
-
-# The results are displayed.
 ```
+
+The results are displayed.
 
 Again try ASK_WITH_MENU but with an associative array (an array with non-numeric indices).
 Also we will implement multiple answers.
 Copy the code below and paste it into your terminal command line.
 Try making an invalid choice before entering a valid one.
 
-```
+```bash
 # Setup: Create an associative array and initiate with 5 elements (random order).
 # Note:  The array elements can contain spaces.
 #        However I removed them so the results display is more readable.
@@ -543,21 +577,19 @@ Array+=( [1st]="Question1,index=1st" )
 Array+=( [3rd]="Question3,index=3rd" )
 Array+=( [8th]="Question5,index=8th" )
 Array+=( [4th]="Question4,index=4th" )
-
+```
+```bash
 # Execute ASK_WITH_MENU with the results in variable QED and allowing multiple answers.
 RUNME ASK_WITH_MENU -V QED -M -H "\n\tMake your choice\n" Array
-
-# The results are displayed.
-# Notice that for an associative array the order of the elements is no-ndeterminant.
 ```
+The results are displayed.
+Notice that for an associative array the order of the elements is non-determinant.
 
 Finally try the above in a GUI environment (using -G) and with a default response (using -D).
 
-```
+```bash
 RUNME ASK_WITH_MENU -V QED -M -D "*" -G -H "A GUI Example\n\tMake your choice\n" Array
 ```
-
-Like ASK, ASK_WITH_MENU has much more functionality.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -570,13 +602,16 @@ The following examples show some of the capability available.
 
 The functions related to colors are interesting. Try:
 
-```
+```bash
 FIND-FUNCTIONS -c ".*COLOR.*"           # Display the comments (help) for the COLOR functions
-
+```
+```bash
 FIND-FUNCTIONS ".*COLOR.*"              # Now display the code
-
+```
+```bash
 RUNME COLORS_DISPLAY                    # See the built-in colors
-
+```
+```bash
 echo -e "\nExample of 'echo' using a color: A ${UL}book${BLK} that is ${GRN}read${BLK} doesn't have to be ${RED}red${BLK}.\n"
 ```
 
@@ -587,9 +622,10 @@ echo -e "\nExample of 'echo' using a color: A ${UL}book${BLK} that is ${GRN}read
 Errors and warnings can be used as follows.
 Note: Normal operation of `ERROR` will cause immediate exit from the parent script
 
-```
+```bash
 RUNME ERROR "This is an error message.\nThe error is..."
-
+```
+```bash
 RUNME WARNING "This is a warning message.\nThe correct..."
 ```
 
@@ -600,9 +636,10 @@ RUNME WARNING "This is a warning message.\nThe correct..."
 `HUMAN_READABLE` converts a number into a human readable form (AKA: ls -l -h).
 It has many options to format the output. Try:
 
-```
+```bash
 FIND-FUNCTIONS -c HUMAN_READABLE            # For full documentation
-
+```
+```bash
 # Convert
 RUNME HUMAN_READABLE -L 6 123,456,789 23 9,876,543,210,987
 ```
@@ -614,21 +651,28 @@ RUNME HUMAN_READABLE -L 6 123,456,789 23 9,876,543,210,987
 The next three functions deal with spaces and zeros surrounding a string.
 Note: `RUNME` doesn't deal well with a result containing spaces so we have to load `functions.sh` into the current environment and not use `RUNME`.
 
-```
+```bash
 FIND-FUNCTIONS -c PAD_IT TRIM ZERO_FILL |& less
-
+```
+```bash
 FUNCTIONS                   # Needed to execute PAD_IT, TRIM and ZERO_FILL in the current environment.
-
+```
+```bash
 PAD_IT abc    ; echo "<== Padding on the right (the default)."
-
+```
+```bash
 PAD_IT -R abc ; echo "<== Padding (-R) on the left (right justified)."
-
+```
+```bash
 TRIM -V ANS    "   abc def   " ; echo "${ANS}<== Trim surrounding whitespace."
-
+```
+```bash
 TRIM -V ANS -L "   abc def   " ; echo "${ANS}<== Trim (-L) the whitespace on the left."
-
+```
+```bash
 TRIM -V ANS -R "   abc def   " ; echo "${ANS}<== Trim (-R) the whitespace on the right."
-
+```
+```bash
 ZERO_FILL -V ANS -L 6 123      ; echo "${ANS}<== Zero fill."
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
@@ -638,9 +682,10 @@ ZERO_FILL -V ANS -L 6 123      ; echo "${ANS}<== Zero fill."
 
 The function `PAUSE` is a simple way to "wait and continue".
 
-```
+```bash
 FIND-FUNCTIONS -c PAUSE               # View the documentation
-
+```
+```bash
 RUNME PAUSE "\nAn easy way for the program to wait for user input before continuing.\n\t"
 ```
 
@@ -651,11 +696,13 @@ RUNME PAUSE "\nAn easy way for the program to wait for user input before continu
 The function `PROGRESS` can be used within a loop to indicate your script is 'thinking'.
 It displays (on /dev/stderr) a dot "." every time it is executed.
 
-```
+```bash
 FIND-FUNCTIONS -c PROGRESS            # View the documentation
-
+```
+```bash
 FUNCTIONS                             # Load `functions.sh` into the environment
-
+```
+```bash
 PROGRESS 2                            # Setup to display "." every 2 iterations
 echo -n "Processing your request. Please wait: "
 for (( i=1 ; i<=20 ; i++ )) ; do      # A 20-times loop
@@ -663,7 +710,6 @@ for (( i=1 ; i<=20 ; i++ )) ; do      # A 20-times loop
   PROGRESS                            # PROGRESS without arguments implements the "." counter
 done
 echo -e "\nFinished."
-
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
@@ -674,14 +720,16 @@ echo -e "\nFinished."
 The only restriction is no argument can contain whitespace.
 In simple form...
 
-```
+```bash
 RUNME SORT_ARGS ddd ggg qwqq aaa ccc bbb zzz jjj
-
-# Now see what happens to an argument with whitespace.
-# We will display the results line-by-line with -L.
+```
+Now see what happens to an argument with whitespace.
+We will display the results line-by-line with -L.
+```bash
 RUNME SORT_ARGS -L ddd ggg qwqq aaa ccc bbb zzz "jj j"
-
-# The same as above but using `SORT_ARGS_WS`.
+```
+The same as above but using `SORT_ARGS_WS`.
+```bash
 RUNME SORT_ARGS_WS -L ddd ggg qwqq aaa ccc bbb zzz "jj j"
 ```
 
@@ -699,13 +747,15 @@ First an explanation of the arguments to the `SORT_ARGS_WS` examples below.
 | -S "-n -r -t- -k2,2" | Pass options to the `sort` command<br>-n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A numeric sort.<br>-r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sort in reverse order.<br>-t-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The field separator is "-"<br>-k2,2&nbsp;Sort on the second field |
 | ${FILE_NAMES_ARRAY[@]}" | The contents of the file-name array (requoted) as the remaining arguments. |
 
-```
+```bash
 # Create the array of file names.
 FILE_NAMES_ARRAY=( "my file-11" file-20 "our file-10" file-2 "new file-1.x" file-3 file-30 )
-
+```
+```bash
 # The simple case. Just sort by file name.
 RUNME SORT_ARGS_WS -V SORTED_NAMES -A "${FILE_NAMES_ARRAY[@]}"
-
+```
+```bash
 # Now sort by the number in the name and in decreasing order.
 RUNME SORT_ARGS_WS -V SORTED_NAMES -A -S "-n -r -t- -k2,2" "${FILE_NAMES_ARRAY[@]}"
 ```
