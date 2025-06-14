@@ -91,9 +91,11 @@ if you don't have `gawk` then a symbolic link to awk will work as well:
 
 Download the zip file, expand it and install it with:
 
-    cd /tmp
-    pkunzip ...
-    sudo /tmp/.../install.sh
+```bash
+cd /tmp
+pkunzip ...
+sudo /tmp/.../install.sh
+```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
