@@ -771,21 +771,24 @@ RUNME SORT_ARGS_WS -V SORTED_NAMES -A -S "-n -r -t- -k2,2" "${FILE_NAMES_ARRAY[@
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-## <a id="bugs"><a/> Bugs and Not Implemented Yet
-Where would Linux be if there weren't any bugs or unfinished business....
+## <a id="bugs">Bugs and Not Yet Complete<a/>
 
-HUMAN_READABLE | A work in progress.
-GET_IP_FROM_DOMAIN | Minimum usefulness
-GET_MATCHING_NFS_DOMAIN_IN_FSTAB | Ditto
-GET_ALL_UNIQUE_NFS_DOMAINS_IN_FSTAB | Ditto
+Where would Linux be if there weren't any bugs or unfinished business?
 
-&nbsp;&nbst;&nbsp;&nbsp;HUMAN_READABLE: A work in progress.
+| | |
+| ----------------------------------- | ------------------------- |
+| HUMAN_READABLE | A work in progress. |
+| GET_IP_FROM_DOMAIN | Minimum usefulness |
+| GET_MATCHING_NFS_DOMAIN_IN_FSTAB | Ditto |
+| GET_ALL_UNIQUE_NFS_DOMAINS_IN_FSTAB | Ditto |
+
+&nbsp;&nbsp;&nbsp;&nbsp;HUMAN_READABLE: A work in progress.
 <br>
-&nbsp;&nbst;&nbsp;&nbsp;GET_IP_FROM_DOMAIN: Minimum usefulness
+&nbsp;&nbsp;&nbsp;&nbsp;GET_IP_FROM_DOMAIN: Minimum usefulness
 <br>
-&nbsp;&nbst;&nbsp;&nbsp;GET_MATCHING_NFS_DOMAIN_IN_FSTAB: Ditto
+&nbsp;&nbsp;&nbsp;&nbsp;GET_MATCHING_NFS_DOMAIN_IN_FSTAB: Ditto
 <br>
-&nbsp;&nbst;&nbsp;&nbsp;GET_ALL_UNIQUE_NFS_DOMAINS_IN_FSTAB: Ditto
+&nbsp;&nbsp;&nbsp;&nbsp;GET_ALL_UNIQUE_NFS_DOMAINS_IN_FSTAB: Ditto
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
