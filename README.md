@@ -57,6 +57,7 @@ This makes the parent script self documenting with man-like pages.
 
 The functions and scripts are written in the bash scripting language, with some supporting scripts written in gawk.
 The intention of this distribution is to provide, to the home user writing bash scripts, easy access to boilerplate or to capabilities not immediately available or obvious.
+It is, and always will be, a work in progress.
 For more advanced scripting users they provide a quick way to implement some standard scripting (boiler plate) capability.
 
 Note: The coding is not necessarily the best or the most efficient. Therefore it is recommended that `functions.sh` not be used in a production or multi-user environment.
@@ -67,6 +68,14 @@ However, be that as it may, The functions allow one to concentrate on the purpos
 ## <a id="installation">Installation</a>
 
 The installation script `install.sh` installs the bash scripts in the directory `/usr/local/bin` except for `EXTRA-BASH-COMMANDS.sh` which is installed in `/etc/profile.d`.
+
+Download the zipfile and extract it to an empty directory (in `/tmp`?).
+
+```bash
+mkdir /tmp/bash-functions
+cd /tmp/bash-functions
+tar -xzf bash-functions-main.zip
+```
 
 ### <a id="required-packages">Required Packages</a>
 
@@ -91,11 +100,9 @@ if you don't have `gawk` then a symbolic link to awk will work as well:
 
 Download the zip file, expand it and install it with:
 
-```
-cd /tmp
-pkunzip ...
-sudo /tmp/.../install.sh
-```
+    cd /tmp
+    pkunzip ...
+    sudo /tmp/.../install.sh
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -764,13 +771,21 @@ RUNME SORT_ARGS_WS -V SORTED_NAMES -A -S "-n -r -t- -k2,2" "${FILE_NAMES_ARRAY[@
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-## <a id="bugs"><a/> Bugs
-Where would Linux be if there weren't any bugs.
+## <a id="bugs"><a/> Bugs and Not Implemented Yet
+Where would Linux be if there weren't any bugs or unfinished business....
 
-HUMAN_READABLE
-GET_IP_FROM_DOMAIN
-GET_MATCHING_NFS_DOMAIN_IN_FSTAB
-GET_ALL_UNIQUE_NFS_DOMAINS_IN_FSTAB
+HUMAN_READABLE | A work in progress.
+GET_IP_FROM_DOMAIN | Minimum usefulness
+GET_MATCHING_NFS_DOMAIN_IN_FSTAB | Ditto
+GET_ALL_UNIQUE_NFS_DOMAINS_IN_FSTAB | Ditto
+
+&nbsp;&nbst;&nbsp;&nbsp;HUMAN_READABLE: A work in progress.
+<br>
+&nbsp;&nbst;&nbsp;&nbsp;GET_IP_FROM_DOMAIN: Minimum usefulness
+<br>
+&nbsp;&nbst;&nbsp;&nbsp;GET_MATCHING_NFS_DOMAIN_IN_FSTAB: Ditto
+<br>
+&nbsp;&nbst;&nbsp;&nbsp;GET_ALL_UNIQUE_NFS_DOMAINS_IN_FSTAB: Ditto
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
