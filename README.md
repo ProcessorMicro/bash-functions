@@ -2,6 +2,12 @@
 
 ## <a id="purpose">Purpose</a>
 
+   You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).
+   
+   To have a line break without a paragraph, you will need to use two trailing spaces.  
+   Note that this line is separate, but within the same paragraph.  
+   (This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)
+
 This distribution is designed to work in a bash shell environment,
 The bash functions in the file `functions.sh` can be used to enhance and manage bash scripts.
 When the file `functions.sh` is included (sourced) in a parent script more than 70 useful functions and many variables are available to the parent script.
@@ -60,8 +66,8 @@ The intention of this distribution is to provide, to the home user writing bash 
 It is, and always will be, a work in progress.
 For more advanced scripting users they provide a quick way to implement some standard scripting (boiler plate) capability.
 
- Note: The coding is not necessarily the best or the most efficient. Therefore it is recommended that `functions.sh` not be used in a production or multi-user environment.
- However, be that as it may, The functions allow one to concentrate on the purpose of a new script rather than having to duplicate common requirements.
+Note: The coding is not necessarily the best or the most efficient. Therefore it is recommended that `functions.sh` not be used in a production or multi-user environment.
+However, be that as it may, The functions allow one to concentrate on the purpose of a new script rather than having to duplicate common requirements.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
