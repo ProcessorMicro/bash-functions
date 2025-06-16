@@ -60,10 +60,8 @@ The intention of this distribution is to provide, to the home user writing bash 
 It is, and always will be, a work in progress.
 For more advanced scripting users they provide a quick way to implement some standard scripting (boiler plate) capability.
 
-<p style="margin-left: 50px; margin-right: 50px;">
-Note: The coding is not necessarily the best or the most efficient. Therefore it is recommended that `functions.sh` not be used in a production or multi-user environment.
-However, be that as it may, The functions allow one to concentrate on the purpose of a new script rather than having to duplicate common requirements.
-</p>
+ Note: The coding is not necessarily the best or the most efficient. Therefore it is recommended that `functions.sh` not be used in a production or multi-user environment.
+ However, be that as it may, The functions allow one to concentrate on the purpose of a new script rather than having to duplicate common requirements.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
