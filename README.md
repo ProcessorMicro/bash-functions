@@ -10,7 +10,7 @@ Also included in the distribution are a few useful support scripts.
 
 The primary function in `functions.sh` is `GET_ARGS`. It is called with arguments (directives) that "define" the options and arguments available to a parent script.
 And it parses them when the parent script is invoked as a command.
-The `GET_ARGS` directives also describe the script purpose and the meaning of each option/argument defined.
+The `GET_ARGS_DIRECTIVES` also describe the script purpose and the meaning of each option/argument defined.
 This makes the parent script self documenting with man-like pages.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
@@ -60,26 +60,38 @@ The intention of this distribution is to provide, to the home user writing bash 
 It is, and always will be, a work in progress.
 For more advanced scripting users they provide a quick way to implement some standard scripting (boiler plate) capability.
 
+<p style="margin-left: 50px; margin-right: 50px;">
 Note: The coding is not necessarily the best or the most efficient. Therefore it is recommended that `functions.sh` not be used in a production or multi-user environment.
 However, be that as it may, The functions allow one to concentrate on the purpose of a new script rather than having to duplicate common requirements.
+</p>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 ## <a id="installation">Installation</a>
 
-The installation script `install.sh` installs the bash scripts in the directory `/usr/local/bin` except for `EXTRA-BASH-COMMANDS.sh` which is installed in `/etc/profile.d`.
+### <a id="installation-procedure">Installation Procedure</a>
 
-Download the zipfile and extract it to an empty directory (in `/tmp`?).
+The installation script `install.sh` installs the bash scripts in the directory `/usr/local/bin` except for `EXTRA-BASH-FUNCTIONS.sh` which is installed in the directory `/etc/profile.d`
+
+Download the zipfile and extract it to an empty directory (in `/tmp`).
 
 ```bash
-mkdir /tmp/bash-functions
+mkdir /tmp/bash-functions              # Or wherever you want
 cd /tmp/bash-functions
-tar -xzf bash-functions-main.zip
 ```
-
+Then download the zipfile and continue the installation.
+```bash
+unzip bash-functions-main.zip          # Unzip the file
+sudo /tmp/install.sh                   # And install it
+```
+Edit the file `/usr/local/bin/MKSCRIPT` and, to reflect your needs, modify the copyright lines following the line:
+<br>
+`# = Modify the following copyright information as appropriate. =`
+<br>
+You may want to edit the file `/etc/profile.d/EXTRA-BASH-FUNCTIONS.sh and change the environment variable 
 ### <a id="required-packages">Required Packages</a>
 
-The following packages are required for full functionality.
+The following linux programs are required for full functionality.
 
 | PACKAGE | REQUIREMENT |
 |--|--|
@@ -781,14 +793,6 @@ Where would Linux be if there weren't any bugs or unfinished business?
 | GET_IP_FROM_DOMAIN | Minimum usefulness |
 | GET_MATCHING_NFS_DOMAIN_IN_FSTAB | Ditto |
 | GET_ALL_UNIQUE_NFS_DOMAINS_IN_FSTAB | Ditto |
-
-&nbsp;&nbsp;&nbsp;&nbsp;HUMAN_READABLE: A work in progress.
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;GET_IP_FROM_DOMAIN: Minimum usefulness
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;GET_MATCHING_NFS_DOMAIN_IN_FSTAB: Ditto
-<br>
-&nbsp;&nbsp;&nbsp;&nbsp;GET_ALL_UNIQUE_NFS_DOMAINS_IN_FSTAB: Ditto
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
