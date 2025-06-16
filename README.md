@@ -2,20 +2,14 @@
 
 ## <a id="purpose">Purpose</a>
 
-   You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).
-   
-   To have a line break without a paragraph, you will need to use two trailing spaces.  
-   Note that this line is separate, but within the same paragraph.  
-   (This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)
-
-This distribution is designed to work in a bash shell environment,
 The bash functions in the file `functions.sh` can be used to enhance and manage bash scripts.
 When the file `functions.sh` is included (sourced) in a parent script more than 70 useful functions and many variables are available to the parent script.
 Some additional gawk scripts present in this distribution are used by and provide support for `functions.sh`.
-Also included in the distribution are a few useful support scripts.
+Also included in the distribution are a few useful support scripts.  
+This distribution is designed to work in a bash shell environment on a system running the Linux O/S.
 
 The primary function in `functions.sh` is `GET_ARGS`. It is called with arguments (directives) that "define" the options and arguments available to a parent script.
-And it parses them when the parent script is invoked as a command.
+Also it parses the parent script options on the command line when the parent script is invoked as a command.
 The `GET_ARGS_DIRECTIVES` also describe the script purpose and the meaning of each option/argument defined.
 This makes the parent script self documenting with man-like pages.
 
