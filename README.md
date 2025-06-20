@@ -30,7 +30,7 @@ This makes the parent script self documenting with man-like pages.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: `functions.sh`](#XXX)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: FIND-FUNCTIONS](#find-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: MK-SCRIPT](#mk-script)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: EXTRA-BASH-COMMANDS.sh](#extra-bash-commands)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: EXTRA-BASH-FUNCTIONS.sh](#extra-bash-commands)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Function Documentation: GET_ARGS](#GET_ARGS)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Function Documentation: IS_EXCLUSIVE](#IS_EXCLUSIVE)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Function Documentation: ASK et al.](#ASK)<br>
@@ -232,8 +232,8 @@ Examples:
 
 ```bash
 MK-SCRIPT My_Script          # Creates the script My_Script with execute permission.
-                             # My_Script contains the code to implement functions.sh
-                             # and a sample of GET_ARGS.
+                             # My_Script contains the code to implement functions.sh,
+                             # a copyright notice and a small sample of GET_ARGS.
 ```
 ```bash
 MK-SCRIPT -H                 # Displays help for MK-SCRIPT (paged with less)
@@ -244,21 +244,21 @@ MK-SCRIPT -h                 # Displays help for MK-SCRIPT (not paged)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-### <a id="extra-bash-commands">Script Documentation: EXTRA-BASH-COMMANDS.sh</a>
+### <a id="extra-bash-commands">Script Documentation: EXTRA-BASH-FUNCTIONS.sh</a>
 
 This script contains useful functions that `install.sh` copies to the directory `/etc/profile.d`.
 Thus they are always available at the command line in a terminal session and can be typed as commands.
 
-Full documentation of `EXTRA-BASH-COMMANDS.sh` can be viewed by:
+Full documentation of `EXTRA-BASH-FUNCTIONS.sh` can be viewed by:
 
 ```bash
-FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-COMMANDS.sh
+FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh
 ```
 
-Documentation of function `RUNME` in `EXTRA-BASH-COMMANDS.sh` can be viewed by:
+Documentation of function `RUNME` in `EXTRA-BASH-FUNCTIONS.sh` can be viewed by:
 
 ```bash
-FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-COMMANDS.sh RUNME
+FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh RUNME
 ```
 
 | FUNCTION     | DESCRIPTION |
