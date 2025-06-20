@@ -80,13 +80,24 @@ cd /tmp/bash-functions
 Then download the zipfile and continue the installation.
 ```bash
 unzip bash-functions-main.zip          # Unzip the file
-sudo /tmp/install.sh                   # And install it
+sudo /tmp/install.sh                   # And install it as "root"
 ```
-Edit the file `/usr/local/bin/MKSCRIPT` and, to reflect your needs, modify the copyright lines following the line:
-<br>
-`# = Modify the following copyright information as appropriate. =`
-<br>
-You may want to edit the file `/etc/profile.d/EXTRA-BASH-FUNCTIONS.sh and change the environment variable 
+Edit the file `/usr/local/bin/MKSCRIPT` to reflect your copyright needs.
+
+- Modify the default name:
+```bash
+DEFAULT_NAME="Mike Armstrong"
+```
+
+- Modify the copyright lines following the line:
+```bash
+# = Modify the following copyright information as appropriate. =
+```
+
+- You may want to edit the file `/etc/profile.d/EXTRA-BASH-FUNCTIONS.sh and change the environment variable as instructed there.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+
 ### <a id="required-packages">Required Packages</a>
 
 The following linux programs are required for full functionality.
@@ -96,23 +107,13 @@ The following linux programs are required for full functionality.
 | bash    | Required |
 | gawk    | Required |
 | nmap    | Only if you use the network functions |
-| yad     | Only if you use the -G (GUI) option in the ASK functions |
+| yad     | Only if you use the -G (GUI) option in any functions |
 | numfmt  | Only if you use the function `HUMAN_READABLE` |
 | sort    | Only if you use the functions `SORT_ARGS` and `SORT_ARGS_WS` |
 
 if you don't have `gawk` then a symbolic link to awk will work as well:
 
     sudo ln -s /usr/bin/awk /usr/bin/gawk
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
-
-### <a id="installation-procedure">Installation Procedure</a>
-
-Download the zip file, expand it and install it with:
-
-    cd /tmp
-    pkunzip ...
-    sudo /tmp/.../install.sh
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -674,6 +675,9 @@ FIND-FUNCTIONS -c PAD_IT TRIM ZERO_FILL |& less
 ```
 ```bash
 RUNME PAD_IT -V RESULT -L 6 "abc"           # Padding left justified (the default), 6 charaters
+```
+```bash
+RUNME PAD_IT -V RESULT -L 15 -P "HO " "Santa: "
 ```
 ```bash
 RUNME PAD_IT -R -V RESULT -L 9 abc          # Padding right justified, 9 characters
