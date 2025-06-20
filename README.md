@@ -191,7 +191,7 @@ fi
 
 ```
 
-The script `MKSCRIPT` [see MK-SCRIPT below](#mk-script) automatically adds the lines above.
+The script `MKSCRIPT` [(see MK-SCRIPT below)](#mk-script) automatically adds the lines above.
 
 To get a list of all the functions available in `functions.sh`, type:
 
