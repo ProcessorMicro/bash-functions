@@ -668,31 +668,27 @@ RUNME HUMAN_READABLE -L 6 123,456,789 23 9,876,543,210,987
 #### <a id="padit-trim-zerofill">PAD_IT, TRIM & ZERO_FILL</a>
 
 The next three functions deal with spaces and zeros surrounding a string.
-Note: `RUNME` doesn't deal well with a result containing spaces so we have to load `functions.sh` into the current environment and not use `RUNME`.
 
 ```bash
 FIND-FUNCTIONS -c PAD_IT TRIM ZERO_FILL |& less
 ```
 ```bash
-FUNCTIONS                   # Needed to execute PAD_IT, TRIM and ZERO_FILL in the current environment.
+RUNME PAD_IT -V RESULT -L 6 "abc"           # Padding left justified (the default), 6 charaters
 ```
 ```bash
-PAD_IT abc    ; echo "<== Padding on the right (the default)."
+RUNME PAD_IT -R -V RESULT -L 9 abc          # Padding right justified, 9 characters
 ```
 ```bash
-PAD_IT -R abc ; echo "<== Padding (-R) on the left (right justified)."
+RUNME TRIM -V RESULT  "   abc def   "       # Trim surrounding whitespace
 ```
 ```bash
-TRIM -V ANS    "   abc def   " ; echo "${ANS}<== Trim surrounding whitespace."
+RUNME TRIM -V RESULT -L "   abc def   "     # Trim (-L) the whitespace on the left
 ```
 ```bash
-TRIM -V ANS -L "   abc def   " ; echo "${ANS}<== Trim (-L) the whitespace on the left."
+RUNME TRIM -V RESULT -R "   abc def   "     # Trim (-R) the whitespace on the right
 ```
 ```bash
-TRIM -V ANS -R "   abc def   " ; echo "${ANS}<== Trim (-R) the whitespace on the right."
-```
-```bash
-ZERO_FILL -V ANS -L 6 123      ; echo "${ANS}<== Zero fill."
+RUNME ZERO_FILL -V RESULT -L 6 123          # Zero fill on the left
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -725,7 +721,7 @@ FUNCTIONS                             # Load `functions.sh` into the environment
 PROGRESS 2                            # Setup to display "." every 2 iterations
 echo -n "Processing your request. Please wait: "
 for (( i=1 ; i<=20 ; i++ )) ; do      # A 20-times loop
-  sleep 1                             # Simulate "work"
+  sleep 0.5                             # Simulate "work"
   PROGRESS                            # PROGRESS without arguments implements the "." counter
 done
 echo -e "\nFinished."
