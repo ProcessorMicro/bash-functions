@@ -74,14 +74,14 @@ The installation script `install.sh` installs the bash scripts in the directory 
 Download the zipfile and extract it to an empty directory (in `/tmp`).
 
 ```bash
-mkdir /tmp/bash-functions              # Or wherever you want
-cd /tmp/bash-functions
+cd /tmp                                   # Or wherever you want
 ```
 Then download the zipfile and continue the installation.
 ```bash
-unzip bash-functions-main.zip          # Unzip the file
-sudo /tmp/install.sh                   # And install it as "root"
+unzip bash-functions-main.zip             # Unzip the file
+sudo /tmp/bash-functions-main/install.sh  # And install it as "root"
 ```
+
 Edit the file `/usr/local/bin/MKSCRIPT` to reflect your copyright needs.
 
 - Modify the default name:
