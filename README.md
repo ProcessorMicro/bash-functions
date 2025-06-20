@@ -94,13 +94,13 @@ DEFAULT_NAME="Mike Armstrong"
 # = Modify the following copyright information as appropriate. =
 ```
 
-- You may want to edit the file `/etc/profile.d/EXTRA-BASH-FUNCTIONS.sh` and change the environment variable as instructed there.
+- You may want to edit the file `/etc/profile.d/EXTRA-BASH-FUNCTIONS.sh` and change the value of the environment variable `_GET_ARGS_GLOBAL_HELP_DEFAULT_` as instructed there.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-### <a id="required-packages">Required Packages</a>
+### <a id="required-packages">Required Applications</a>
 
-The following linux programs are required for full functionality.
+The following linux applications are required for full functionality.
 
 | PACKAGE | REQUIREMENT |
 |--|--|
@@ -146,13 +146,13 @@ Some of the many variables available for use by the parent script.
 | VARIABLE            | DESCRIPTION |
 |--|--|
 | Opt_XXX             | A variable set by `GET_ARGS` for an option parsed from the command line when the parent script is executed. `Opt_XXX` contains the number of times a particular option is encountered. |
-| Opt_XXX_Val[]       | An array containing the values for an option `Opt_XXX` requiring a value. |
+| Opt_XXX_Val[*]      | An array containing the option values for any option `Opt_XXX` requiring a value. |
 | Opts_All            | A variable containing every option encountered (in order but with no values). |
 | Args[*]             | An array (origin 1) containing all the arguments encountered when the parent script is executed. |
 | CMD                 | The basename of the executing parent script. |
 | CMD_DIR             | The directory that contains the parent script |
-| ANSWER...           | A variable containing the response(s) entered by the user when the ASK function is invoked. |
-| BLK, RED, GLD, etc. | Variables that can be used to color and format messages displayed by 'echo -e'. The function `COLOR_DISPLAY` will display the colors implemented. |
+| ANSWER...           | A (set of) variables containing the response(s) entered by the user when the ASK function is invoked. |
+| BLK, RED, GLD, etc. | Variables that can be used to color and format messages displayed by 'echo -e'. The function `COLORS_DISPLAY` will display the colors implemented. |
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -170,24 +170,28 @@ functions.sh
 ```
 
 Will display the complete help for every function and variable.
-The display is paged with 'less'.
+The display is paged with 'less'.  
+The first page displays the purpose of `functions.sh` followed by the suggested coding to implement `functions.sh`
+that should be entered into the environment and at the beginning of a parent script.
 
 ```bash
 functions.sh FUNCTION              # Displays the documentation for `FUNCTION`
 ```
 
-The first page displays the purpose of `functions.sh` followed by the suggested coding to implement `functions.sh`
-that should be entered into the environment and at the beginning of a parent script.
-
-To use the functions and variables within a parent script, include the following:
+To use the functions and variables within a parent script, include the following lines:
 
 ```bash
-. functions.sh									# Note the dot "."
+# Initialize functions.sh if preloaded into the environment. Otherwise locate and load functions.sh
+if (( _functions_sh_loaded_ )) ; then           # Is functions.sh loaded?
+  FUNCTIONS_SH_INIT                             # Initialize functions.sh
+else                                            # functions.sh not loaded
+  COMMON_FUNCTIONS="$(type -p functions.sh)"    # Locate and load functions.sh
+  [[ -x ${COMMON_FUNCTIONS} ]] && source "${COMMON_FUNCTIONS}" || { echo -e "Cannot locate "${COMMON_FUNCTIONS:-functions.sh}"." 1>&2 ; exit ; }
+fi
+
 ```
-or
-```bash
-source functions.sh
-```
+
+The script `MKSCRIPT` [see MK-SCRIPT below](#mk-script) automatically adds the lines above.
 
 To get a list of all the functions available in `functions.sh`, type:
 
