@@ -94,7 +94,7 @@ DEFAULT_NAME="Mike Armstrong"
 # = Modify the following copyright information as appropriate. =
 ```
 
-- You may want to edit the file `/etc/profile.d/EXTRA-BASH-FUNCTIONS.sh and change the environment variable as instructed there.
+- You may want to edit the file `/etc/profile.d/EXTRA-BASH-FUNCTIONS.sh` and change the environment variable as instructed there.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
