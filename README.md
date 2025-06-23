@@ -6,7 +6,7 @@ The bash functions in the file `functions.sh` can be used to enhance and manage 
 When the file `functions.sh` is included (sourced) in a parent script more than 70 useful functions and many variables are available to the parent script.
 Some additional gawk scripts present in this distribution are used by and provide support for `functions.sh`.
 Also included in the distribution are a few useful support scripts.  
-This distribution is designed to work in a bash shell environment on a system running the Linux O/S.
+This distribution is designed to work in a bash shell environment on a system executing the Linux O/S.
 
 The primary function in `functions.sh` is `GET_ARGS`. It is called with arguments (directives) that "define" the options and arguments available to a parent script.
 Also it parses the parent script options on the command line when the parent script is invoked as a command.
@@ -43,7 +43,6 @@ This makes the parent script self documenting with man-like pages.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Experiment with Some Other Functions](#experiment-with-other-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[COLOR](#color)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ERROR & WARNING](#error-warning)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[HUMAN_READABLE](#human-readable)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[PAD_IT, TRIM & ZERO_FILL](#padit-trim-zerofill)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[PAUSE](#pause)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[PROGRESS](#progress)<br>
@@ -107,7 +106,6 @@ The following linux applications are required for full functionality.
 | gawk    | Required |
 | nmap    | Only if you use the network functions |
 | yad     | Only if you use the -G (GUI) option in any functions |
-| numfmt  | Only if you use the function `HUMAN_READABLE` |
 | sort    | Only if you use the functions `SORT_ARGS` and `SORT_ARGS_WS` |
 
 if you don't have `gawk` then a symbolic link to awk will work as well:
@@ -253,19 +251,19 @@ Full documentation of `EXTRA-BASH-FUNCTIONS.sh` can be viewed by:
 ```bash
 FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh
 ```
+Three extra functions are available:
 
-Documentation of function `RUNME` in `EXTRA-BASH-FUNCTIONS.sh` can be viewed by:
+| FUNCTION     | DESCRIPTION |
+|--|--|
+| FUNCTIONS    | Typing this at a command line will load `functions.sh` into your current environment. It also turns off bash debugging (set +x) and sets all `exit` statements in `functions.sh` to be `return` thus preventing any error exits from closing your terminal session. |
+| HIGHLIGHT    | A complex grep command that highlights, in a script, salient functions and arguments related to the major functions `GET_ARGS` and `IS_EXCLUSIVE` in this distribution.<br>&nbsp;&nbsp;&nbsp;&nbsp;Usage: `HIGHLIGHT [ path-to-script ]`<br>Where: path-to-script defaults to `/usr/local/bin/FIND-FUNCTIONS` |
+| RUNME        | A command that executes any function in `functions.sh` (or another function library) in a safe environment and displays the result(s). |
+
+For example, documentation of function `RUNME` in `EXTRA-BASH-FUNCTIONS.sh` can be viewed by:
 
 ```bash
 FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh RUNME
 ```
-
-| FUNCTION     | DESCRIPTION |
-|--|--|
-| DEBUG_SCRIPT | This command redirects the output from 'bash -x' into a file so you can use STDIN, STDOUT and STDERR as you test your script |
-| FUNCTIONS    | Typing this at a command line will load `functions.sh` into your current environment. It also turns off bash debugging (set +x) and sets all `exit` statements in `functions.sh` to be `return` thus preventing any error exits from closing your terminal session. |
-| HIGHLIGHT    | A complex grep command that highlights, in a script, salient functions and arguments related to the major functions `GET_ARGS` and `IS_EXCLUSIVE` in this distribution.<br>&nbsp;&nbsp;&nbsp;&nbsp;Usage: `HIGHLIGHT [ path-to-script ]`<br>Where: path-to-script defaults to `/usr/local/bin/FIND-FUNCTIONS` |
-| RUNME        | A command that executes any function in `functions.sh` (or another function library) in a safe environment and displays the result(s). |
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -369,16 +367,40 @@ FIND-FUNCTIONS -c -l "ASK.*"
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
+## <a id="TMP_FILE_CREATE">TMP_FILE_CREATE et al.</a>
+
+Several functions manage temporary files and directories.
+Any files or directories created are automatically deleted when the parent script terminates.
+Unless directed otherwise, the files/dirs are created in `/tmp`.  
+The functions are summarized below.
+
+| FUNCTION | Description |
+| -------- | ----------- |
+| TMP_FILE_CREATE | Create a file with a unique name and assign that name to a bash variable. |
+| TMP_FILE_PERMANENT | Like TMP_FILE_CREATE but the file is not deleted at parent script termination. |
+| TMP_FILE_DELETE | Delete a created file. |
+| TMP_DIR_CREATE | Create a directory with a unique name and assign that name to a bash variable. |
+| TMP_DIR_PERMANENT | Like TMP_DIR_CREATE but the directory is not deleted at parent script termination. |
+| TMP_DIR_DELETE | Delete a created directory. |
+
+To see the documentation for TMP_FILE_CREATE type:
+
+```bash
+functions.sh TMP_FILE_CREATE                # Display help for the function TMP_FILE_CREATE
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+
 ## <a id="tryme">Examples of Functions</a>
 
 Once installation is complete either open another terminal session or type the following:
 
 ```bash
-source /etc/profile.d/EXTRA-BASH-COMMANDS.sh
+source /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh
 ```
 
 There are two ways you can practice using the functions.
-The better way is to use the RUNME function as it also displays the result(s) from running a function.
+The better way is to use the RUNME function as it also displays the result(s) from executing a function.
 
 ```bash
 RUNME <FUNCTION_AND_ARGUMENTS>     # The preferred way
@@ -481,30 +503,30 @@ The highlighted words are described (briefly) as follows:
 | ERROR                  | A function that displays the error message and immediately exits `FIND-FUNCTIONS`. |
 
 You can use `FIND-FUNCTIONS` to display the comments or functions in another script.
-So, for the functions contained in the script `/etc/profile.d/EXTRA-BASH-COMMANDS.sh`, try:
+So, for the functions contained in the script `/etc/profile.d/EXTRA-BASH-FUNCTIONS.sh`, try:
 
 ```bash
-FIND-FUNCTIONS --comments --script /etc/profile.d/EXTRA-BASH-COMMANDS.sh
+FIND-FUNCTIONS --comments --script /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh
 ```
 or (using shorter options)
 ```bash
-FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-COMMANDS.sh            # Display the comments for all functions
+FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh            # Display the comments for all functions
 ```
 
 ```bash
-FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-COMMANDS.sh HIGHLIGHT  # Display the comments for the function HIGHLIGHT
+FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh HIGHLIGHT  # Display the comments for the function HIGHLIGHT
 ```
 
 ```bash
-FIND-FUNCTIONS -f -s /etc/profile.d/EXTRA-BASH-COMMANDS.sh            # Display just the function names for all the functions
+FIND-FUNCTIONS -f -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh            # Display just the function names for all the functions
 ```
 
 ```bash
-FIND-FUNCTIONS -s /etc/profile.d/EXTRA-BASH-COMMANDS.sh               # Display the source code for all the functions
+FIND-FUNCTIONS -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh               # Display the source code for all the functions
 ```
 
 ```bash
-FIND-FUNCTIONS -s /etc/profile.d/EXTRA-BASH-COMMANDS.sh HIGHLIGHT     # Display the source code for the function `HIGHLIGHT`
+FIND-FUNCTIONS -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh HIGHLIGHT     # Display the source code for the function `HIGHLIGHT`
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
@@ -654,21 +676,6 @@ RUNME WARNING "This is a warning message.\nThe correct..."
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-#### <a id="human-readable">HUMAN_READABLE</a>
-
-`HUMAN_READABLE` converts a number into a human readable form (AKA: ls -l -h).
-It has many options to format the output. Try:
-
-```bash
-FIND-FUNCTIONS -c HUMAN_READABLE            # For full documentation
-```
-```bash
-# Convert
-RUNME HUMAN_READABLE -L 6 123,456,789 23 9,876,543,210,987
-```
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
-
 #### <a id="padit-trim-zerofill">PAD_IT, TRIM & ZERO_FILL</a>
 
 The next three functions deal with spaces and zeros surrounding a string.
@@ -790,7 +797,6 @@ Where would Linux be if there weren't any bugs or unfinished business?
 
 | | |
 | ----------------------------------- | ------------------------- |
-| HUMAN_READABLE | A work in progress. |
 | GET_IP_FROM_DOMAIN | Minimum usefulness |
 | GET_MATCHING_NFS_DOMAIN_IN_FSTAB | Ditto |
 | GET_ALL_UNIQUE_NFS_DOMAINS_IN_FSTAB | Ditto |
