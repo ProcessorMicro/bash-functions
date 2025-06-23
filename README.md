@@ -434,14 +434,14 @@ To see how `GET_ARGS` and `IS_EXCLUSIVE` works and to see some other features we
 
 #### <a id="example-of-help">Example of help implemented by GET_ARGS</a>
 
-Before we look at an example of the coding for `GET_ARGS`, let us see how help is implemented by `GET_ARGS`.
+Before you look at an example of the coding for `GET_ARGS`, see how help is implemented by `GET_ARGS`.
 We will use help for `FIND-FUNCTIONS` and to see how it works. Try the following:
 
 ```bash
 FIND-FUNCTIONS -h              # This will display the help text.
 ````
 ```bash
-FIND-FUNCTIONS -H              # So will this but paged with "less".
+FIND-FUNCTIONS -H              # So will this paged with "less".
 ```
 ```bash
 COLUMNS=70 FIND-FUNCTIONS -H   # Simulate a 70-column terminal. The folding is (almost) perfect.
