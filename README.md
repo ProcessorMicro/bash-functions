@@ -285,7 +285,7 @@ It has three basic purposes:
 
 `GET_ARGS` functionality is summarized as follows:
 
-| GET_ARGS FEATURE |
+| GET_ARGS FEATURES |
 |--|
 | Options available to the parent script are defined with the GET_ARGS_OPTION pair `--Opt_D "..."` and `--Des_D "..."`.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(`--Option_Definition` and `--Description_Definition`). |
 | Each defined option has a description that specifies the purpose of that option.<br>The description is formatted and displayed in the help display.
@@ -320,7 +320,7 @@ When an `IS_EXCLUSIVE` rule is violated, an error message summarizing the proble
 
 Basic `IS_EXCLUSIVE` functionality is summarized as follows:
 
-| IS_EXCLUSIVE FEATURE |
+| IS_EXCLUSIVE FEATURES |
 |--|
 | Verify that in a set of options only one option may be specified. |
 | Verify that a set of options must be used together. |
@@ -486,7 +486,7 @@ The highlighted words are described (briefly) as follows:
 | HIGHLIGHTED TEXT       | DESCRIPTION |
 |--|--|
 | Note 1:                | The GET_ARGS function requires arguments. These are known as GET_ARGS_OPTIONS. They define the options allowed when executing `FIND-FUNCTIONS`. |
-| Note 2:                | To make it easier to see the GET_ARGS_OPTIONS, each is on a separate line and each line ends with the line continuation character " \". |
+| Note 2:                | To make it easier to see the GET_ARGS_OPTIONS, each is on a separate line and each line ends with the line continuation characters " \\". |
 | Note 3:                | To help explain the highlighted code, I have added a line continuation character " \" at the end of some comments so they are included in the displayed output. |
 | SCRIPT_PURPOSE         | A variable that summarizes what the script does. The value is displayed in the help output. |
 | SCRIPT_VERSION         | The value of this variable is displayed if the script is invoked with option -v or --version. |
