@@ -2,7 +2,7 @@
 
 ## <a id="purpose">Purpose</a>
 
-The bash functions in the file `functions.sh` can be used to enhance and manage bash scripts.
+The bash functions in the file `functions.sh` can be used to enhance and manage bash scripts. 
 When the file `functions.sh` is included (sourced) in a parent script more than 70 useful functions and many variables are available to the parent script.
 Some additional gawk scripts present in this distribution are used by and provide support for `functions.sh`.
 Also included in the distribution are a few useful support scripts.  
