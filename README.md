@@ -490,13 +490,14 @@ The highlighted words are described (briefly) as follows:
 |  | Note 3:                      | To help explain the highlighted code, I have added the line continuation characters " \\" at the end of some comments so they are included in the displayed output. |
 | 4 | SCRIPT_PURPOSE              | A variable that summarizes what the script does. The value is displayed in the help output. |
 | 6 | SCRIPT_VERSION              | The value of this variable is displayed if the script is invoked with option -v or --version. |
-| 10-12 | COMMON_FUNCTIONS        | Variable containing the pathname of `functions.sh`. |
-| 17-51 | GET_ARGS                | The call to the GET_ARGS function. The following highlighted lines are GET_ARGS_OPTIONS.|
+| 7-12 | Load and/or Initialize   | The bash coding that ensures `functions.sk` is loaded and/or initialized. |
+| 10 | COMMON_FUNCTIONS           | Variable containing the pathname of `functions.sh`. |
+| 17-51 | GET_ARGS coding         | The call to the GET_ARGS function. The following highlighted lines are GET_ARGS_OPTIONS.|
 | 17 | --Args_Array               | Instructs GET_ARGS to create an array `Args` which contains the `FIND-FUNCTIONS` non-option arguments found. |
 | 18 | --Copyright                | Causes the default copyright notice to be inserted into the help text. |
 | 19-40 | --Opt_D and --Des_D     | Defines and describes the `FIND-FUNCTIONS` options allowed. |
 | 29 | --Hid_D                    | Is like --Opt_D in that it defines a parent script option (--list or --ListOptions) but it is is not displayed by help. |
-| 29 | ${CMD}                     | `functions.sh` creates this variable whose basename is the parent script name. |
+| 29 | ${CMD}                     | `functions.sh` creates this variable with basename of the parent script name ad the value. (Other useful variables are created as well.) |
 | 41-46 | --Where and --Info      | Provide extra information in the help display. |
 | 47-50 | --Exam                  | Creates an EXAMPLE section. |
 | 51 | -- "$@"                    | These two arguments always must be the last of the GET_ARGS arguments. |
