@@ -1,6 +1,6 @@
 # <a id="top">Useful Bash Functions</a>
 
-## <a id="purpose">Purpose</a> 
+## <a id="purpose">Purpose</a>
 
 The bash functions in the file `functions.sh` can be used to enhance and manage bash scripts.
 When the file `functions.sh` is included (sourced) in a parent script more than 70 useful functions and many variables are available to the parent script.
@@ -131,9 +131,9 @@ The following is a description of the functions and variables in `functions.sh` 
 | ASK_WITH_MENU, ASK_WITH_MENU_GUI | Same as `ASK` but presents a menu of choices and accepts single or multiple answers. Described in more detail below. |
 | IS_ROOT, IS_NUMERIC, IS_... | A set of testing functions. for example `IS_ROOT` returns TRUE if the parent script is running with root privileges. |
 | TEST_...                    | A set of functions and variables that can be used while testing the parent script to surround commands that make a (critical) 'change'. Executing the parent script with the option `-t` or `--test` will cause those commands to be displayed (after all expansions) rather than being executed. |
-| SORT_ARGS, SORT_ARGS_WS     | Functions that will sort the arguments to the function and display the sorted result. |
+| SORT_ARGS, SORT_ARGS_WS     | Functions that sorts the arguments to the function and display the sorted result. |
 | TMP_FILE_..., TMP_DIR_...   | A set of functions to manage creation and deletion of temporary files and directories. |
-| cleanup operations          | Upon parent script exit, `functions.sh` will automatically delete any temporary files/directories created by the TMP_... functions and will unmount any filesystems mounted by functions in `functions.sh`. |
+| cleanup operations          | Upon parent script exit, `functions.sh` automatically deletes any temporary files/directories created by the TMP_... functions and unmounts any filesystems mounted by functions in `functions.sh`. |
 | Many other functions...     | Many other uses... |
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
@@ -151,7 +151,7 @@ Some of the many variables available for use by the parent script.
 | CMD                 | The basename of the executing parent script. |
 | CMD_DIR             | The directory that contains the parent script |
 | ANSWER...           | A (set of) variables containing the response(s) entered by the user when the ASK function is invoked. |
-| BLK, RED, GLD, etc. | Variables that can be used to color and format messages displayed by 'echo -e'. The function `COLORS_DISPLAY` will display the colors implemented. |
+| BLK, RED, GLD, etc. | Variables that can be used to color and format messages displayed by 'echo -e'. The function `COLORS_DISPLAY` displays the colors implemented. |
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -164,22 +164,22 @@ And all the functions are preceded by documentation describing the function usag
 
 ## <a id="script-documentation">Script Documentation</a>
 
+`functions.sh` is self documenting.
 Assuming `functions.sh` was installed in a directory listed in `PATH` (/usr/local/bin), then typing:
 
 ```bash
 functions.sh
 ```
 
-Will display the complete help for every function and variable.
+displays the complete help for every function and variable.
 The display is paged with 'less'.  
-The first page displays the purpose of `functions.sh` followed by the suggested coding to implement `functions.sh`
-that should be entered into the environment and at the beginning of a parent script.
+The first page displays the purpose of `functions.sh` followed by the suggested coding to implement `functions.sh` that should be entered into the environment and at the beginning of a parent script.
 
 ```bash
 functions.sh FUNCTION              # Displays the documentation for `FUNCTION`
 ```
 
-To use the functions and variables within a parent script, include the following lines:
+To use the functions and variables within a parent script, include the following lines (`functions.sh` self help    displays complete instructions on how to do this):
 
 ```bash
 # Initialize functions.sh if preloaded into the environment. Otherwise locate and load functions.sh
@@ -198,7 +198,7 @@ The script `MKSCRIPT` [(see MKSCRIPT below)](#mkscript) automatically adds the l
 
 ### <a id="mkscript">MKSCRIPT</a>
 
-The script MKSCRIPT will create the beginning lines recommended for a parent script and will set execute permission on the created script.  
+The script MKSCRIPT creates a script file containing the  lines recommended for a parent script. It also sets execute permission on the created script.  
 Try the following examples:
 
 ```bash
@@ -217,7 +217,7 @@ MKSCRIPT -h                  # Displays help for MKSCRIPT (not paged)
 
 ### <a id="find-functions">FIND-FUNCTIONS</a>
 
-The bash script `FIND-FUNCTIONS` will display the function source code or the documentation for a single function (or a set of functions matching a PATTERN) in `functions.sh`.
+The bash script `FIND-FUNCTIONS` displays the function source code or the documentation for a single function (or a set of functions matching a PATTERN) in `functions.sh`.
 However it also can be used for any script that has a recognizable PATTERN for documentation.
 It assumes `functions.sh` is installed in the directory /usr/local/bin.
 To see the options available for `FIND-FUNCTIONS` type:
@@ -261,9 +261,9 @@ Three extra functions are available:
 
 | FUNCTION     | DESCRIPTION |
 |--|--|
-| FUNCTIONS    | Typing this at a command line will load `functions.sh` into your current environment. It also turns off bash debugging (set +x) and sets all `exit` statements in `functions.sh` to be `return` thus preventing any error exits from closing your terminal session. |
+| FUNCTIONS    | Typing this at a command line loads `functions.sh` into your current environment. It also turns off bash debugging (set +x) and sets all `exit` statements in `functions.sh` to be `return` thus preventing any error exits from closing your terminal session. |
 | HIGHLIGHT    | A complex grep command that highlights, in a script, salient functions and arguments related to the major functions `GET_ARGS` and `IS_EXCLUSIVE` in this distribution.<br>&nbsp;&nbsp;&nbsp;&nbsp;Usage: `HIGHLIGHT [ path-to-script ]`<br>Where: path-to-script defaults to `/usr/local/bin/FIND-FUNCTIONS` |
-| RUNME        | A command that executes any function in `functions.sh` (or another function library) in a safe environment and displays the result(s). |
+| RUNME        | A function that executes any function in `functions.sh` (or another function library) in a safe environment and displays the result(s). |
 
 For example, documentation of function `RUNME` in `EXTRA-BASH-FUNCTIONS.sh` can be viewed by:
 
@@ -274,7 +274,7 @@ FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh RUNME
 
 ## <a id="function-documentation">Function Documentation</a>
 
-### <a id="GET_ARGS">Function Documentation: GET_ARGS</a>
+### <a id="GET_ARGS">GET_ARGS</a>
 
 `GET_ARGS` is the primary function in this distribution.
 It has three basic purposes:
@@ -313,7 +313,7 @@ FIND-FUNCTIONS --comments --less GET_ARGS
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-### <a id="IS_EXCLUSIVE">Function Documentation: IS_EXCLUSIVE</a>
+### <a id="IS_EXCLUSIVE">IS_EXCLUSIVE</a>
 
 This function is a "daughter" to GET_ARGS and can only be called after GET_ARGS has been invoked. It's purpose is to create rules that validate allowed combinations of command-line options when a parent script is executed.
 When an `IS_EXCLUSIVE` rule is violated, an error message summarizing the problem is displayed and the parent script is exited.
@@ -339,11 +339,11 @@ FIND-FUNCTIONS -c -l IS_EXCLUSIVE
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-### <a id="ASK">Function Documentation:<br>&nbsp;&nbsp;&nbsp;&nbsp;ASK, ASK_GUI, ASK_WITH_MENU, ASK_WITH_MENU_GUI</a>
+### <a id="ASK"><br>&nbsp;&nbsp;&nbsp;&nbsp;ASK, ASK_GUI, ASK_WITH_MENU, ASK_WITH_MENU_GUI</a>
 
 The basic functionality of the set of `ASK` functions is to display statements or questions to a user and to record the response.
 A response can be verified against a set of acceptable responses.
-The `ASK` functions will loop until a correct response is entered or a `quit` is requested.
+The `ASK` functions loops until a correct response is entered or a `quit` is requested.
 The first argument to `ASK` is required.
 It specifies either the type of response or the type of response and a default list of choices.
 
@@ -354,7 +354,7 @@ It specifies either the type of response or the type of response and a default l
 | Expected response types can be: yes or no, a number, an alphabetic character (UPPER CASE, lower case or mixed case), a range, a word, a phrase or anything at all, |
 | `ASK` verifies the response matches the type (or is one of the choices). |
 | If it is not, `ASK` displays an error message and re-prompts for an answer. |
-| `ASK` always recognizes a "quit" response (usually "q") that will exit the parent script or return with an error code. |
+| `ASK` always recognizes a "quit" response (usually "q") that exits the parent script or return with an error code. |
 | You can configure `ASK` to have a default result inserted for a null (empty) response. |
 | By default the response is placed in the variable ANSWER. The variable name can be changed.
 | Multiple responses can be configured in which case the responses are placed in the array ANSWER. |
@@ -445,7 +445,7 @@ Before you look at an example of the coding for `GET_ARGS`, see how help is impl
 We will use help for `FIND-FUNCTIONS` and to see how it works. Try the following:
 
 ```bash
-FIND-FUNCTIONS -h              # This will display the help text.
+FIND-FUNCTIONS -h              # This displays the help text.
 ````
 ```bash
 FIND-FUNCTIONS -H              # So will this paged with "less".
@@ -465,7 +465,7 @@ FIND-FUNCTIONS -hb             # Brief (not paged) help displaying: purpose, syn
 #### <a id="coding-of-get-args">Sample Code for GET_ARGS and IS_EXCLUSIVE</a>
 
 Now look within the script `FIND-FUNCTIONS` to see the coding that generated the help that was displayed.
-The `HIGHLIGHT` command invokes a rather complex egrep pattern that will display and highlight how `functions.sh` is used within `FIND-FUNCTIONS`.
+The `HIGHLIGHT` command invokes a rather complex egrep pattern that displays and highlight how `functions.sh` is used within `FIND-FUNCTIONS`.
 The table below gives a brief description of the highlighted words.
 
 So type:
@@ -672,7 +672,7 @@ echo -e "\nExample of 'echo' using a color: A ${UL}book${BLK} that is ${GRN}read
 #### <a id="error-warning">ERROR & WARNING</a>
 
 Errors and warnings can be used as follows.
-Note: Normal operation of `ERROR` will cause immediate exit from the parent script
+Note: Normal operation of `ERROR` forces immediate exit from the parent script
 
 ```bash
 RUNME ERROR "This is an error message.\nThe error is..."
@@ -760,7 +760,7 @@ In simple form...
 RUNME SORT_ARGS ddd ggg qwqq aaa ccc bbb zzz jjj
 ```
 Now see what happens to an argument with whitespace.
-We will display the results line-by-line with -L.
+We displays the results line-by-line with -L.
 ```bash
 RUNME SORT_ARGS -L ddd ggg qwqq aaa ccc bbb zzz "jj j"
 ```
