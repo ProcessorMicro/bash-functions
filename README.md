@@ -2,7 +2,7 @@
 
 ## <a id="purpose">Purpose</a>
 
-The bash functions in the file `functions.sh` can be used to enhance and manage bash scripts. 
+The bash functions in the file `functions.sh` can be used to enhance and manage bash scripts.
 When the file `functions.sh` is included (sourced) in a parent script more than 70 useful functions and many variables are available to the parent script.
 Some additional gawk scripts present in this distribution are used by and provide support for `functions.sh`.
 Also included in the distribution are a few useful support scripts.  
@@ -483,31 +483,32 @@ vim /usr/local/bin/FIND-FUNCTIONS  # Look at the code if you want
 
 The highlighted words are described (briefly) as follows:
 
-| HIGHLIGHTED TEXT       | DESCRIPTION |
-|--|--|
-| Note 1:                | The GET_ARGS function requires arguments. These are known as GET_ARGS_OPTIONS. They define the options allowed when executing `FIND-FUNCTIONS`. |
-| Note 2:                | To make it easier to see the GET_ARGS_OPTIONS, each is on a separate line and each line ends with the line continuation characters " \\". |
-| Note 3:                | To help explain the highlighted code, I have added a line continuation character " \" at the end of some comments so they are included in the displayed output. |
-| SCRIPT_PURPOSE         | A variable that summarizes what the script does. The value is displayed in the help output. |
-| SCRIPT_VERSION         | The value of this variable is displayed if the script is invoked with option -v or --version. |
-| COMMON_FUNCTIONS       | Variable containing the pathname of `functions.sh`. |
-| GET_ARGS               | The call to the GET_ARGS function. The following highlighted lines are GET_ARGS_OPTIONS.|
-| --Args_Array           | Instructs GET_ARGS to create an array `Args` which contains the `FIND-FUNCTIONS` non-option arguments found. |
-| --Opt_D and --Des_D    | Defines and describes the `FIND-FUNCTIONS` options allowed. |
-| --Hid_D                | Is like --Opt_D in that it defines a parent script option (--list or --ListOptions) but it is is not displayed by help. |
-| ${CMD}                 | `functions.sh` creates this variable whose basename is the parent script name. |
-| --Where and --Info     | Provide extra information in the help display. |
-| --Exam                 | Creates an EXAMPLE section. |
-| -- "$@"                | These two arguments always must be the last of the GET_ARGS arguments. |
-| Opt_list               | Is a variable created if the parent script is invoked with the option --list or --ListOptions.
-| Opt_list_Val           | Is the (optional) value created by using the syntax --list=VALUE or --ListOptions=VALUE.
-| IS_EXCLUSIVE           | A function that defines rules for acceptable combinations of parent script options. |
-| Opt_X, Opt_XXX         | When executing `FIND-FUNCTIONS` these variables are created (incremented) each time option -X (--XXX) is encountered on the command line. I.E. If Opt_X tests TRUE then option -X was used. |
-| Opt_X_Val, Opt_XXX_Val | At parent script execution, these variables contain the value if option -X (--XXX) is followed by a value. |
-| For example:           | The line:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`(( Opt_E ))   && TheOutputCommand="${Opt_E_Val}"`<br>Says: If -E /mybin/myeditor (or --editor=/mybin/myeditor) was used (Opt_E > 0) then set "TheOutputCommand" to the value "/mybin/myeditor". |
-| ${TEST_CMD}            | Causes the command line to be displayed if option --test (-t) was used. Otherwise the command is executed. Useful for testing a script. |
-| IS_TESTING             | A function that returns TRUE if --test (-t) was used. |
-| ERROR                  | A function that displays the error message and immediately exits `FIND-FUNCTIONS`. |
+| &nbsp;&nbsp;LINE&nbsp;#&nbsp;&nbsp; | HIGHLIGHTED TEXT       | DESCRIPTION |
+| :--: |--|--|
+|  | Note 1:                      | The GET_ARGS function requires arguments. These are known as GET_ARGS_OPTIONS. They define the options allowed when executing `FIND-FUNCTIONS`. |
+|  | Note 2:                      | To make it easier to see the GET_ARGS_OPTIONS, each is on a separate line and each line ends with the line continuation characters " \\". |
+|  | Note 3:                      | To help explain the highlighted code, I have added the line continuation characters " \\" at the end of some comments so they are included in the displayed output. |
+| 4 | SCRIPT_PURPOSE              | A variable that summarizes what the script does. The value is displayed in the help output. |
+| 6 | SCRIPT_VERSION              | The value of this variable is displayed if the script is invoked with option -v or --version. |
+| 10-12 | COMMON_FUNCTIONS        | Variable containing the pathname of `functions.sh`. |
+| 17-51 | GET_ARGS                | The call to the GET_ARGS function. The following highlighted lines are GET_ARGS_OPTIONS.|
+| 17 | --Args_Array               | Instructs GET_ARGS to create an array `Args` which contains the `FIND-FUNCTIONS` non-option arguments found. |
+| 18 | --Copyright                | Causes the default copyright notice to be inserted into the help text. |
+| 19-40 | --Opt_D and --Des_D     | Defines and describes the `FIND-FUNCTIONS` options allowed. |
+| 29 | --Hid_D                    | Is like --Opt_D in that it defines a parent script option (--list or --ListOptions) but it is is not displayed by help. |
+| 29 | ${CMD}                     | `functions.sh` creates this variable whose basename is the parent script name. |
+| 41-46 | --Where and --Info      | Provide extra information in the help display. |
+| 47-50 | --Exam                  | Creates an EXAMPLE section. |
+| 51 | -- "$@"                    | These two arguments always must be the last of the GET_ARGS arguments. |
+| 55-64 | IS_EXCLUSIVE            | A function that defines rules for acceptable combinations of parent script options. |
+| 70 | Opt_list                   | Is a variable created if the parent script is invoked with the option --list or --ListOptions.
+| 70 | Opt_list_Val               | Is the (optional) value created by using the syntax --list=VALUE or --ListOptions=VALUE.
+| 70-105 | Opt_X, Opt_XXX         | When executing `FIND-FUNCTIONS` these variables are created (incremented) each time option -X or --XXX is encountered on the command line. I.E. If Opt_X tests TRUE then option -X was used. |
+| 70-105 | Opt_X_Val, Opt_XXX_Val | At parent script execution, these variables contain the value if option -X VALUE or --XXX=VALUE is followed by a value. |
+| 93 | For example:               | The line:<br>&nbsp;&nbsp;&nbsp;&nbsp;`(( Opt_E )) && TheOutputCommand="${Opt_E_Val}"`<br>is interptreterd as:<br>&nbsp;&nbsp;&nbsp;&nbsp;If -E /mybin/myeditor or --editor=/mybin/myeditor was used (I.E. Opt_E > 0) then set "TheOutputCommand" to the value "/mybin/myeditor" ( the variable Opt_E_Val contains the option value). |
+| 110-117 | ${TEST_CMD}           | Causes the command line to be displayed if option --test (-t) was used. Otherwise the command is executed. Useful for testing a script. |
+| 119 | IS_TESTING                | A function that returns TRUE if --test (-t) was used. |
+| 122 | ERROR                     | A function that displays the error message and immediately exits `FIND-FUNCTIONS`. |
 
 You can use `FIND-FUNCTIONS` to display the comments or functions in another script.
 So, for the functions contained in the script `/etc/profile.d/EXTRA-BASH-FUNCTIONS.sh`, try:
