@@ -1,6 +1,6 @@
 # <a id="top">Useful Bash Functions</a>
 
-## <a id="purpose">Purpose</a>
+## <a id="purpose">Purpose</a> 
 
 The bash functions in the file `functions.sh` can be used to enhance and manage bash scripts.
 When the file `functions.sh` is included (sourced) in a parent script more than 70 useful functions and many variables are available to the parent script.
@@ -27,17 +27,19 @@ This makes the parent script self documenting with man-like pages.
 &nbsp;&nbsp;&nbsp;&nbsp;[Major Functions](#major-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Major Global Variables](#major-global-variables)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Documentation](#documentation)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: FIND-FUNCTIONS](#find-functions)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: MK-SCRIPT](#mk-script)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation: EXTRA-BASH-FUNCTIONS.sh](#extra-bash-commands)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Function Documentation: GET_ARGS](#GET_ARGS)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Function Documentation: IS_EXCLUSIVE](#IS_EXCLUSIVE)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Function Documentation: ASK et al.](#ASK)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Function Documentation: TMP_FILE_CREATE et al.](#TMP_FILE_CREATE)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Examples of Functions](#tryme)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Example of GET_ARGS and IS_EXCLUSIVE](#example-of-get-args)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Example of help implemented by GET_ARGS](#example-of-help)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Coding of GET_ARGS and IS_EXCLUSIVE](#coding-of-get-args)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation](#script-documentation)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[MKSCRIPT](#mkscript)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[FIND-FUNCTIONS](#find-functions)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[EXTRA-BASH-FUNCTIONS.sh](#extra-bash-commands)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Function Documentation](#function-documentation)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[GET_ARGS](#GET_ARGS)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Example of help implemented by GET_ARGS](#example-of-help)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IS_EXCLUSIVE](#IS_EXCLUSIVE)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Example of GET_ARGS and IS_EXCLUSIVE](#example-of-get-args)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Sample Code for GET_ARGS and IS_EXCLUSIVE](#coding-of-get-args)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ASK et al.](#ASK)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[TMP_FILE_CREATE et al.](#TMP_FILE_CREATE)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Experiment](#tryme)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Experiment with ASK](#experiment-with-ASK)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Experiment with ASK_WITH_MENU](#experiment-with-ASK-WITH-MENU)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Experiment with Some Other Functions](#experiment-with-other-functions)<br>
@@ -158,7 +160,9 @@ Some of the many variables available for use by the parent script.
 All the scripts are self documenting as they all use `GET_ARGS` to define and display options and arguments.
 And all the functions are preceded by documentation describing the function usage.
 
-### <a id="XXX">Script Documentation: `functions.sh`</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+
+## <a id="script-documentation">Script Documentation</a>
 
 Assuming `functions.sh` was installed in a directory listed in `PATH` (/usr/local/bin), then typing:
 
@@ -188,21 +192,30 @@ fi
 
 ```
 
-The script `MKSCRIPT` [(see MK-SCRIPT below)](#mk-script) automatically adds the lines above.
+The script `MKSCRIPT` [(see MKSCRIPT below)](#mkscript) automatically adds the lines above.
 
-To get a list of all the functions available in `functions.sh`, type:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+
+### <a id="mkscript">MKSCRIPT</a>
+
+The script MKSCRIPT will create the beginning lines recommended for a parent script and will set execute permission on the created script.  
+Try the following examples:
 
 ```bash
-FIND-FUNCTIONS --ns -f -l "[^_].*"    			# The pattern "[^_].*" eliminates internal (reserved) functions
+MKSCRIPT My_Script           # Creates the script My_Script with execute permission.
+                             # My_Script contains the code to implement functions.sh,
+                             # a copyright notice and a small sample of GET_ARGS.
 ```
-
 ```bash
-FIND-FUNCTIONS --no-separator --function-names-only --less "[^_].*"
+MKSCRIPT -H                  # Displays help for MKSCRIPT (paged with less)
+```
+```bash
+MKSCRIPT -h                  # Displays help for MKSCRIPT (not paged)
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-### <a id="find-functions">Script Documentation: FIND-FUNCTIONS</a>
+### <a id="find-functions">FIND-FUNCTIONS</a>
 
 The bash script `FIND-FUNCTIONS` will display the function source code or the documentation for a single function (or a set of functions matching a PATTERN) in `functions.sh`.
 However it also can be used for any script that has a recognizable PATTERN for documentation.
@@ -219,29 +232,22 @@ An example of `FIND-FUNCTIONS` usage:
 FIND-FUNCTIONS -c TRIM         # Shows the documentation (comments) paged with "less"
                                # for the `TRIM` function in functions.sh
 ```
+To get a list of all the functions available in `functions.sh`, type:
+
+```bash
+FIND-FUNCTIONS --ns -f -l "[^_].*"    			# The pattern "[^_].*" eliminates internal (reserved) functions
+```
+
+THe same command as above but using long options.
+
+```bash
+FIND-FUNCTIONS --no-separator --function-names-only --less "[^_].*"
+```
+
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-### <a id="mk-script">Script Documentation: MK-SCRIPT</a>
-
-The script MK-SCRIPT will create the beginning lines recommended for a parent script and will set execute permission on the created script.
-Examples:
-
-```bash
-MK-SCRIPT My_Script          # Creates the script My_Script with execute permission.
-                             # My_Script contains the code to implement functions.sh,
-                             # a copyright notice and a small sample of GET_ARGS.
-```
-```bash
-MK-SCRIPT -H                 # Displays help for MK-SCRIPT (paged with less)
-```
-```bash
-MK-SCRIPT -h                 # Displays help for MK-SCRIPT (not paged)
-```
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
-
-### <a id="extra-bash-commands">Script Documentation: EXTRA-BASH-FUNCTIONS.sh</a>
+### <a id="extra-bash-commands">EXTRA-BASH-FUNCTIONS.sh</a>
 
 This script contains useful functions that `install.sh` copies to the directory `/etc/profile.d`.
 Thus they are always available at the command line in a terminal session and can be typed as commands.
@@ -264,8 +270,9 @@ For example, documentation of function `RUNME` in `EXTRA-BASH-FUNCTIONS.sh` can 
 ```bash
 FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh RUNME
 ```
-
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+
+## <a id="function-documentation">Function Documentation</a>
 
 ### <a id="GET_ARGS">Function Documentation: GET_ARGS</a>
 
@@ -455,7 +462,7 @@ FIND-FUNCTIONS -hb             # Brief (not paged) help displaying: purpose, syn
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-#### <a id="coding-of-get-args">Coding of GET_ARGS and IS_EXCLUSIVE</a>
+#### <a id="coding-of-get-args">Sample Code for GET_ARGS and IS_EXCLUSIVE</a>
 
 Now look within the script `FIND-FUNCTIONS` to see the coding that generated the help that was displayed.
 The `HIGHLIGHT` command invokes a rather complex egrep pattern that will display and highlight how `functions.sh` is used within `FIND-FUNCTIONS`.
