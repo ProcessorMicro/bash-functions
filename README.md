@@ -9,7 +9,7 @@ Also included in the distribution are a few useful support scripts.
 This distribution is designed to work in a bash shell environment on a system executing the Linux O/S.
 
 The primary function in `functions.sh` is `GET_ARGS`. It is called with arguments (directives) that "define" the options and arguments available to a parent script.
-Also it parses the parent script options on the command line when the parent script is invoked as a command.
+Also it parses the parent script options on the ==command line== when the parent script is invoked as a command.
 The `GET_ARGS_DIRECTIVES` also describe the script purpose and the meaning of each option/argument defined.
 This makes the parent script self documenting with man-like pages.
 
@@ -497,11 +497,11 @@ The highlighted words are described (briefly) as follows:
 | 18 | --Copyright                | Causes the default copyright notice to be inserted into the help text. |
 | 19-40 | --Opt_D and --Des_D     | Defines and describes the `FIND-FUNCTIONS` options allowed. |
 | 29 | --Hid_D                    | Is like --Opt_D in that it defines a parent script option (--list or --ListOptions) but it is is not displayed by help. |
-| 29 | ${CMD}                     | `functions.sh` creates this variable with basename of the parent script name ad the value. (Other useful variables are created as well.) |
+| 29 | ${CMD}                     | `functions.sh` creates this variable with the basename of the parent script name as the value. (Other useful variables are created as well.) |
 | 41-46 | --Where and --Info      | Provide extra information in the help display. |
-| 47-50 | --Exam                  | Creates an EXAMPLE section. |
-| 51 | -- "$@"                    | These two arguments always must be the last of the GET_ARGS arguments. |
-| 55-64 | IS_EXCLUSIVE            | A function that defines rules for acceptable combinations of parent script options. |
+| 47-50 | --Exam                  | Creates an EXAMPLE section in the help display. |
+| 51 | -- "$@"                    | These two arguments must always be the last of the GET_ARGS arguments. |
+| 55-64 | IS_EXCLUSIVE            | These are examples of IS_EXCLUSIVE that define rules for acceptable combinations of parent script options. |
 | 70 | Opt_list                   | Is a variable created if the parent script is invoked with the option --list or --ListOptions.
 | 70 | Opt_list_Val               | Is the (optional) value created by using the syntax --list=VALUE or --ListOptions=VALUE.
 | 70-105 | Opt_X, Opt_XXX         | When executing `FIND-FUNCTIONS` these variables are created (incremented) each time option -X or --XXX is encountered on the command line. I.E. If Opt_X tests TRUE then option -X was used. |
