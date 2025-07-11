@@ -5,11 +5,11 @@
 The bash functions in the file `functions.sh` can be used to enhance and manage bash scripts.
 When the file `functions.sh` is included (sourced) in a parent script more than 70 useful functions and many variables are available to the parent script.
 Some additional gawk scripts present in this distribution are used by and provide support for `functions.sh`.
-Also included in the distribution are a few useful support scripts.  
+Also included in the distribution are a few useful bash support scripts.  
 This distribution is designed to work in a bash shell environment on a system executing the Linux O/S.
 
 The primary function in `functions.sh` is `GET_ARGS`. It is called with arguments (directives) that "define" the options and arguments available to a parent script.
-Also it parses the parent script options on the ==command line== when the parent script is invoked as a command.
+Also it parses the parent script options on the command line when the parent script is invoked as a command.
 The `GET_ARGS_DIRECTIVES` also describe the script purpose and the meaning of each option/argument defined.
 This makes the parent script self documenting with man-like pages.
 
@@ -21,29 +21,29 @@ This makes the parent script self documenting with man-like pages.
 &nbsp;&nbsp;&nbsp;&nbsp;[Contents](#contents)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Caveat](#caveat)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Installation](#installation)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Required Packages](#required-packages)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Installation Procedure](#installation-procedure)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Required Commands](#required-commands)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Summary of the Major Functions and Variables](#summary)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Major Functions](#major-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Major Global Variables](#major-global-variables)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Documentation](#documentation)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script Documentation](#script-documentation)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[MKSCRIPT](#mkscript)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Introduction to Some Major Components](#documentation)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Scripts](#script-documentation)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[FIND-FUNCTIONS](#find-functions)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[EXTRA-BASH-FUNCTIONS.sh](#extra-bash-commands)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Function Documentation](#function-documentation)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[MKSCRIPT](#mkscript)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[EXTRA BASH FUNCTIONS Script](#extra-bash-functions)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[GET ARGS GLOBAL DEFAULTS Script](#get-args-global-defaults)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Functions](#function-documentation)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[GET_ARGS](#GET_ARGS)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Example of help implemented by GET_ARGS](#example-of-help)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IS_EXCLUSIVE](#IS_EXCLUSIVE)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Example of GET_ARGS and IS_EXCLUSIVE](#example-of-get-args)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Sample Code for GET_ARGS and IS_EXCLUSIVE](#coding-of-get-args)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Example of GET_ARGS and IS_EXCLUSIVE](#example-of-get-args)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ASK et al.](#ASK)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[TMP_FILE_CREATE et al.](#TMP_FILE_CREATE)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Experiment](#tryme)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Experiment with ASK](#experiment-with-ASK)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Experiment with ASK_WITH_MENU](#experiment-with-ASK-WITH-MENU)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Experiment with Some Other Functions](#experiment-with-other-functions)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[COLOR](#color)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[COLOR...](#color)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ERROR & WARNING](#error-warning)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[PAD_IT, TRIM & ZERO_FILL](#padit-trim-zerofill)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[PAUSE](#pause)<br>
@@ -71,16 +71,25 @@ However, be that as it may, The functions allow one to concentrate on the purpos
 
 The installation script `install.sh` installs the bash scripts in the directory `/usr/local/bin` except for `EXTRA-BASH-FUNCTIONS.sh` which is installed in the directory `/etc/profile.d`
 
+#### Step 1
+
 Download the zipfile and extract it to an empty directory (in `/tmp`).
 
 ```bash
 cd /tmp                                   # Or wherever you want
 ```
+#### Step 2
+
 Then download the zipfile and continue the installation.
+
+#### Step 3
+
 ```bash
 unzip bash-functions-main.zip             # Unzip the file
 sudo /tmp/bash-functions-main/install.sh  # And install it as "root"
 ```
+
+#### Step 4
 
 Edit the file `/usr/local/bin/MKSCRIPT` to reflect your copyright needs.
 
@@ -94,18 +103,20 @@ DEFAULT_NAME="Mike Armstrong"
 # = Modify the following copyright information as appropriate. =
 ```
 
-- You may want to edit the file `/etc/profile.d/EXTRA-BASH-FUNCTIONS.sh` and change the value of the environment variable `_GET_ARGS_GLOBAL_HELP_DEFAULT_` as instructed there.
+- You may want to edit the file `/etc/profile.d/GET-ARGS-GLOBAL-DEFAULTS.sh` and change the value of the environment variable `_GET_ARGS_GLOBAL_HELP_DEFAULT_` as instructed there.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-### <a id="required-packages">Required Applications</a>
+### <a id="required-commands">Required Commands</a>
 
-The following linux applications are required for full functionality.
+The following linux commands are required for full functionality.
+Most commonly used Linux distributions either include or make available these commands.
 
-| PACKAGE | REQUIREMENT |
+| COMMAND | REQUIREMENT |
 |--|--|
 | bash    | Required |
 | gawk    | Required |
+| less    | Required |
 | nmap    | Only if you use the network functions |
 | yad     | Only if you use the -G (GUI) option in any functions |
 | sort    | Only if you use the functions `SORT_ARGS` and `SORT_ARGS_WS` |
@@ -133,7 +144,7 @@ The following is a description of the functions and variables in `functions.sh` 
 | TEST_...                    | A set of functions and variables that can be used while testing the parent script to surround commands that make a (critical) 'change'. Executing the parent script with the option `-t` or `--test` will cause those commands to be displayed (after all expansions) rather than being executed. |
 | SORT_ARGS, SORT_ARGS_WS     | Functions that sorts the arguments to the function and display the sorted result. |
 | TMP_FILE_..., TMP_DIR_...   | A set of functions to manage creation and deletion of temporary files and directories. |
-| cleanup operations          | Upon parent script exit, `functions.sh` automatically deletes any temporary files/directories created by the TMP_... functions and unmounts any filesystems mounted by functions in `functions.sh`. |
+| cleanup operations          | Upon parent script exit, `functions.sh` automatically deletes any temporary files/directories created by the TMP_... functions and unmounts any filesystems mounted by MOUNT-IT in `functions.sh`. |
 | Many other functions...     | Many other uses... |
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
@@ -151,18 +162,18 @@ Some of the many variables available for use by the parent script.
 | CMD                 | The basename of the executing parent script. |
 | CMD_DIR             | The directory that contains the parent script |
 | ANSWER...           | A (set of) variables containing the response(s) entered by the user when the ASK function is invoked. |
-| BLK, RED, GLD, etc. | Variables that can be used to color and format messages displayed by 'echo -e'. The function `COLORS_DISPLAY` displays the colors implemented. |
+| BLK, RED, GLD, etc. | Variables that can be used to color and format messages displayed by `echo -e`. The function `COLORS_DISPLAY` displays the colors implemented. |
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-# <a id="documentation">Documentation</a>
+# <a id="documentation">Introduction to some Major Components</a>
 
 All the scripts are self documenting as they all use `GET_ARGS` to define and display options and arguments.
 And all the functions are preceded by documentation describing the function usage.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-## <a id="script-documentation">Script Documentation</a>
+## <a id="script-documentation">Scripts</a>
 
 `functions.sh` is self documenting.
 Assuming `functions.sh` was installed in a directory listed in `PATH` (/usr/local/bin), then typing:
@@ -173,16 +184,19 @@ functions.sh
 
 displays the complete help for every function and variable.
 The display is paged with 'less'.  
-The first page displays the purpose of `functions.sh` followed by the suggested coding to implement `functions.sh` that should be entered into the environment and at the beginning of a parent script.
+The first page displays the purpose of `functions.sh`,
+Then by the suggested coding to implement `functions.sh` that should be entered into the environment and at the beginning of a parent script.
 
 ```bash
 functions.sh FUNCTION              # Displays the documentation for `FUNCTION`
 ```
 
-To use the functions and variables within a parent script, include the following lines (`functions.sh` self help    displays complete instructions on how to do this):
+To use the functions and variables within a parent script, include the following lines.
+`functions.sh` self help displays complete instructions on how to do this.
 
 ```bash
-# Initialize functions.sh if preloaded into the environment. Otherwise locate and load functions.sh
+# Initialize functions.sh if preloaded into the environment.
+# Otherwise locate and load functions.sh
 if (( _functions_sh_loaded_ )) ; then           # Is functions.sh loaded?
   FUNCTIONS_SH_INIT                             # Initialize functions.sh
 else                                            # functions.sh not loaded
@@ -193,25 +207,6 @@ fi
 ```
 
 The script `MKSCRIPT` [(see MKSCRIPT below)](#mkscript) automatically adds the lines above.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
-
-### <a id="mkscript">MKSCRIPT</a>
-
-The script MKSCRIPT creates a script file containing the  lines recommended for a parent script. It also sets execute permission on the created script.  
-Try the following examples:
-
-```bash
-MKSCRIPT My_Script           # Creates the script My_Script with execute permission.
-                             # My_Script contains the code to implement functions.sh,
-                             # a copyright notice and a small sample of GET_ARGS.
-```
-```bash
-MKSCRIPT -H                  # Displays help for MKSCRIPT (paged with less)
-```
-```bash
-MKSCRIPT -h                  # Displays help for MKSCRIPT (not paged)
-```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -238,19 +233,39 @@ To get a list of all the functions available in `functions.sh`, type:
 FIND-FUNCTIONS --ns -f -l "[^_].*"    			# The pattern "[^_].*" eliminates internal (reserved) functions
 ```
 
-THe same command as above but using long options.
+The same command as above but using long options.
 
 ```bash
 FIND-FUNCTIONS --no-separator --function-names-only --less "[^_].*"
 ```
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+
+### <a id="mkscript">MKSCRIPT</a>
+
+The script MKSCRIPT creates a script file containing the  lines recommended for a parent script. It also sets execute permission on the created script.  
+Try the following examples:
+
+```bash
+MKSCRIPT My_Script           # Creates the script My_Script with execute permission
+                             # My_Script contains the code to implement functions.sh
+                             # And a copyright notice and a small sample of GET_ARGS
+```
+```bash
+MKSCRIPT -H                  # Displays help for MKSCRIPT (paged with less)
+```
+```bash
+MKSCRIPT -h                  # Displays help for MKSCRIPT (not paged)
+```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-### <a id="extra-bash-commands">EXTRA-BASH-FUNCTIONS.sh</a>
+### <a id="extra-bash-functions">EXTRA-BASH-FUNCTIONS.sh Script</a>
 
-This script contains useful functions that `install.sh` copies to the directory `/etc/profile.d`.
-Thus they are always available at the command line in a terminal session and can be typed as commands.
+The script 'EXTRA-BASH-FUNCTIONS.sh' contains additional useful functions.
+`install.sh` copies it to the directory `/etc/profile.d`.
+These functions are particularly useful in debugging other functions.
+And they are always available at the bash command line in a terminal session.
 
 Full documentation of `EXTRA-BASH-FUNCTIONS.sh` can be viewed by:
 
@@ -262,60 +277,95 @@ Three extra functions are available:
 | FUNCTION     | DESCRIPTION |
 |--|--|
 | FUNCTIONS    | Typing this at a command line loads `functions.sh` into your current environment. It also turns off bash debugging (set +x) and sets all `exit` statements in `functions.sh` to be `return` thus preventing any error exits from closing your terminal session. |
-| HIGHLIGHT    | A complex grep command that highlights, in a script, salient functions and arguments related to the major functions `GET_ARGS` and `IS_EXCLUSIVE` in this distribution.<br>&nbsp;&nbsp;&nbsp;&nbsp;Usage: `HIGHLIGHT [ path-to-script ]`<br>Where: path-to-script defaults to `/usr/local/bin/FIND-FUNCTIONS` |
+| HIGHLIGHT    | A complex grep command that highlights, in a script, salient functions and arguments related to the major functions `GET_ARGS` and `IS_EXCLUSIVE` in this distribution.<br>&nbsp;&nbsp;&nbsp;&nbsp;[(see Sample Code for GET_ARGS and IS_EXCLUSIVE below)](#coding-of-get-args) |
 | RUNME        | A function that executes any function in `functions.sh` (or another function library) in a safe environment and displays the result(s). |
 
-For example, documentation of function `RUNME` in `EXTRA-BASH-FUNCTIONS.sh` can be viewed by:
+For example, full documentation of function `RUNME` in `EXTRA-BASH-FUNCTIONS.sh` can be viewed by:
 
 ```bash
 FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh RUNME
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-## <a id="function-documentation">Function Documentation</a>
+### <a id="get-args-global-defaults">GET-ARGS-GLOBAL-DEFAULTS.sh Script</a>
+
+This script sets the global variable `_GET_ARGS_GLOBAL_HELP_DEFAULT_` and contains instructions on how to change it's value.
+The variable establishes a default format for the GET_ARGS help display.
+It should be installed in the directory `/etc/profile.d`.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+
+## <a id="function-documentation">Functions</a>
 
 ### <a id="GET_ARGS">GET_ARGS</a>
 
 `GET_ARGS` is the primary function in this distribution.
 It has three basic purposes:
 
-1. Define the parent script's allowable options and arguments (with GET_ARGS_OPTIONS).
-2. When the parent script is executed, GET_ARGS parses the options and arguments supplied on the command line based upon the instructions of the GET_ARGS_OPTIONS. The parsed results are made available to the parent script in a deterministic form.
+1. Define the parent script's allowable options and arguments (with GET_ARGS_DIRECTIVES).
+2. When the parent script is executed, GET_ARGS parses the options and arguments supplied on the command line based upon the instructions of the GET_ARGS_DIRECTIVES. The parsed results are made available to the parent script in a deterministic form.
 3. Format and display a manpage-like USAGE (help) for the parent script.
 
 `GET_ARGS` functionality is summarized as follows:
 
 | GET_ARGS FEATURES |
 |--|
-| Options available to the parent script are defined with the GET_ARGS_OPTION pair `--Opt_D "..."` and `--Des_D "..."`.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(`--Option_Definition` and `--Description_Definition`). |
+| Options available to the parent script are defined with the GET_ARGS_DIRECTIVES pair `--Opt_D "..."` and `--Des_D "..."`.<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(`--Option_Definition` and `--Description_Definition`). |
 | Each defined option has a description that specifies the purpose of that option.<br>The description is formatted and displayed in the help display.
 | Options can be single character `-a` or multiple character `--all`. |
 | Any option can be defined to have several spellings (`-a` and `--all` and ...). |
-| Any option can be defined (and enforced) with: no, a required or an optional value. |
-| Multiple occurences of an option can be specified ( `-x abc -x def -x ghi`) |
+| Any option can be defined (and enforced) with: no value, a required value or an optional value. |
+| In a parent script, multiple use of an option can be configured ( i.e. `-x abc -x def -x ghi`) |
 | When the parent script is invoked the options and arguments can be specified in any order. |
 | Arguments are collected into an array `Args[*]` (origin 1). |
 | The number of options or arguments can be defined (and enforced). Vis: `--Opts_Min 1`, `--Args_Req 3` ... |
 | Options `-h` `--help` `-H` `--HELP` `-v` `--version` `-t` `--test` are automatically implemented. |
-| The USAGE display (help) is generated from the GET_ARGS_OPTIONS. |
-| For help when the parent script is invoked, three display formats are available: normal, compact/expand and brief. |
-| Help output is divided into sections. GET_ARGS_OPTIONS can be used to create text in each section in addition to the text generated automatically.<br>E.G. `--Para "..."` inserts a paragraph, `--Example "..."` creates an EXAMPLE section. |
-| Help output is automatically folded and properly indented (usually) to fit ${COLUMNS} wide.
+| A manpage like USAGE display (help with color highlights) is generated from the GET_ARGS_DIRECTIVES. |
+| For help when the parent script is invoked, three display formats are available: expanded, compact and brief. |
+| Help output is divided into sections. GET_ARGS_DIRECTIVES can be used to create text in each section in addition to the text generated automatically.<br>E.G. `--Para "..."` inserts a paragraph, `--Example "..."` creates an EXAMPLE section. |
+| Help output is automatically folded and (usually) properly indented to fit ${COLUMNS} wide.
 | Help output can be filtered to only display portions of the complete help output. |
-| Also functions USAGE, ERROR and WARNING compliment option processing. |
-| GET_ARGS can save the results of parsing the GET_ARGS_OPTIONS and restore them at subsequent invocations of the parent script. This can save a few milliseconds of CPU time for scripts that have a lot of options. |
+| GET_ARGS saves the results of parsing the GET_ARGS_DIRECTIVES and restores them at subsequent invocations of the parent script. This can save a few milliseconds of CPU time for scripts that have a lot of options. |
+| The following GET_ARGS defaults are fully configurable: basic options, variable names, section headers, color usage, ... |
+| Functions IS_EXCLUSIVE, USAGE, ERROR and WARNING compliment GET_ARGS option processing. |
 
 Full documentation of `GET_ARGS` (it is extensive) can be viewed by:
 
 ```bash
-FIND-FUNCTIONS --comments --less GET_ARGS
+functions.sh GET_ARGS
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+
+#### <a id="example-of-help">Example of help implemented by GET_ARGS</a>
+
+Before you look at an example of the coding for `GET_ARGS`, see how help is implemented by `GET_ARGS`.
+We will use help for `FIND-FUNCTIONS` and to see how it works. Try the following:
+
+```bash
+FIND-FUNCTIONS -h              # This displays the help text in the global default mode.
+````
+```bash
+FIND-FUNCTIONS -he             # This displays the help text in expanded mode.
+````
+```bash
+FIND-FUNCTIONS -He             # So will this but paged with "less".
+```
+```bash
+COLUMNS=70 FIND-FUNCTIONS -H   # Simulate a 70-column terminal. The folding is (almost) perfect.
+```
+```bash
+FIND-FUNCTIONS --HELP=c        # An example of compressed and paged output (or use "-Hc").
+```
+```bash
+FIND-FUNCTIONS -hb             # Brief (not paged) help displaying: purpose, synopsis and options.
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 ### <a id="IS_EXCLUSIVE">IS_EXCLUSIVE</a>
 
-This function is a "daughter" to GET_ARGS and can only be called after GET_ARGS has been invoked. It's purpose is to create rules that validate allowed combinations of command-line options when a parent script is executed.
+This is a "daughter" function to GET_ARGS and must be called after GET_ARGS has been invoked. It's purpose is to create rules that validate allowed combinations of command-line options when a parent script is executed.
 When an `IS_EXCLUSIVE` rule is violated, an error message summarizing the problem is displayed and the parent script is exited.
 
 Basic `IS_EXCLUSIVE` functionality is summarized as follows:
@@ -437,45 +487,21 @@ Now you can freely experiment at the command line with the functions made availa
 
 #### <a id="example-of-get-args">Example of GET_ARGS and IS_EXCLUSIVE</a>
 
-To see how `GET_ARGS` and `IS_EXCLUSIVE` works and to see some other features we will use the `FIND-FUNCTIONS` and `HIGHLIGHT` commands.
+To see how `GET_ARGS` and `IS_EXCLUSIVE` works and to see some other features we will use the `FIND-FUNCTIONS` command.
 
-#### <a id="example-of-help">Example of help implemented by GET_ARGS</a>
-
-Before you look at an example of the coding for `GET_ARGS`, see how help is implemented by `GET_ARGS`.
-We will use help for `FIND-FUNCTIONS` and to see how it works. Try the following:
-
-```bash
-FIND-FUNCTIONS -h              # This displays the help text.
-````
-```bash
-FIND-FUNCTIONS -H              # So will this paged with "less".
-```
-```bash
-COLUMNS=70 FIND-FUNCTIONS -H   # Simulate a 70-column terminal. The folding is (almost) perfect.
-```
-```bash
-FIND-FUNCTIONS --HELP=c        # An example of compressed and paged output (or use "-Hc").
-```
-```bash
-FIND-FUNCTIONS -hb             # Brief (not paged) help displaying: purpose, synopsis and options.
-```
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
-
-#### <a id="coding-of-get-args">Sample Code for GET_ARGS and IS_EXCLUSIVE</a>
+#### Sample Code for GET_ARGS and IS_EXCLUSIVE
 
 Now look within the script `FIND-FUNCTIONS` to see the coding that generated the help that was displayed.
-The `HIGHLIGHT` command invokes a rather complex egrep pattern that displays and highlight how `functions.sh` is used within `FIND-FUNCTIONS`.
+It uses the `GET_ARGS_HIGHLIGHT` function which invokes a rather complex egrep pattern to display and highlight how `functions.sh` is used within `FIND-FUNCTIONS`.
 The table below gives a brief description of the highlighted words.
 
 So type:
 
 ```bash
-HIGHLIGHT FIND-FUNCTIONS           # Highlight stuff
+FIND-FUNCTIONS --highlight         # There is a hidden option in FIND_FUNCTIONS to highlight itself.
 ```
 ```bash
-FIND-FUNCTIONS --highlight         # This is the same as above as I created a hidden
-                                   # option for FIND_FUNCTIONS to highlight itself.
+FIND-FUNCTIONS --highlight=light   # The same as above but for screens with a light background
 ```
 ```bash
 vim /usr/local/bin/FIND-FUNCTIONS  # Look at the code if you want
@@ -485,14 +511,14 @@ The highlighted words are described (briefly) as follows:
 
 | &nbsp;&nbsp;LINE&nbsp;#&nbsp;&nbsp; | HIGHLIGHTED TEXT       | DESCRIPTION |
 | :--: |--|--|
-|  | Note 1:                      | The GET_ARGS function requires arguments. These are known as GET_ARGS_OPTIONS. They define the options allowed when executing `FIND-FUNCTIONS`. |
-|  | Note 2:                      | To make it easier to see the GET_ARGS_OPTIONS, each is on a separate line and each line ends with the line continuation characters " \\". |
+|  | Note 1:                      | The GET_ARGS function requires arguments. These are known as GET_ARGS_DIRECTIVES. They define the options allowed when executing `FIND-FUNCTIONS`. |
+|  | Note 2:                      | To make it easier to see the GET_ARGS_DIRECTIVES, each is on a separate line and each line ends with the line continuation characters " \\". |
 |  | Note 3:                      | To help explain the highlighted code, I have added the line continuation characters " \\" at the end of some comments so they are included in the displayed output. |
 | 4 | SCRIPT_PURPOSE              | A variable that summarizes what the script does. The value is displayed in the help output. |
 | 6 | SCRIPT_VERSION              | The value of this variable is displayed if the script is invoked with option -v or --version. |
 | 7-12 | Load and/or Initialize   | The bash coding that ensures `functions.sk` is loaded and/or initialized. |
 | 10 | COMMON_FUNCTIONS           | Variable containing the pathname of `functions.sh`. |
-| 17-51 | GET_ARGS coding         | The call to the GET_ARGS function. The following highlighted lines are GET_ARGS_OPTIONS.|
+| 17-51 | GET_ARGS coding         | The call to the GET_ARGS function. The following highlighted lines are GET_ARGS_DIRECTIVES.|
 | 17 | --Args_Array               | Instructs GET_ARGS to create an array `Args` which contains the `FIND-FUNCTIONS` non-option arguments found. |
 | 18 | --Copyright                | Causes the default copyright notice to be inserted into the help text. |
 | 19-40 | --Opt_D and --Des_D     | Defines and describes the `FIND-FUNCTIONS` options allowed. |
@@ -652,7 +678,7 @@ RUNME ASK_WITH_MENU -V QED -M -D "*" -G -H "A GUI Example\n\tMake your choice\n"
 There are many functions available within `functions.sh`.
 The following examples show some of the capability available.
 
-#### <a id="color">COLOR</a>
+#### <a id="color">COLOR...</a>
 
 The functions related to colors are interesting. Try:
 
