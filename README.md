@@ -1,4 +1,3 @@
-    aaa    bbb
 # <a id="top">Useful Bash Functions</a>
 
 ## <a id="purpose">Purpose</a>
@@ -303,7 +302,7 @@ It should be installed in the directory `/etc/profile.d`.
 `GET_ARGS` is the primary function in this distribution.
 It has three basic purposes:
 
-1. Define the parent script's allowable options and arguments (with GET_ARGS_DIRECTIVES).
+1. Define the parent script's allowable options and arguments with GET_ARGS_DIRECTIVES.
 2. When the parent script is executed, GET_ARGS parses the options and arguments supplied on the command line based upon the instructions of the GET_ARGS_DIRECTIVES. The parsed results are made available to the parent script in a deterministic form.
 3. Format and display a manpage-like USAGE (help) for the parent script.
 
@@ -318,14 +317,15 @@ It has three basic purposes:
 | Any option can be defined (and enforced) with: no value, a required value or an optional value. |
 | In a parent script, multiple use of an option can be configured ( i.e. `-x abc -x def -x ghi`) |
 | When the parent script is invoked the options and arguments can be specified in any order. |
+| Options and valuesspecified when the parent script is invoked are identified as variables `Opt_<XXX>` and `Opt_<XXX>_Var`. |
 | Arguments are collected into an array `Args[*]` (origin 1). |
 | The number of options or arguments can be defined (and enforced). Vis: `--Opts_Min 1`, `--Args_Req 3` ... |
 | Options `-h` `--help` `-H` `--HELP` `-v` `--version` `-t` `--test` are automatically implemented. |
-| A manpage like USAGE display (help with color highlights) is generated from the GET_ARGS_DIRECTIVES. |
+| A manpage-like USAGE display (help with color highlights) is generated from the GET_ARGS_DIRECTIVES. |
 | For help when the parent script is invoked, three display formats are available: expanded, compact and brief. |
 | Help output is divided into sections. GET_ARGS_DIRECTIVES can be used to create text in each section in addition to the text generated automatically.<br>E.G. `--Para "..."` inserts a paragraph, `--Example "..."` creates an EXAMPLE section. |
 | Help output is automatically folded and (usually) properly indented to fit ${COLUMNS} wide.
-| Help output can be filtered to only display portions of the complete help output. |
+| Help output can be filtered to only display portions of the complete help output. This is useful for scripts that have many options or large help displays. |
 | GET_ARGS saves the results of parsing the GET_ARGS_DIRECTIVES and restores them at subsequent invocations of the parent script. This can save a few milliseconds of CPU time for scripts that have a lot of options. |
 | The following GET_ARGS defaults are fully configurable: basic options, variable names, section headers, color usage, ... |
 | Functions IS_EXCLUSIVE, USAGE, ERROR and WARNING compliment GET_ARGS option processing. |
@@ -362,6 +362,33 @@ FIND-FUNCTIONS --HELP=c        # An example of compressed and paged output (or u
 FIND-FUNCTIONS -hb             # Brief (not paged) help displaying: purpose, synopsis and options.
 ```
 
+You can use `FIND-FUNCTIONS` to display the comments or functions in another script.
+So, for the functions contained in the script `/etc/profile.d/EXTRA-BASH-FUNCTIONS.sh`, try:
+
+```bash
+FIND-FUNCTIONS --comments --script /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh
+```
+or (using shorter options)
+```bash
+FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh            # Display the comments for all functions
+```
+
+```bash
+FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh HIGHLIGHT  # Display the comments for the function HIGHLIGHT
+```
+
+```bash
+FIND-FUNCTIONS -f -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh            # Display just the function names for all the functions
+```
+
+```bash
+FIND-FUNCTIONS -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh               # Display the source code for all the functions
+```
+
+```bash
+FIND-FUNCTIONS -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh HIGHLIGHT     # Display the source code for the function `HIGHLIGHT`
+```
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 ### <a id="IS_EXCLUSIVE">IS_EXCLUSIVE</a>
@@ -385,8 +412,56 @@ Basic `IS_EXCLUSIVE` functionality is summarized as follows:
 Full documentation of `IS_EXCLUSIVE` can be viewed by:
 
 ```bash
-FIND-FUNCTIONS -c -l IS_EXCLUSIVE
+functions.sh IS_EXCLUSIVE
 ```
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+
+#### <a id="example-of-get-args">Example of GET_ARGS and IS_EXCLUSIVE</a>
+
+To see how `GET_ARGS` and `IS_EXCLUSIVE` works and to see some other features we will use the `FIND-FUNCTIONS` command.
+Within the script `FIND-FUNCTIONS` you can see the coding that generated the help that was displayed.
+It uses the `GET_ARGS_HIGHLIGHT` function which invokes a rather complex egrep pattern to display and highlight how `functions.sh` is used within `FIND-FUNCTIONS`.
+The table below gives a brief description of the highlighted words.
+
+So type:
+
+```bash
+FIND-FUNCTIONS --highlight         # There is a hidden option in FIND_FUNCTIONS to highlight itself.
+```
+```bash
+FIND-FUNCTIONS --highlight=light   # The same as above but for screens with a light background
+```
+
+The highlighted words are described (briefly) as follows:
+
+| &nbsp;&nbsp;LINE&nbsp;#&nbsp;&nbsp; | HIGHLIGHTED TEXT       | DESCRIPTION |
+| :--: |--|--|
+|  | Note 1:                      | The GET_ARGS function requires arguments. These are known as GET_ARGS_DIRECTIVES. They define the options allowed when executing `FIND-FUNCTIONS`. |
+|  | Note 2:                      | To make it easier to see the GET_ARGS_DIRECTIVES, each is on a separate line and each line ends with the line continuation characters " \\". |
+|  | Note 3:                      | To help explain the highlighted code, I have added the line continuation characters " \\" at the end of some comments so they are included in the displayed output. |
+| 4 | SCRIPT_PURPOSE              | A variable that summarizes what the script does. The value is displayed in the help output. |
+| 6 | SCRIPT_VERSION              | The value of this variable is displayed if the script is invoked with option -v or --version. |
+| 7-12 | Load and/or Initialize   | The bash coding that ensures `functions.sk` is loaded and/or initialized. |
+| 10 | COMMON_FUNCTIONS           | Variable containing the pathname of `functions.sh`. |
+| 17-51 | GET_ARGS coding         | The call to the GET_ARGS function. The following highlighted lines are GET_ARGS_DIRECTIVES.|
+| 17 | --Args_Array               | Instructs GET_ARGS to create an array `Args` which contains the `FIND-FUNCTIONS` non-option arguments found. |
+| 18 | --Copyright                | Causes the default copyright notice to be inserted into the help text. |
+| 19-40 | --Opt_D and --Des_D     | Defines and describes the `FIND-FUNCTIONS` options allowed. |
+| 29 | --Hid_D                    | Is like --Opt_D in that it defines a parent script option (--list or --ListOptions) but it is is not displayed by help. |
+| 29 | ${CMD}                     | `functions.sh` creates this variable with the basename of the parent script name as the value. (Other useful variables are created as well.) |
+| 41-46 | --Where and --Info      | Provide extra information in the help display. |
+| 47-50 | --Exam                  | Creates an EXAMPLE section in the help display. |
+| 51 | -- "$@"                    | These two arguments must always be the last of the GET_ARGS arguments. |
+| 55-64 | IS_EXCLUSIVE            | These are examples of IS_EXCLUSIVE that define rules for acceptable combinations of parent script options. |
+| 70 | Opt_list                   | Is a variable created if the parent script is invoked with the option --list or --ListOptions.
+| 70 | Opt_list_Val               | Is the (optional) value created by using the syntax --list=VALUE or --ListOptions=VALUE.
+| 70-105 | Opt_X, Opt_XXX         | When executing `FIND-FUNCTIONS` these variables are created (incremented) each time option -X or --XXX is encountered on the command line. I.E. If Opt_X tests TRUE then option -X was used. |
+| 70-105 | Opt_X_Val, Opt_XXX_Val | At parent script execution, these variables contain the value if option -X VALUE or --XXX=VALUE is followed by a value. |
+| 93 | For example:               | The line:<br>&nbsp;&nbsp;&nbsp;&nbsp;`(( Opt_E )) && TheOutputCommand="${Opt_E_Val}"`<br>is interptreterd as:<br>&nbsp;&nbsp;&nbsp;&nbsp;If -E /mybin/myeditor or --editor=/mybin/myeditor was used (I.E. Opt_E > 0) then set "TheOutputCommand" to the value "/mybin/myeditor" ( the variable Opt_E_Val contains the option value). |
+| 110-117 | ${TEST_CMD}           | Causes the command line to be displayed if option --test (-t) was used. Otherwise the command is executed. Useful for testing a script. |
+| 119 | IS_TESTING                | A function that returns TRUE if --test (-t) was used. |
+| 122 | ERROR                     | A function that displays the error message and immediately exits `FIND-FUNCTIONS`. |
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -396,7 +471,7 @@ The basic functionality of the set of `ASK` functions is to display statements o
 A response can be verified against a set of acceptable responses.
 The `ASK` functions loops until a correct response is entered or a `quit` is requested.
 The first argument to `ASK` is required.
-It specifies either the type of response or the type of response and a default list of choices.
+It specifies both the type of response and the type of choices available.
 
 `ASK` functionality is summarized as follows:
 
@@ -483,87 +558,6 @@ echo <VARIABLES_CREATED>           # Display the created variables
 The function `FUNCTIONS` "sources" `functions.sh` and calls the function `USAGE_RETURN` (wow this sentence is certainly **_function_**al).
 This changes any `exit` commands to be the command `return` so your terminal session is not closed when an error occurs.
 Now you can freely experiment at the command line with the functions made available.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
-
-#### <a id="example-of-get-args">Example of GET_ARGS and IS_EXCLUSIVE</a>
-
-To see how `GET_ARGS` and `IS_EXCLUSIVE` works and to see some other features we will use the `FIND-FUNCTIONS` command.
-
-#### Sample Code for GET_ARGS and IS_EXCLUSIVE
-
-Now look within the script `FIND-FUNCTIONS` to see the coding that generated the help that was displayed.
-It uses the `GET_ARGS_HIGHLIGHT` function which invokes a rather complex egrep pattern to display and highlight how `functions.sh` is used within `FIND-FUNCTIONS`.
-The table below gives a brief description of the highlighted words.
-
-So type:
-
-```bash
-FIND-FUNCTIONS --highlight         # There is a hidden option in FIND_FUNCTIONS to highlight itself.
-```
-```bash
-FIND-FUNCTIONS --highlight=light   # The same as above but for screens with a light background
-```
-```bash
-vim /usr/local/bin/FIND-FUNCTIONS  # Look at the code if you want
-```
-
-The highlighted words are described (briefly) as follows:
-
-| &nbsp;&nbsp;LINE&nbsp;#&nbsp;&nbsp; | HIGHLIGHTED TEXT       | DESCRIPTION |
-| :--: |--|--|
-|  | Note 1:                      | The GET_ARGS function requires arguments. These are known as GET_ARGS_DIRECTIVES. They define the options allowed when executing `FIND-FUNCTIONS`. |
-|  | Note 2:                      | To make it easier to see the GET_ARGS_DIRECTIVES, each is on a separate line and each line ends with the line continuation characters " \\". |
-|  | Note 3:                      | To help explain the highlighted code, I have added the line continuation characters " \\" at the end of some comments so they are included in the displayed output. |
-| 4 | SCRIPT_PURPOSE              | A variable that summarizes what the script does. The value is displayed in the help output. |
-| 6 | SCRIPT_VERSION              | The value of this variable is displayed if the script is invoked with option -v or --version. |
-| 7-12 | Load and/or Initialize   | The bash coding that ensures `functions.sk` is loaded and/or initialized. |
-| 10 | COMMON_FUNCTIONS           | Variable containing the pathname of `functions.sh`. |
-| 17-51 | GET_ARGS coding         | The call to the GET_ARGS function. The following highlighted lines are GET_ARGS_DIRECTIVES.|
-| 17 | --Args_Array               | Instructs GET_ARGS to create an array `Args` which contains the `FIND-FUNCTIONS` non-option arguments found. |
-| 18 | --Copyright                | Causes the default copyright notice to be inserted into the help text. |
-| 19-40 | --Opt_D and --Des_D     | Defines and describes the `FIND-FUNCTIONS` options allowed. |
-| 29 | --Hid_D                    | Is like --Opt_D in that it defines a parent script option (--list or --ListOptions) but it is is not displayed by help. |
-| 29 | ${CMD}                     | `functions.sh` creates this variable with the basename of the parent script name as the value. (Other useful variables are created as well.) |
-| 41-46 | --Where and --Info      | Provide extra information in the help display. |
-| 47-50 | --Exam                  | Creates an EXAMPLE section in the help display. |
-| 51 | -- "$@"                    | These two arguments must always be the last of the GET_ARGS arguments. |
-| 55-64 | IS_EXCLUSIVE            | These are examples of IS_EXCLUSIVE that define rules for acceptable combinations of parent script options. |
-| 70 | Opt_list                   | Is a variable created if the parent script is invoked with the option --list or --ListOptions.
-| 70 | Opt_list_Val               | Is the (optional) value created by using the syntax --list=VALUE or --ListOptions=VALUE.
-| 70-105 | Opt_X, Opt_XXX         | When executing `FIND-FUNCTIONS` these variables are created (incremented) each time option -X or --XXX is encountered on the command line. I.E. If Opt_X tests TRUE then option -X was used. |
-| 70-105 | Opt_X_Val, Opt_XXX_Val | At parent script execution, these variables contain the value if option -X VALUE or --XXX=VALUE is followed by a value. |
-| 93 | For example:               | The line:<br>&nbsp;&nbsp;&nbsp;&nbsp;`(( Opt_E )) && TheOutputCommand="${Opt_E_Val}"`<br>is interptreterd as:<br>&nbsp;&nbsp;&nbsp;&nbsp;If -E /mybin/myeditor or --editor=/mybin/myeditor was used (I.E. Opt_E > 0) then set "TheOutputCommand" to the value "/mybin/myeditor" ( the variable Opt_E_Val contains the option value). |
-| 110-117 | ${TEST_CMD}           | Causes the command line to be displayed if option --test (-t) was used. Otherwise the command is executed. Useful for testing a script. |
-| 119 | IS_TESTING                | A function that returns TRUE if --test (-t) was used. |
-| 122 | ERROR                     | A function that displays the error message and immediately exits `FIND-FUNCTIONS`. |
-
-You can use `FIND-FUNCTIONS` to display the comments or functions in another script.
-So, for the functions contained in the script `/etc/profile.d/EXTRA-BASH-FUNCTIONS.sh`, try:
-
-```bash
-FIND-FUNCTIONS --comments --script /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh
-```
-or (using shorter options)
-```bash
-FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh            # Display the comments for all functions
-```
-
-```bash
-FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh HIGHLIGHT  # Display the comments for the function HIGHLIGHT
-```
-
-```bash
-FIND-FUNCTIONS -f -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh            # Display just the function names for all the functions
-```
-
-```bash
-FIND-FUNCTIONS -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh               # Display the source code for all the functions
-```
-
-```bash
-FIND-FUNCTIONS -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh HIGHLIGHT     # Display the source code for the function `HIGHLIGHT`
-```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
