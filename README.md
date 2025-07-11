@@ -239,6 +239,33 @@ The same command as above but using long options.
 FIND-FUNCTIONS --no-separator --function-names-only --less "[^_].*"
 ```
 
+You can use `FIND-FUNCTIONS` to display the comments or functions in another script.
+So, for the functions contained in the script `/etc/profile.d/EXTRA-BASH-FUNCTIONS.sh`, try:
+
+```bash
+FIND-FUNCTIONS --comments --script /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh
+```
+or (using shorter options)
+```bash
+FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh            # Display the comments for all functions
+```
+
+```bash
+FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh HIGHLIGHT  # Display the comments for the function HIGHLIGHT
+```
+
+```bash
+FIND-FUNCTIONS -f -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh            # Display just the function names for all the functions
+```
+
+```bash
+FIND-FUNCTIONS -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh               # Display the source code for all the functions
+```
+
+```bash
+FIND-FUNCTIONS -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh HIGHLIGHT     # Display the source code for the function `HIGHLIGHT`
+```
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 ### <a id="mkscript">MKSCRIPT</a>
@@ -360,33 +387,6 @@ FIND-FUNCTIONS --HELP=c        # An example of compressed and paged output (or u
 ```
 ```bash
 FIND-FUNCTIONS -hb             # Brief (not paged) help displaying: purpose, synopsis and options.
-```
-
-You can use `FIND-FUNCTIONS` to display the comments or functions in another script.
-So, for the functions contained in the script `/etc/profile.d/EXTRA-BASH-FUNCTIONS.sh`, try:
-
-```bash
-FIND-FUNCTIONS --comments --script /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh
-```
-or (using shorter options)
-```bash
-FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh            # Display the comments for all functions
-```
-
-```bash
-FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh HIGHLIGHT  # Display the comments for the function HIGHLIGHT
-```
-
-```bash
-FIND-FUNCTIONS -f -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh            # Display just the function names for all the functions
-```
-
-```bash
-FIND-FUNCTIONS -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh               # Display the source code for all the functions
-```
-
-```bash
-FIND-FUNCTIONS -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh HIGHLIGHT     # Display the source code for the function `HIGHLIGHT`
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
