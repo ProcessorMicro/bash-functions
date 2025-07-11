@@ -412,10 +412,20 @@ functions.sh IS_EXCLUSIVE
 
 #### <a id="example-of-get-args">Example of GET_ARGS and IS_EXCLUSIVE</a>
 
-To see how `GET_ARGS` and `IS_EXCLUSIVE` works and to see some other features we will use the `FIND-FUNCTIONS` command.
-Within the script `FIND-FUNCTIONS` you can see the coding that generated the help that was displayed.
-It uses the `GET_ARGS_HIGHLIGHT` function which invokes a rather complex egrep pattern to display and highlight how `functions.sh` is used within `FIND-FUNCTIONS`.
-The table below gives a brief description of the highlighted words.
+To see how `GET_ARGS` and `IS_EXCLUSIVE` work together and to see some other features we will use the `FIND-FUNCTIONS` command.
+Within the script `FIND-FUNCTIONS` you can see the coding that generates the help that is displayed by:
+
+```bash
+FIND-FUNCTIONS -H
+```.
+View the source code with:
+
+```bash
+vim /usr/local/bin/FIND-FUNCTIONS
+```
+
+FIND-FUNCTIONS has a hiddden option (it is not displayed by help) that uses the `GET_ARGS_HIGHLIGHT` function.
+This invokes a rather complex egrep pattern to display and highlight how `functions.sh` is used within `FIND-FUNCTIONS`.
 
 So type:
 
@@ -426,7 +436,8 @@ FIND-FUNCTIONS --highlight         # There is a hidden option in FIND_FUNCTIONS 
 FIND-FUNCTIONS --highlight=light   # The same as above but for screens with a light background
 ```
 
-The highlighted words are described (briefly) as follows:
+The result is a list of lines containing highlighted words and comments.
+The table below gives a description of the lines containing highlights.
 
 | &nbsp;&nbsp;LINE&nbsp;#&nbsp;&nbsp; | HIGHLIGHTED TEXT       | DESCRIPTION |
 | :--: |--|--|
