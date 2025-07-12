@@ -88,6 +88,12 @@ Then download the zipfile and continue the installation.
 unzip bash-functions-main.zip             # Unzip the file
 sudo /tmp/bash-functions-main/install.sh  # And install it as "root"
 ```
+if the install.sh script fails with an error like:  
+    Command not found.
+or
+    ./install.sh: cannot execute: required file not found
+it means the command `bash` is notinstalled.
+Install `bash` and re-execute `install.sh`.
 
 #### Step 4
 
@@ -250,13 +256,13 @@ or (using shorter options)
 FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh            # Display the comments for all functions
 ```
 ```bash
-FIND-FUNCTIONS -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh               # Display the source code for all the functions
-```
-```bash
 FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh RUNME      # Display the comments for the function `RUNME`
 ```
 ```bash
 FIND-FUNCTIONS -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh RUNME         # Display the source code for the function `RUNME`
+```
+```bash
+FIND-FUNCTIONS -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh               # Display the source code for all the functions
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
@@ -417,7 +423,7 @@ Within the script `FIND-FUNCTIONS` you can see the coding that generates the hel
 
 ```bash
 FIND-FUNCTIONS -H
-```.
+```
 View the source code with:
 
 ```bash
@@ -446,21 +452,21 @@ The table below gives a description of the lines containing highlights.
 |  | Note 3:                      | To help explain the highlighted code, I have added the line continuation characters " \\" at the end of some comments so they are included in the displayed output. |
 | 4 | SCRIPT_PURPOSE              | A variable that summarizes what the script does. The value is displayed in the help output. |
 | 6 | SCRIPT_VERSION              | The value of this variable is displayed if the script is invoked with option -v or --version. |
-| 7-12 | Load and/or Initialize   | The bash coding that ensures `functions.sk` is loaded and/or initialized. |
+| 7-12 | Load and/or Initialize   | The bash coding that ensures `functions.sh` is loaded and/or initialized. |
 | 10 | COMMON_FUNCTIONS           | Variable containing the pathname of `functions.sh`. |
 | 17-51 | GET_ARGS coding         | The call to the GET_ARGS function. The following highlighted lines are GET_ARGS_DIRECTIVES.|
 | 17 | --Args_Array               | Instructs GET_ARGS to create an array `Args` which contains the `FIND-FUNCTIONS` non-option arguments found. |
 | 18 | --Copyright                | Causes the default copyright notice to be inserted into the help text. |
 | 19-40 | --Opt_D and --Des_D     | Defines and describes the `FIND-FUNCTIONS` options allowed. |
-| 29 | --Hid_D                    | Is like --Opt_D in that it defines a parent script option (--list or --ListOptions) but it is is not displayed by help. |
+| 29 | --Hid_D                    | This is like --Opt_D in that it defines a parent script option `--highlight`. But this option is is not displayed by help. |
 | 29 | ${CMD}                     | `functions.sh` creates this variable with the basename of the parent script name as the value. (Other useful variables are created as well.) |
-| 41-46 | --Where and --Info      | Provide extra information in the help display. |
+| 41-46 | --Where and --Info      | Create the sections `WHERE` and `INFO` which provide extra information in the help display. |
 | 47-50 | --Exam                  | Creates an EXAMPLE section in the help display. |
 | 51 | -- "$@"                    | These two arguments must always be the last of the GET_ARGS arguments. |
 | 55-64 | IS_EXCLUSIVE            | These are examples of IS_EXCLUSIVE that define rules for acceptable combinations of parent script options. |
 | 70 | Opt_list                   | Is a variable created if the parent script is invoked with the option --list or --ListOptions.
 | 70 | Opt_list_Val               | Is the (optional) value created by using the syntax --list=VALUE or --ListOptions=VALUE.
-| 70-105 | Opt_X, Opt_XXX         | When executing `FIND-FUNCTIONS` these variables are created (incremented) each time option -X or --XXX is encountered on the command line. I.E. If Opt_X tests TRUE then option -X was used. |
+| 70-105 | Opt_X, Opt_XXX         | When executing `FIND-FUNCTIONS` these variables are created (incremented) each time option -X or --XXX is encountered on the command line. I.E. If Opt_X tests TRUE (oe > 0) then option -X was used. |
 | 70-105 | Opt_X_Val, Opt_XXX_Val | At parent script execution, these variables contain the value if option -X VALUE or --XXX=VALUE is followed by a value. |
 | 93 | For example:               | The line:<br>&nbsp;&nbsp;&nbsp;&nbsp;`(( Opt_E )) && TheOutputCommand="${Opt_E_Val}"`<br>is interptreterd as:<br>&nbsp;&nbsp;&nbsp;&nbsp;If -E /mybin/myeditor or --editor=/mybin/myeditor was used (I.E. Opt_E > 0) then set "TheOutputCommand" to the value "/mybin/myeditor" ( the variable Opt_E_Val contains the option value). |
 | 110-117 | ${TEST_CMD}           | Causes the command line to be displayed if option --test (-t) was used. Otherwise the command is executed. Useful for testing a script. |
