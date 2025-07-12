@@ -89,13 +89,17 @@ unzip bash-functions-main.zip             # Unzip the file
 sudo /tmp/bash-functions-main/install.sh  # And install it as "root"
 ```
 
-- if the install.sh script fails with an error like:  
-        Command not found.
+- The install script should first display the following message:  
+&nbsp;&nbsp;&nbsp;&nbsp;Install script for the "functions.sh" package.  
+&nbsp;&nbsp;&nbsp;&nbsp;Beginning installation...
 
-- or  
-        ./install.sh: cannot execute: required file not found
+- Instead, if the first message is an error something like:  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Command not found.
 
-it means the command `bash` is not installed.
+- or a message something like:  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;./install.sh: cannot execute: required file not found
+
+It means the command `bash` is not installed.
 Install `bash` and re-execute `install.sh`.
 
 #### Step 4
@@ -113,6 +117,23 @@ DEFAULT_NAME="Mike Armstrong"
 ```
 
 - You may want to edit the file `/etc/profile.d/GET-ARGS-GLOBAL-DEFAULTS.sh` and change the value of the environment variable `_GET_ARGS_GLOBAL_HELP_DEFAULT_` as instructed there.
+
+#### Step 5
+There are three ways to implement the installed package.
+
+1. Like a bull in a china shop:  
+&nbsp;&nbsp;&nbsp;&nbsp;Logout and then login.
+
+2. Refined:  
+&nbsp;&nbsp;&nbsp;&nbsp;Close all terminal sessions and re-open them.
+
+3. Laborious - Type the commands:
+```bash
+source /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh
+source /etc/profile.d/GET-ARGS-GLOBAL-DEFAULTS.sh
+source /ussr/local/bin/functions.sh
+```
+
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
