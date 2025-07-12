@@ -88,12 +88,14 @@ Then download the zipfile and continue the installation.
 unzip bash-functions-main.zip             # Unzip the file
 sudo /tmp/bash-functions-main/install.sh  # And install it as "root"
 ```
-- if the install.sh script fails with an error like:  
-    Command not found.
-- or
-    ./install.sh: cannot execute: required file not found
 
-it means the command `bash` is notinstalled.
+- if the install.sh script fails with an error like:  
+        Command not found.
+
+- or
+        ./install.sh: cannot execute: required file not found
+
+it means the command `bash` is not installed.
 Install `bash` and re-execute `install.sh`.
 
 #### Step 4
