@@ -92,7 +92,7 @@ sudo /tmp/bash-functions-main/install.sh  # And install it as "root"
 - if the install.sh script fails with an error like:  
         Command not found.
 
-- or
+- or  
         ./install.sh: cannot execute: required file not found
 
 it means the command `bash` is not installed.
