@@ -409,7 +409,10 @@ COLUMNS=70 FIND-FUNCTIONS -H   # Simulate a 70-column terminal. The folding is (
 FIND-FUNCTIONS --HELP=c        # An example of compressed and paged output (or use "-Hc").
 ```
 ```bash
-FIND-FUNCTIONS -hb             # Brief (not paged) help displaying: purpose, synopsis and options.
+FIND-FUNCTIONS -hb             # Brief (not paged) help displaying:
+                               #   purpose, synopsis and options.
+                               # Note: The options lines are not wrapped.
+                               #   Use &rarr; and $larr; to view long lines.
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
