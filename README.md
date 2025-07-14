@@ -2,7 +2,7 @@
 
 ## <a id="purpose">Purpose</a>
 
-The bash &rarr; functions in the file `functions.sh` can be used to enhance and manage bash scripts.
+The bash functions in the file `functions.sh` can be used to enhance and manage bash scripts.
 When the file `functions.sh` is included (sourced) in a parent script more than 70 useful functions and many variables are available to the parent script.
 Some additional gawk scripts present in this distribution are used by and provide support for `functions.sh`.
 Also included in the distribution are a few useful bash support scripts.  
@@ -36,7 +36,7 @@ This makes the parent script self documenting with man-like pages.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[GET_ARGS](#GET_ARGS)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Examples of Help Implemented by GET_ARGS](#example-of-help)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IS_EXCLUSIVE](#IS_EXCLUSIVE)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Example of GET_ARGS and IS_EXCLUSIVE](#example-of-get-args)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Examples of GET_ARGS and IS_EXCLUSIVE](#example-of-get-args)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ASK et al.](#ASK)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[TMP_FILE_CREATE et al.](#TMP_FILE_CREATE)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Experiment](#tryme)<br>
@@ -116,7 +116,7 @@ DEFAULT_NAME="Mike Armstrong"
 # = Modify the following copyright information as appropriate. =
 ```
 
-- You may want to edit the file `/etc/profile.d/GET-ARGS-GLOBAL-DEFAULTS.sh` and change the value of the environment variable `_GET_ARGS_GLOBAL_HELP_DEFAULT_` as instructed there.
+- You may want to edit the file `/etc/profile.d/GET-ARGS-GLOBAL-DEFAULTS.sh` and change the value of the global environment variables as instructed in the script.
 
 #### Step 5
 There are three ways to implement the installed package.
@@ -409,11 +409,12 @@ COLUMNS=70 FIND-FUNCTIONS -H   # Simulate a 70-column terminal. The folding is (
 FIND-FUNCTIONS --HELP=c        # An example of compressed and paged output (or use "-Hc").
 ```
 ```bash
-FIND-FUNCTIONS -hb             # Brief (not paged) help displaying:
+FIND-FUNCTIONS -hb             # Brief (not paged) help displaying help sections:
                                #   purpose, synopsis and options.
-                               # Note: The options lines are not wrapped.
-                               #   Use &rarr; and $larr; to view long lines.
 ```
+
+Note: The brief help "options" lines are not wrapped.
+Use keyboard keys &rarr; and &larr; to view long lines.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -443,7 +444,7 @@ functions.sh IS_EXCLUSIVE
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-#### <a id="example-of-get-args">Example of GET_ARGS and IS_EXCLUSIVE</a>
+#### <a id="example-of-get-args">Examples of GET_ARGS and IS_EXCLUSIVE</a>
 
 To see how `GET_ARGS` and `IS_EXCLUSIVE` work together and to see some other features we will use the `FIND-FUNCTIONS` command.
 Within the script `FIND-FUNCTIONS` you can see the coding that generates the help that is displayed by:
