@@ -116,9 +116,11 @@ DEFAULT_NAME="Mike Armstrong"
 # = Modify the following copyright information as appropriate. =
 ```
 
-- You may want to edit the file `/etc/profile.d/GET-ARGS-GLOBAL-DEFAULTS.sh` and change the value of the global environment variables as instructed in the script.
-
 #### Step 5
+- Edit the file `/etc/profile.d/GET-ARGS-GLOBAL-DEFAULTS.sh` and change the value of the global environment variables as instructed within the script.
+
+#### Step 6
+Implement `functions.sh`  
 There are three ways to implement the installed package.
 
 1. Like a bull in a china shop:  
