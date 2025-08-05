@@ -15,6 +15,8 @@ This makes the parent script self documenting with man-like pages.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
+-----------------------------
+
 ## <a id="contents">Contents</a>
 
 &nbsp;&nbsp;&nbsp;&nbsp;[Purpose](#purpose)<br>
@@ -53,12 +55,16 @@ This makes the parent script self documenting with man-like pages.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
+-----------------------------
+
 ## <a id="caveat">Caveat</a>
 
 The functions and scripts are written in the bash scripting language, with some supporting scripts written in gawk.
 The intention of this distribution is to provide, to the home user writing bash scripts, easy access to boilerplate or to capabilities not immediately available or obvious.
 It is, and always will be, a work in progress.
 For more advanced scripting users they provide a quick way to implement some standard scripting (boiler plate) capability.
+
+I have carefully checked and re-checked everything ad-nauseam so, of course, there are many undiscovered errors.
 
 Note: The coding is not necessarily the best or the most efficient. Therefore it is recommended that `functions.sh` not be used in a production or multi-user environment.
 However, be that as it may, The functions allow one to concentrate on the purpose of a new script rather than having to duplicate common requirements.
@@ -104,20 +110,21 @@ Install `bash` and re-execute `install.sh`.
 
 #### Step 4
 
-Edit the file `/usr/local/bin/MKSCRIPT` to reflect your copyright needs.
+`MKSCRIPT` creates a script "shell" that contains a copyright notice.
+Edit the file `/usr/local/bin/MKSCRIPT` to reflect your needs for the generated copyright
 
-- Modify the default name:
+- Modify the generated name:
 ```bash
 DEFAULT_NAME="Mike Armstrong"
 ```
 
-- Modify the copyright lines following the line:
+- Modify the generated copyright lines following the line:
 ```bash
 # = Modify the following copyright information as appropriate. =
 ```
 
 #### Step 5
-- Edit the file `/etc/profile.d/GET-ARGS-GLOBAL-DEFAULTS.sh` and change the value of the global environment variables as instructed within the script.
+- Edit the file `/etc/profile.d/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh` and change the value of the global environment variables as instructed within the script.
 
 #### Step 6
 Implement `functions.sh`  
@@ -132,10 +139,9 @@ There are three ways to implement the installed package.
 3. Laborious - Type the commands:
 ```bash
 source /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh
-source /etc/profile.d/GET-ARGS-GLOBAL-DEFAULTS.sh
-source /ussr/local/bin/functions.sh
+source /etc/profile.d/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh
+source /usr/local/bin/functions.sh
 ```
-
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -143,19 +149,22 @@ source /ussr/local/bin/functions.sh
 
 The following linux commands are required for full functionality.
 Most commonly used Linux distributions either include or make available these commands.
+The install script checks fo the the existance of these commands.
 
 | COMMAND | REQUIREMENT |
 |--|--|
 | bash    | Required |
-| gawk    | Required |
-| less    | Required |
+| gawk    | Required (or a link to awk) |
+| less    | The default "pager". Required unless you configure a different pager. |
 | nmap    | Only if you use the network functions |
-| yad     | Only if you use the -G (GUI) option in any functions |
+| yad     | Only if you use the -G (GUI) option in any "GIU-enabled" functions |
 | sort    | Only if you use the functions `SORT_ARGS` and `SORT_ARGS_WS` |
 
-if you don't have `gawk` then a symbolic link to awk will work as well:
+if you don't have `gawk` then a symbolic link to awk will work as well. This is done by the intall script.
 
-    sudo ln -s /usr/bin/awk /usr/bin/gawk
+```bash
+sudo ln -s /usr/bin/awk /usr/bin/gawk
+```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -211,28 +220,26 @@ And all the functions are preceded by documentation describing the function usag
 Assuming `functions.sh` was installed in a directory listed in `PATH` (/usr/local/bin), then typing:
 
 ```bash
-functions.sh
+functions.sh                 # Displays the complete help for every function and variable.
 ```
-
-displays the complete help for every function and variable.
-The display is paged with 'less'.  
-The first page displays the purpose of `functions.sh`,
-Then by the suggested coding to implement `functions.sh` that should be entered into the environment and at the beginning of a parent script.
-
 ```bash
-functions.sh FUNCTION              # Displays the documentation for `FUNCTION`
+functions.sh FUNCTION        # Displays the documentation for `FUNCTION`
 ```
+
+The display is paged with 'less'.  
+The first page displays the purpose of `functions.sh`s.
+Followed by the suggested coding to implement `functions.sh` that either should be entered into the environment or at the beginning of a parent script.
 
 To use the functions and variables within a parent script, include the following lines.
-`functions.sh` self help displays complete instructions on how to do this.
+The `functions.sh` self help displays complete instructions on how to do this.
 
 ```bash
 # Initialize functions.sh if preloaded into the environment.
 # Otherwise locate and load functions.sh
-if (( _functions_sh_loaded_ )) ; then           # Is functions.sh loaded?
-  FUNCTIONS_SH_INIT                             # Initialize functions.sh
-else                                            # functions.sh not loaded
-  COMMON_FUNCTIONS="$(type -p functions.sh)"    # Locate and load functions.sh
+if (( _functions_sh_loaded_ )) ; then           # Is functions.sh already loaded in the environment?
+  FUNCTIONS_SH_INIT                             # Yes. So initialize functions.sh
+else                                            # No. functions.sh is not loaded
+  COMMON_FUNCTIONS="$(type -p functions.sh)"    # So locate and load functions.sh
   [[ -x ${COMMON_FUNCTIONS} ]] && source "${COMMON_FUNCTIONS}" || { echo -e "Cannot locate "${COMMON_FUNCTIONS:-functions.sh}"." 1>&2 ; exit ; }
 fi
 
@@ -339,10 +346,10 @@ FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh RUNME
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-### <a id="get-args-global-defaults">GET-ARGS-GLOBAL-DEFAULTS.sh Script</a>
+### <a id="get-args-global-defaults">FUNCTIONS-SH-GLOBAL-DEFAULTS.sh Script</a>
 
 This script sets the global variable `_GET_ARGS_GLOBAL_HELP_DEFAULT_` and contains instructions on how to change it's value.
-The variable establishes a default format for the GET_ARGS help display.
+Note: The variable establishes a default format for the GET_ARGS help display.
 It should be installed in the directory `/etc/profile.d`.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
