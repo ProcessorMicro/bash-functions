@@ -71,6 +71,8 @@ However, be that as it may, The functions allow one to concentrate on the purpos
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
+-----------------------------
+
 ## <a id="installation">Installation</a>
 
 ### <a id="installation-procedure">Installation Procedure</a>
@@ -172,6 +174,8 @@ sudo ln -s /usr/bin/awk /usr/bin/gawk
 
 The following is a description of the functions and variables in `functions.sh` that are most likely to be used.
 
+-----------------------------
+
 ## <a id="major-functions">Major Functions</a>
 
 | MAJOR FUNCTIONS             | DESCRIPTION |
@@ -189,6 +193,8 @@ The following is a description of the functions and variables in `functions.sh` 
 | Many other functions...     | Many other uses... |
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+
+-----------------------------
 
 ## <a id="major-global-variables">Major Global Variables</a>
 
@@ -213,6 +219,8 @@ All the scripts are self documenting as they all use `GET_ARGS` to define and di
 And all the functions are preceded by documentation describing the function usage.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+
+-----------------------------
 
 ## <a id="script-documentation">Scripts</a>
 
@@ -353,6 +361,8 @@ Note: The variable establishes a default format for the GET_ARGS help display.
 It should be installed in the directory `/etc/profile.d`.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+
+-----------------------------
 
 ## <a id="function-documentation">Functions</a>
 
@@ -547,6 +557,8 @@ FIND-FUNCTIONS -c -l "ASK.*"
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
+-----------------------------
+
 ## <a id="TMP_FILE_CREATE">TMP_FILE_CREATE et al.</a>
 
 Several functions manage temporary files and directories.
@@ -570,6 +582,8 @@ functions.sh TMP_FILE_CREATE                # Display help for the function TMP_
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+
+-----------------------------
 
 ## <a id="tryme">Examples of Functions</a>
 
@@ -714,6 +728,8 @@ RUNME ASK_WITH_MENU -V QED -M -D "*" -G -H "A GUI Example\n\tMake your choice\n"
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+
+-----------------------------
 
 ## <a id="experiment-with-other-functions">Experiment with Some Other Functions</a>
 
@@ -867,6 +883,8 @@ RUNME SORT_ARGS_WS -V SORTED_NAMES -A -S "-n -r -t- -k2,2" "${FILE_NAMES_ARRAY[@
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+
+-----------------------------
 
 ## <a id="bugs">Bugs and Not Yet Complete<a/>
 
