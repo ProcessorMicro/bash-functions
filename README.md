@@ -170,6 +170,8 @@ sudo ln -s /usr/bin/awk /usr/bin/gawk
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
+-----------------------------
+
 # <a id="summary">Summary of the Major Functions and Variables within `functions.sh`</a>
 
 The following is a description of the functions and variables in `functions.sh` that are most likely to be used.
@@ -212,6 +214,8 @@ Some of the many variables available for use by the parent script.
 | BLK, RED, GLD, etc. | Variables that can be used to color and format messages displayed by `echo -e`. The function `COLORS_DISPLAY` displays the colors implemented. |
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+
+-----------------------------
 
 # <a id="documentation">Introduction to some Major Components</a>
 
@@ -655,7 +659,7 @@ RUNME ASK -a -C "A B C x-z d thru g D"
 ASK has much more functionality. To see the full documentation type:
 
 ```bash
-FIND-FUNCTIONS -c -l ASK         # Shows (with `less`) the documentation for the `ASK` function.
+functions ASK         # Shows (with `less`) the documentation for the `ASK` function.
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
@@ -895,6 +899,7 @@ Where would Linux be if there weren't any bugs or unfinished business?
 | GET_IP_FROM_DOMAIN | Minimum usefulness |
 | GET_MATCHING_NFS_DOMAIN_IN_FSTAB | Ditto |
 | GET_ALL_UNIQUE_NFS_DOMAINS_IN_FSTAB | Ditto |
+| ... | ... |
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
