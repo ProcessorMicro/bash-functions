@@ -236,26 +236,23 @@ Assuming `functions.sh` was installed in a directory listed in `PATH` (/usr/loca
 functions.sh                 # Displays the complete help for every function and variable.
 ```
 ```bash
-functions.sh FUNCTION        # Displays the documentation for `FUNCTION`
+functions.sh FUNCTION            # Displays the documentation for `FUNCTION`
 ```
 
 The display is paged with 'less'.  
-The first page displays the purpose of `functions.sh`s.
+The first page displays the purpose of `functions.sh`.
 Followed by the suggested coding to implement `functions.sh` that either should be entered into the environment or at the beginning of a parent script.
 
-To use the functions and variables within a parent script, include the following lines.
-The `functions.sh` self help displays complete instructions on how to do this.
+The `functions.sh` self help displays additional information. Vis:
 
 ```bash
-# Initialize functions.sh if preloaded into the environment.
-# Otherwise locate and load functions.sh
-if (( _functions_sh_loaded_ )) ; then           # Is functions.sh already loaded in the environment?
-  FUNCTIONS_SH_INIT                             # Yes. So initialize functions.sh
-else                                            # No. functions.sh is not loaded
-  COMMON_FUNCTIONS="$(type -p functions.sh)"    # So locate and load functions.sh
-  [[ -x ${COMMON_FUNCTIONS} ]] && source "${COMMON_FUNCTIONS}" || { echo -e "Cannot locate "${COMMON_FUNCTIONS:-functions.sh}"." 1>&2 ; exit ; }
-fi
-
+functions.sh INTRODUCTION        # Introduction to `functions.sh`
+```
+```bash
+functions.sh FUNCTIONS           # A list of the functions available.
+```
+```bash
+functions.sh VARIABLES           # A list of the global variables used.
 ```
 
 The script `MKSCRIPT` [(see MKSCRIPT below)](#mkscript) automatically adds the lines above.
@@ -299,16 +296,16 @@ FIND-FUNCTIONS --comments --script /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh
 ```
 or (using shorter options)
 ```bash
-FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh            # Display the comments for all functions
+FIND-FUNCTIONS -c -l -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh         # Display the comments for all functions
 ```
 ```bash
-FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh RUNME      # Display the comments for the function `RUNME`
+FIND-FUNCTIONS -c -l -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh RUNME   # Display the comments for the function `RUNME`
 ```
 ```bash
-FIND-FUNCTIONS -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh RUNME         # Display the source code for the function `RUNME`
+FIND-FUNCTIONS -l -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh RUNME      # Display the source code for the function `RUNME`
 ```
 ```bash
-FIND-FUNCTIONS -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh               # Display the source code for all the functions
+FIND-FUNCTIONS -l -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh            # Display the source code for all the functions
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
@@ -342,7 +339,7 @@ And they are always available at the bash command line in a terminal session.
 Full documentation of `EXTRA-BASH-FUNCTIONS.sh` can be viewed by:
 
 ```bash
-FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh
+FIND-FUNCTIONS -c -l -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh
 ```
 Three extra functions are available:
 
@@ -355,7 +352,7 @@ Three extra functions are available:
 For example, full documentation of function `RUNME` in `EXTRA-BASH-FUNCTIONS.sh` can be viewed by:
 
 ```bash
-FIND-FUNCTIONS -c -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh RUNME
+FIND-FUNCTIONS -c -l -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh RUNME
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -482,13 +479,20 @@ View the source code with:
 vim /usr/local/bin/FIND-FUNCTIONS
 ```
 
-FIND-FUNCTIONS has a hiddden option (it is not displayed by help) that uses the `GET_ARGS_HIGHLIGHT` function.
+`FIND-FUNCTIONS` has a hiddden option --list (it is not displayed by help) that displays a list of the generated variables and the  possibile spellings of all the options defined by GET_ARGS within the script.
+Typa:
+
+```bash
+FIND-FUNCTIONS --list
+```
+
+`FIND-FUNCTIONS` has a hiddden option --highlight (it is not displayed by help) that uses the `GET_ARGS_HIGHLIGHT` function.
 This invokes a rather complex egrep pattern to display and highlight how `functions.sh` is used within `FIND-FUNCTIONS`.
 
 So type:
 
 ```bash
-FIND-FUNCTIONS --highlight         # There is a hidden option in FIND_FUNCTIONS to highlight itself.
+FIND-FUNCTIONS --highlight         # There is a hidden option in FIND-FUNCTIONS to highlight itself.
 ```
 ```bash
 FIND-FUNCTIONS --highlight=light   # The same as above but for screens with a light background
@@ -515,15 +519,15 @@ The table below gives a description of the lines containing highlights.
 | 41-46 | --Where and --Info      | Create the sections `WHERE` and `INFO` which provide extra information in the help display. |
 | 47-50 | --Exam                  | Creates an EXAMPLE section in the help display. |
 | 51 | -- "$@"                    | These two arguments must always be the last of the GET_ARGS arguments. |
-| 55-64 | IS_EXCLUSIVE            | These are examples of IS_EXCLUSIVE that define rules for acceptable combinations of parent script options. |
-| 70 | Opt_list                   | Is a variable created if the parent script is invoked with the option --list or --ListOptions.
-| 70 | Opt_list_Val               | Is the (optional) value created by using the syntax --list=VALUE or --ListOptions=VALUE.
-| 70-105 | Opt_X, Opt_XXX         | When executing `FIND-FUNCTIONS` these variables are created (incremented) each time option -X or --XXX is encountered on the command line. I.E. If Opt_X tests TRUE (oe > 0) then option -X was used. |
-| 70-105 | Opt_X_Val, Opt_XXX_Val | At parent script execution, these variables contain the value if option -X VALUE or --XXX=VALUE is followed by a value. |
-| 93 | For example:               | The line:<br>&nbsp;&nbsp;&nbsp;&nbsp;`(( Opt_E )) && TheOutputCommand="${Opt_E_Val}"`<br>is interptreterd as:<br>&nbsp;&nbsp;&nbsp;&nbsp;If -E /mybin/myeditor or --editor=/mybin/myeditor was used (I.E. Opt_E > 0) then set "TheOutputCommand" to the value "/mybin/myeditor" ( the variable Opt_E_Val contains the option value). |
-| 110-117 | ${TEST_CMD}           | Causes the command line to be displayed if option --test (-t) was used. Otherwise the command is executed. Useful for testing a script. |
-| 119 | IS_TESTING                | A function that returns TRUE if --test (-t) was used. |
-| 122 | ERROR                     | A function that displays the error message and immediately exits `FIND-FUNCTIONS`. |
+| 55-65 | IS_EXCLUSIVE            | These are examples of IS_EXCLUSIVE that define rules for acceptable combinations of parent script options. |
+| 71 | Opt_list                   | Is a variable created if the parent script is invoked with the option --list or --ListOptions.
+| 71 | Opt_list_Val               | Is the (optional) value created by using the syntax --list=VALUE or --ListOptions=VALUE.
+| 71-106 | Opt_X, Opt_XXX         | When executing `FIND-FUNCTIONS` these variables are created (incremented) each time option -X or --XXX is encountered on the command line. I.E. If Opt_X tests TRUE (oe > 0) then option -X was used. |
+| 71-106 | Opt_X_Val, Opt_XXX_Val | At parent script execution, these variables contain the value if option -X VALUE or --XXX=VALUE is followed by a value. |
+| 94 | For example:               | The line:<br>&nbsp;&nbsp;&nbsp;&nbsp;`(( Opt_E )) && TheOutputCommand="${Opt_E_Val}"`<br>is interptreterd as:<br>&nbsp;&nbsp;&nbsp;&nbsp;If -E /mybin/myeditor or --editor=/mybin/myeditor was used (I.E. Opt_E > 0) then set "TheOutputCommand" to the value "/mybin/myeditor" ( the variable Opt_E_Val contains the option value). |
+| 112-119 | ${TEST_CMD}           | Causes the command line to be displayed if option --test (-t) was used. Otherwise the command is executed. Useful for testing a script. |
+| 121 | IS_TESTING                | A function that returns TRUE if --test (-t) was used. |
+| 124 | ERROR                     | A function that displays the error message and immediately exits `FIND-FUNCTIONS`. |
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -746,10 +750,10 @@ The following examples show some of the capability available.
 The functions related to colors are interesting. Try:
 
 ```bash
-FIND-FUNCTIONS -c ".*COLOR.*"           # Display the comments (help) for the COLOR functions
+FIND-FUNCTIONS -c -l ".*COLOR.*"           # Display the comments (help) for the COLOR functions
 ```
 ```bash
-FIND-FUNCTIONS ".*COLOR.*"              # Now display the code
+FIND-FUNCTIONS -l ".*COLOR.*"              # Now display the code
 ```
 ```bash
 RUNME COLORS_DISPLAY                    # See the built-in colors
@@ -779,7 +783,7 @@ RUNME WARNING "This is a warning message.\nThe correct..."
 The next three functions deal with spaces and zeros surrounding a string.
 
 ```bash
-FIND-FUNCTIONS -c PAD_IT TRIM ZERO_FILL |& less
+FIND-FUNCTIONS -c -l PAD_IT TRIM ZERO_FILL
 ```
 ```bash
 RUNME PAD_IT -V RESULT -L 6 "abc"           # Padding left justified (the default), 6 charaters
