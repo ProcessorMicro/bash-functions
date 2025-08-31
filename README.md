@@ -358,9 +358,14 @@ FIND-FUNCTIONS -c -l -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh RUNME
 
 ### <a id="get-args-global-defaults">FUNCTIONS-SH-GLOBAL-DEFAULTS.sh Script</a>
 
-This script sets the global variable `_GET_ARGS_GLOBAL_HELP_DEFAULT_` and contains instructions on how to change it's value.
+This script sets global variables (`_GET_ARGS_GLOBAL_HELP_DEFAULT_` etc.) and contains instructions on how to change it's value.
 Note: The variable establishes a default format for the GET_ARGS help display.
-It should be installed in the directory `/etc/profile.d`.
+It is installed in the directory `/etc/profile.d`.
+For more information see:
+
+```bash
+FIND-FUNCTIONS -c -l -s /etc/profile.d/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh
+```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -480,13 +485,13 @@ vim /usr/local/bin/FIND-FUNCTIONS
 ```
 
 `FIND-FUNCTIONS` has a hiddden option --list (it is not displayed by help) that displays a list of the generated variables and the  possibile spellings of all the options defined by GET_ARGS within the script.
-Typa:
+Type:
 
 ```bash
-FIND-FUNCTIONS --list
+FIND-FUNCTIONS --list                # Calls the GET_ARGS_LIST_OPTIONS function
 ```
 
-`FIND-FUNCTIONS` has a hiddden option --highlight (it is not displayed by help) that uses the `GET_ARGS_HIGHLIGHT` function.
+`FIND-FUNCTIONS` also has a hiddden option --highlight that uses the `GET_ARGS_HIGHLIGHT` function.
 This invokes a rather complex egrep pattern to display and highlight how `functions.sh` is used within `FIND-FUNCTIONS`.
 
 So type:
@@ -606,10 +611,11 @@ There are two ways you can practice using the functions.
 The better way is to use the RUNME function as it also displays the result(s) from executing a function.
 
 ```bash
-RUNME <FUNCTION_AND_ARGUMENTS>     # The preferred way
+RUNME FUNCTION_WITH_ARGUMENTS      # The preferred way
 ```
 
-RUNME creates a sub-shell, loads `functions.sh` into it, runs the function and attempts to display the contents of the variable(s) created (if any).
+RUNME is a function that operates in a subshell. It loads `/usr/local/bin/functions.sh` and `/etc/profile.d/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh` into it,
+runs the FUNCTION_WITH_ARGUMENTS and attempts to display the contents of the variable(s) created (if any).
 You can freely experiment, in an initialized environment, at the command line with the functions made available.
 RUNME can also turn on bash debugging (-x) so the function can be tested.
 
@@ -619,7 +625,7 @@ Or, slightly less useful, by loading `functions.sh` into your environment:
 FUNCTIONS                          # load `functions.sh` into your environment and set every "exit" to a "return".
 ```
 ```bash
-<FUNCTION_AND_ARGUMENTS>           # Execute the function
+FUNCTION_WITH_ARGUMENTS            # Execute the function
 ```
 ```bash
 echo <VARIABLES_CREATED>           # Display the created variables
@@ -759,7 +765,7 @@ FIND-FUNCTIONS -l ".*COLOR.*"              # Now display the code
 RUNME COLORS_DISPLAY                    # See the built-in colors
 ```
 ```bash
-echo -e "\nExample of 'echo' using a color: A ${UL}book${BLK} that is ${GRN}read${BLK} doesn't have to be ${RED}red${BLK}.\n"
+echo -e "\nExample of 'echo' using a color: A ${UL}book${DEF} that is ${GRN}read${DEF} doesn't have to be ${RED}red${DEF}.\n"
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
