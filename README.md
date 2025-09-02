@@ -78,7 +78,9 @@ However, be that as it may, The functions allow one to concentrate on the purpos
 
 ### <a id="installation-procedure">Installation Procedure</a>
 
-The installation script `install.sh` installs the bash scripts in the directory `/usr/local/bin` except for `EXTRA-BASH-FUNCTIONS.sh` which is installed in the directory `/etc/profile.d`
+The installation script `install.sh` installs the bash scripts in the directory `/usr/local/bin` except for
+   `FUNCTIONS-SH-EXTRA-FUNCTIONS.sh` and `FUNCTIONS-SH-GLOBAL-DEFAULTS.sh`  
+which are installed in the directory `/etc/profile.d`
 
 #### Step 1
 
@@ -128,7 +130,7 @@ DEFAULT_NAME="Mike Armstrong"
 
 #### Step 5
 - Edit the file `/etc/profile.d/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh` and change the value of the global environment variables
-(as instructed within the script) to meet yourr needs.
+(as instructed within the script) to meet your needs.
 
 #### Step 6
 Implement `functions.sh`  
@@ -142,7 +144,7 @@ There are three ways to implement the installed package.
 
 3. Laborious - Type the commands:
 ```bash
-source /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh
+source /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh
 source /etc/profile.d/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh
 source /usr/local/bin/functions.sh
 ```
@@ -237,7 +239,7 @@ Assuming `functions.sh` was installed in a directory listed in `PATH` (/usr/loca
 functions.sh                 # Displays the complete help for every function and variable.
 ```
 ```bash
-functions.sh FUNCTION            # Displays the documentation for `FUNCTION`
+functions.sh FUNCTION        # Displays the documentation for `FUNCTION`
 ```
 
 The display is paged with 'less'.  
@@ -254,6 +256,9 @@ functions.sh FUNCTIONS           # A list of the functions available.
 ```
 ```bash
 functions.sh VARIABLES           # A list of the global variables used.
+```
+```bash
+functions.sh <FUNCTION_NAME>     # Displays the documentation for <FUNCTION_NAME>
 ```
 
 The script `MKSCRIPT` [(see MKSCRIPT below)](#mkscript) automatically adds the lines above.
@@ -290,23 +295,23 @@ FIND-FUNCTIONS --no-separator --function-names-only --less "[^_].*"
 ```
 
 You can use `FIND-FUNCTIONS` to display the comments or functions in another script.
-So, for the functions contained in the script `/etc/profile.d/EXTRA-BASH-FUNCTIONS.sh`, try:
+So, for the functions contained in the script `/etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh`, try:
 
 ```bash
-FIND-FUNCTIONS --comments --script /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh
+FIND-FUNCTIONS --comments --script /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh
 ```
 or (using shorter options)
 ```bash
-FIND-FUNCTIONS -c -l -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh         # Display the comments for all functions
+FIND-FUNCTIONS -c -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh         # Display the comments for all functions
 ```
 ```bash
-FIND-FUNCTIONS -c -l -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh RUNME   # Display the comments for the function `RUNME`
+FIND-FUNCTIONS -c -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh RUNME   # Display the comments for the function `RUNME`
 ```
 ```bash
-FIND-FUNCTIONS -l -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh RUNME      # Display the source code for the function `RUNME`
+FIND-FUNCTIONS -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh            # Display the source code for all the functions
 ```
 ```bash
-FIND-FUNCTIONS -l -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh            # Display the source code for all the functions
+FIND-FUNCTIONS -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh RUNME      # Display the source code for the function `RUNME`
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
@@ -330,17 +335,17 @@ MKSCRIPT -h                  # Displays help for MKSCRIPT (not paged)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-### <a id="extra-bash-functions">EXTRA-BASH-FUNCTIONS.sh Script</a>
+### <a id="extra-bash-functions">FUNCTIONS-SH-EXTRA-FUNCTIONS.sh Script</a>
 
-The script 'EXTRA-BASH-FUNCTIONS.sh' contains additional useful functions.
+The script 'FUNCTIONS-SH-EXTRA-FUNCTIONS.sh' contains additional useful functions.
 `install.sh` copies it to the directory `/etc/profile.d`.
 These functions are particularly useful in debugging other functions.
 And they are always available at the bash command line in a terminal session.
 
-Full documentation of `EXTRA-BASH-FUNCTIONS.sh` can be viewed by:
+Full documentation of `FUNCTIONS-SH-EXTRA-FUNCTIONS.sh` can be viewed by:
 
 ```bash
-FIND-FUNCTIONS -c -l -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh
+FIND-FUNCTIONS -c -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh
 ```
 Three extra functions are available:
 
@@ -350,10 +355,10 @@ Three extra functions are available:
 | HIGHLIGHT    | A complex grep command that highlights, in a script, salient functions and arguments related to the major functions `GET_ARGS` and `IS_EXCLUSIVE` in this distribution.<br>&nbsp;&nbsp;&nbsp;&nbsp;[(see Sample Code for GET_ARGS and IS_EXCLUSIVE below)](#coding-of-get-args) |
 | RUNME        | A function that executes any function in `functions.sh` (or another function library) in a safe environment and displays the result(s). |
 
-For example, full documentation of function `RUNME` in `EXTRA-BASH-FUNCTIONS.sh` can be viewed by:
+For example, full documentation of function `RUNME` in `FUNCTIONS-SH-EXTRA-FUNCTIONS.sh` can be viewed by:
 
 ```bash
-FIND-FUNCTIONS -c -l -s /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh RUNME
+FIND-FUNCTIONS -c -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh RUNME
 ```
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -605,7 +610,7 @@ functions.sh TMP_FILE_CREATE                # Display help for the function TMP_
 Once installation is complete either open another terminal session or type the following:
 
 ```bash
-source /etc/profile.d/EXTRA-BASH-FUNCTIONS.sh
+source /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh
 ```
 
 There are two ways you can practice using the functions.
