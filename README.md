@@ -82,14 +82,14 @@ The installation script `install.sh` installs the bash scripts in the directory 
 
 #### Step 1
 
-Download the zipfile and extract it to an empty directory (in `/tmp`).
+Change your working directory to an available one (say `/tmp`).
 
 ```bash
 cd /tmp                                   # Or wherever you want
 ```
 #### Step 2
 
-Then download the zipfile and continue the installation.
+Then download the zipfile and begin the installation process.
 
 #### Step 3
 
@@ -127,7 +127,8 @@ DEFAULT_NAME="Mike Armstrong"
 ```
 
 #### Step 5
-- Edit the file `/etc/profile.d/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh` and change the value of the global environment variables as instructed within the script.
+- Edit the file `/etc/profile.d/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh` and change the value of the global environment variables
+(as instructed within the script) to meet yourr needs.
 
 #### Step 6
 Implement `functions.sh`  
@@ -646,7 +647,7 @@ Try the following `ASK TYPE` command with each of the possible response types.
 
 | TYPE | RESPONSE EXPECTED |
 |--|--|
-|      | Yes or no (TYPE is missing so -yn is the default) |
+|      | Yes or no (If TYPE is missing, -yn is the default) |
 | -yn  | Yes or no |
 | -d   | A number |
 | -a   | An alphabetic character |
