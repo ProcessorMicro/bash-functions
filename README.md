@@ -9,10 +9,17 @@ Also included in the distribution are a few useful bash support scripts.
 
 This distribution is designed to work in a bash shell environment on a system executing the Linux O/S.
 
-The primary function in `functions.sh` is `GET_ARGS`. It is called with arguments (directives) that "define" the options and arguments available to a parent script.
-Also it parses the parent script options on the command line when the parent script is invoked as a command.
-The `GET_ARGS_DIRECTIVES` also describe the script purpose and the meaning of each option/argument defined.
-This makes the parent script self documenting with man-like pages.
+There are two major functions in `functions.sh`: `GET_ARGS` and the set of ASK functions.
+
+`GET_ARGS` is called with arguments (directives) that "define" the options and arguments available to a parent script.
+Also, when the parent script is invoked as a command, GET_ARGS parses the parent script options on the command line.
+The `GET_ARGS_DIRECTIVES` also enable the user to describe the script purpose and the meaning of each option/argument
+defined. This makes the parent script self documenting with man-like pages.
+
+The `ASK` set of functions provide mechanisms for asking a question and verifying the response.
+The ASK prompt is fully configurable. Acceptable responses can be specified with the -C "CHOICES" option.
+`ASK_WITH_MENU` presents a menu created from an array or from a argument list.
+ASK can interact with the user with a test-based interface or a GUI dialog box interface.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -261,7 +268,7 @@ functions.sh VARIABLES           # A list of the global variables used.
 functions.sh <FUNCTION_NAME>     # Displays the documentation for <FUNCTION_NAME>
 ```
 
-The script `MKSCRIPT` [(see MKSCRIPT below)](#mkscript) automatically adds the lines above.
+The script `MKSCRIPT` [(see MKSCRIPT below)](#mkscript) automatically creates the the required lines.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
