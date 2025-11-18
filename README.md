@@ -51,7 +51,9 @@ ASK can interact with the user with a test-based interface or a GUI dialog box i
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Examples of GET_ARGS and IS_EXCLUSIVE](#example-of-get-args)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ASK Functions](#ask-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[TMP_FILE_CREATE Functions](#tmp-file-create-functions)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Experiment](#tryme)<br>
+examples-of-functions">Examples of Functions
+&nbsp;&nbsp;&nbsp;&nbsp;[Examples of Functions](#examples-of-functions)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Experiment](#experiment)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Experiment with ASK](#experiment-with-ask)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Experiment with ASK_WITH_MENU](#experiment-with-ask-with-menu)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Experiment with Some Other Functions](#experiment-with-other-functions)<br>
@@ -618,7 +620,7 @@ functions.sh TMP_FILE_CREATE                # Display help for the function TMP_
 
 -----------------------------
 
-## <a id="tryme">Examples of Functions</a>
+## <a id="examples-of-functions">Examples of Functions</a>
 
 Once installation is complete either open another terminal session or type the following:
 
@@ -656,7 +658,7 @@ Now you can freely experiment at the command line with the functions made availa
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-#### <a id="tryme">Experiment</a>
+### <a id="experiment">Experiment</a>
 
 #### <a id="experiment-with-ask">Experiment with ASK</a>
 
