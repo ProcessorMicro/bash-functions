@@ -5,14 +5,16 @@
 The bash functions in the file `functions.sh` can be used to enhance and manage bash scripts.
 When the file `functions.sh` is included (sourced) in a parent script more than 70 useful functions and many variables are available to the parent script.
 Some additional gawk scripts present in this distribution are used by and provide support for `functions.sh`.
-Also included in the distribution are a few useful bash support scripts.  
+Also included in the distribution are a few additional and useful bash support scripts.
 
 This distribution is designed to work in a bash shell environment on a system executing the Linux O/S.
 
-There are two major functions in `functions.sh`: `GET_ARGS` and the set of ASK functions.
+There are two major functions in `functions.sh`: `GET_ARGS` and the set of `ASK` functions.
 
-`GET_ARGS` is called with arguments (directives) that "define" the options and arguments available to a parent script.
-Also, when the parent script is invoked as a command, GET_ARGS parses the parent script options on the command line.
+In a parent script, `GET_ARGS` is called with arguments (directives) that "define" the options and arguments
+available to the parent script.
+When the parent script is invoked as a command, GET_ARGS parses the parent script options on the command line
+and presents the script with a deterministic summary of the options used.
 The `GET_ARGS_DIRECTIVES` also enable the user to describe the script purpose and the meaning of each option/argument
 defined. This makes the parent script self documenting with man-like pages.
 
@@ -47,7 +49,7 @@ ASK can interact with the user with a test-based interface or a GUI dialog box i
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Examples of Help Implemented by GET_ARGS](#example-of-help)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IS_EXCLUSIVE](#IS_EXCLUSIVE)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Examples of GET_ARGS and IS_EXCLUSIVE](#example-of-get-args)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ASK et al.](#ASK)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ASK](#ASK)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[TMP_FILE_CREATE et al.](#TMP_FILE_CREATE)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Experiment](#tryme)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Experiment with ASK](#experiment-with-ASK)<br>
@@ -86,7 +88,7 @@ However, be that as it may, The functions allow one to concentrate on the purpos
 ### <a id="installation-procedure">Installation Procedure</a>
 
 The installation script `install.sh` installs the bash scripts in the directory `/usr/local/bin` except for
-   `FUNCTIONS-SH-EXTRA-FUNCTIONS.sh` and `FUNCTIONS-SH-GLOBAL-DEFAULTS.sh`  
+       `FUNCTIONS-SH-EXTRA-FUNCTIONS.sh` and `FUNCTIONS-SH-GLOBAL-DEFAULTS.sh`  
 which are installed in the directory `/etc/profile.d`
 
 #### Step 1
@@ -552,23 +554,22 @@ The table below gives a description of the lines containing highlights.
 ### <a id="ASK"><br>&nbsp;&nbsp;&nbsp;&nbsp;ASK, ASK_GUI, ASK_WITH_MENU, ASK_WITH_MENU_GUI</a>
 
 The basic functionality of the set of `ASK` functions is to display statements or questions to a user and to record the response.
-A response can be verified against a set of acceptable responses.
-The `ASK` functions loops until a correct response is entered or a `quit` is requested.
-The first argument to `ASK` is required.
-It specifies both the type of response and the type of choices available.
+The response can be verified against a set of acceptable responses.
+In which case the `ASK` function loops until a correct response is entered or a `quit` is requested.
+The first argument to `ASK` specifies the type of response expected (numeric, word, ...).
+It defines both the type of response and the type of choices available.
 
 `ASK` functionality is summarized as follows:
 
 | ASK FEATURES |
 |--|
-| Expected response types can be: yes or no, a number, an alphabetic character (UPPER CASE, lower case or mixed case), a range, a word, a phrase or anything at all, |
-| `ASK` verifies the response matches the type (or is one of the choices). |
+| Expected response types can be: yes or no, a number, a character (UPPER CASE, lower case, mixed case, alphanumeric or any), a range, a word, a phrase or anything at all, |
+| `ASK` verifies that the response matches the type (or is one of) the choices. |
 | If it is not, `ASK` displays an error message and re-prompts for an answer. |
 | `ASK` always recognizes a "quit" response (usually "q") that exits the parent script or return with an error code. |
 | You can configure `ASK` to have a default result inserted for a null (empty) response. |
 | By default the response is placed in the variable ANSWER. The variable name can be changed.
 | Multiple responses can be configured in which case the responses are placed in the array ANSWER. |
-| `ASK` has a GUI capability. The display/response takes place in a dialog box. |
 | `ASK_WITH_MENU` is an extension where the "questions" are elements of an array. The elements become the choices available. |
 | The array can be an indexed array, an associative array or arguments to `ASK_WITH_MENU`. Either array can be "sparse" I.E. have noncontiguous elements. |
 | `ASK_WITH_MENU` creates a numbered menu from the array elements and waits for a response. |
@@ -582,6 +583,11 @@ Full documentation of the set of `ASK` functions can be viewed by:
 FIND-FUNCTIONS -c -l "ASK.*"
 ```
 
+or
+
+```bash
+functions.sh ASK
+```
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 -----------------------------
@@ -627,8 +633,8 @@ The better way is to use the RUNME function as it also displays the result(s) fr
 RUNME FUNCTION_WITH_ARGUMENTS      # The preferred way
 ```
 
-RUNME is a function that operates in a subshell. It loads `/usr/local/bin/functions.sh` and `/etc/profile.d/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh` into it,
-runs the FUNCTION_WITH_ARGUMENTS and attempts to display the contents of the variable(s) created (if any).
+RUNME is a function that operates in a subshell. It loads `/usr/local/bin/functions.sh` and `/etc/profile.d/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh` into it.
+It then executes the FUNCTION_WITH_ARGUMENTS and attempts to display the contents of the variable(s) created (if any).
 You can freely experiment, in an initialized environment, at the command line with the functions made available.
 RUNME can also turn on bash debugging (-x) so the function can be tested.
 
@@ -665,8 +671,8 @@ Try the following `ASK TYPE` command with each of the possible response types.
 | -a   | An alphabetic character |
 | -u   | An uppercase character |
 | -l   | A lowercase character |
-| -w   | A word. First character alphabetic, the remainder alphanumeric and "_" |
 | -c   | Any character |
+| -w   | A word. First character alphabetic, the remainder alphanumeric and "_" |
 | -e   | Anything at all |
 
 ```bash
