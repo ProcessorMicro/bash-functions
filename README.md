@@ -51,7 +51,6 @@ ASK can interact with the user with a test-based interface or a GUI dialog box i
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Examples of GET_ARGS and IS_EXCLUSIVE](#example-of-get-args)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ASK Functions](#ask-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[TMP_FILE_CREATE Functions](#tmp-file-create-functions)<br>
-examples-of-functions">Examples of Functions
 &nbsp;&nbsp;&nbsp;&nbsp;[Examples of Functions](#examples-of-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Experiment](#experiment)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Experiment with ASK](#experiment-with-ask)<br>
@@ -774,9 +773,13 @@ RUNME ASK_WITH_MENU -V QED -M -D "*" -G -H "A GUI Example\n\tMake your choice\n"
 There are many functions available within `functions.sh`.
 The following examples show some of the capability available.
 
-#### <a id="color">COLOR...</a>
+#### <a id="color">COLOR Functions</a>
 
 The functions related to colors are interesting. Try:
+
+```bash
+FIND_FUNCTIONS -f '.*COLOR.*'              # Display the function names containing "COLOC"
+```
 
 ```bash
 FIND-FUNCTIONS -c -l ".*COLOR.*"           # Display the comments (help) for the COLOR functions
