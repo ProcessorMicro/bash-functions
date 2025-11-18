@@ -551,7 +551,7 @@ The table below gives a description of the lines containing highlights.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-### <a id="ASK"><br>&nbsp;&nbsp;&nbsp;&nbsp;ASK</a>
+### <a id="ASK"><br>&nbsp;&nbsp;&nbsp;&nbsp;ASK Functions</a>
 
 The basic functionality of the set of `ASK` functions (`ASK`, `ASK_GUI`, `ASK_WITH_MENU`, `ASK_WITH_MENU_GUI`) is to display statements or questions to a user and to record the response.
 The response can be verified against a set of acceptable responses.
@@ -592,7 +592,7 @@ functions.sh ASK
 
 -----------------------------
 
-## <a id="TMP_FILE_CREATE">TMP_FILE_CREATE</a>
+## <a id="TMP_FILE_CREATE">TMP_FILE_CREATE Functions</a>
 
 Several functions manage temporary files and directories.
 Any files or directories created are automatically deleted when the parent script terminates.
