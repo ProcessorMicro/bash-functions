@@ -45,12 +45,12 @@ ASK can interact with the user with a test-based interface or a GUI dialog box i
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[EXTRA BASH FUNCTIONS Script](#extra-bash-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[GET ARGS GLOBAL DEFAULTS Script](#get-args-global-defaults)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Functions](#function-documentation)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[GET_ARGS](#GET_ARGS)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[GET_ARGS](#get-args)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Examples of Help Implemented by GET_ARGS](#example-of-help)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IS_EXCLUSIVE](#IS_EXCLUSIVE)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IS_EXCLUSIVE](#is-exclusive)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Examples of GET_ARGS and IS_EXCLUSIVE](#example-of-get-args)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ASK](#ask-functions)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[TMP_FILE_CREATE et al.](#TMP_FILE_CREATE)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ASK Functions](#ask-functions)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[TMP_FILE_CREATE Functions](#tmp-file-create-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Experiment](#tryme)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Experiment with ASK](#experiment-with-ASK)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Experiment with ASK_WITH_MENU](#experiment-with-ASK-WITH-MENU)<br>
@@ -388,7 +388,7 @@ FIND-FUNCTIONS -c -l -s /etc/profile.d/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh
 
 ## <a id="function-documentation">Functions</a>
 
-### <a id="GET_ARGS">GET_ARGS</a>
+### <a id="get-args">GET_ARGS</a>
 
 `GET_ARGS` is the primary function in this distribution.
 It has three basic purposes:
@@ -459,7 +459,7 @@ Use keyboard keys &rarr; and &larr; to view long lines.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-### <a id="IS_EXCLUSIVE">IS_EXCLUSIVE</a>
+### <a id="is-exclusive">IS_EXCLUSIVE</a>
 
 This is a "daughter" function to GET_ARGS and must be called after GET_ARGS has been invoked. It's purpose is to create rules that validate allowed combinations of command-line options when a parent script is executed.
 When an `IS_EXCLUSIVE` rule is violated, an error message summarizing the problem is displayed and the parent script is exited.
@@ -592,7 +592,7 @@ functions.sh ASK
 
 -----------------------------
 
-## <a id="TMP_FILE_CREATE">TMP_FILE_CREATE</a>
+## <a id="tmp-file-create-functions">TMP_FILE_CREATE Functions</a>
 
 Several functions manage temporary files and directories.
 Any files or directories created are automatically deleted when the parent script terminates.
