@@ -248,10 +248,10 @@ And all the functions are preceded by documentation describing the function usag
 Assuming `functions.sh` was installed in a directory listed in `PATH` (/usr/local/bin), then typing:
 
 ```bash
-functions.sh                                      # Displays the complete help for every function and variable.
+functions.sh                      # Displays the complete help for every function and variable.
 ```
 ```bash
-functions.sh FUNCTION_NAME        # Displays the documentation for `FUNCTION_NAME`
+functions.sh <FUNCTION_NAME>        # Displays the documentation for `FUNCTION_NAME`
 ```
 
 The display is paged with 'less'.  
