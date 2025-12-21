@@ -9,7 +9,7 @@ Also included in the distribution are a few additional and useful bash support s
 
 This distribution is designed to work in a bash shell environment on a system executing the Linux O/S.
 
-There are two major functions in `functions.sh`: `GET_ARGS` and the set of `ASK` functions.
+There are three major functions in `functions.sh`: `GET_ARGS`, `IS_EXCCLUSIVE` and the set of `ASK` functions.
 
 In a parent script, `GET_ARGS` is called with arguments (directives) that "define" the options and arguments
 available to the parent script.
@@ -17,6 +17,8 @@ When the parent script is invoked as a command, GET_ARGS parses the parent scrip
 and presents the script with a deterministic summary of the options used.
 The `GET_ARGS_DIRECTIVES` also enable the user to describe the script purpose and the meaning of each option/argument
 defined. This makes the parent script self documenting with man-like pages.
+
+The `IS_EXCLUSIVE` function allows you to easily verify combinations and defaults of parent script options .
 
 The `ASK` set of functions provide mechanisms for asking a question and verifying the response.
 The ASK prompt is fully configurable. Acceptable responses can be specified with the -C "CHOICES" option.
@@ -56,7 +58,7 @@ ASK can interact with the user with a test-based interface or a GUI dialog box i
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Experiment with ASK](#experiment-with-ask)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Experiment with ASK_WITH_MENU](#experiment-with-ask-with-menu)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Experiment with Some Other Functions](#experiment-with-other-functions)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[COLOR...](#color)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[COLOR Functions](#color-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ERROR & WARNING](#error-warning)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[PAD_IT, TRIM & ZERO_FILL](#padit-trim-zerofill)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[PAUSE](#pause)<br>
@@ -773,12 +775,12 @@ RUNME ASK_WITH_MENU -V QED -M -D "*" -G -H "A GUI Example\n\tMake your choice\n"
 There are many functions available within `functions.sh`.
 The following examples show some of the capability available.
 
-#### <a id="color">COLOR Functions</a>
+#### <a id="color-functions">COLOR Functions</a>
 
 The functions related to colors are interesting. Try:
 
 ```bash
-FIND_FUNCTIONS -f '.*COLOR.*'              # Display the function names containing "COLOC"
+FIND_FUNCTIONS -f '.*COLOR.*'              # Display the function names containing "COLOR"
 ```
 
 ```bash
