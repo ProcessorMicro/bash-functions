@@ -23,7 +23,7 @@ The `IS_EXCLUSIVE` function allows you to easily verify combinations and default
 The `ASK` set of functions provide mechanisms for asking a question and verifying the response.
 The ASK prompt is fully configurable. Acceptable responses can be specified with the -C "CHOICES" option.
 `ASK_WITH_MENU` presents a menu created from an array or from a argument list.
-ASK can interact with the user with a test-based interface or a GUI dialog box interface.
+ASK can interact with the user with a text-based interface or a GUI dialog box interface.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -146,7 +146,7 @@ DEFAULT_NAME="Mike Armstrong"
 
 #### Step 6
 Implement `functions.sh`  
-There are three ways to implement the installed package.
+After installation,there are three ways to implement `functions.sh`.
 
 1. Like a bull in a china shop:  
 &nbsp;&nbsp;&nbsp;&nbsp;Logout and then login.
