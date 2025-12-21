@@ -75,11 +75,11 @@ ASK can interact with the user with a text-based interface or a GUI dialog box i
 The functions and scripts are written in the bash scripting language, with some supporting scripts written in gawk.
 The intention of this distribution is to provide, to the home user writing bash scripts, easy access to boilerplate or to capabilities not immediately available or obvious.
 It is, and always will be, a work in progress.
-For more advanced scripting users they provide a quick way to implement some standard scripting (boiler plate) capability.
+For more advanced scripting users they provide a quick way to implement some standard scripting capability.
 
-I have carefully checked and re-checked everything ad-nauseam so, of course, there are many undiscovered errors.
+I have carefully checked and re-checked everything ad-nauseam. So, of course, there are many undiscovered errors.
 
-Note: The coding is not necessarily the best or the most efficient. Therefore it is recommended that `functions.sh` not be used in a production or multi-user environment.
+Note: The coding is not necessarily the best or the most efficient. Therefore it is suggested that `functions.sh` not be used in a production or multi-user environment.
 However, be that as it may, The functions allow one to concentrate on the purpose of a new script rather than having to duplicate common requirements.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
@@ -248,10 +248,10 @@ And all the functions are preceded by documentation describing the function usag
 Assuming `functions.sh` was installed in a directory listed in `PATH` (/usr/local/bin), then typing:
 
 ```bash
-functions.sh                      # Displays the complete help for every function and variable.
+functions.sh                        # Displays the complete help for every function and variable.
 ```
 ```bash
-functions.sh <FUNCTION_NAME>        # Displays the documentation for `FUNCTION_NAME`
+functions.sh <FUNCTION_NAME>        # Displays the documentation for `<FUNCTION_NAME>`
 ```
 
 The display is paged with 'less'.  
