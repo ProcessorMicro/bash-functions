@@ -947,9 +947,9 @@ Because I wrote these functions and scripts for my "setup", the following may no
 | Any function using `/etc/fstab` |
 | The `MOUNT` function uses preset directories and system links in `/media` |
 | The variables `All_PCS` and `OTHER_PCS` are related to my internal DNS |
-| The network functions |
+| The network functions in general |
 
-####i Specifics
+#### Specifics
 
 | WHAT | WHY |
 |--|--|
