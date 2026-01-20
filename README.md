@@ -931,14 +931,14 @@ RUNME SORT_ARGS_WS -V SORTED_NAMES -A -S "-n -r -t- -k2,2" "${FILE_NAMES_ARRAY[@
 
 ## <a id="bugs">Bugs</a>
 
-####Definition
+#### Definition
 
 A Pandora's box of nasty little Boggarts hiding in your code just waiting to pop up with a knowing grin.  
 Removing one seems to invite friends and relations to the party.
 
 Where would Linux be if there weren't any bugs or unfinished business?
 
-###Limited Usefulness
+#### Limited Usefulness
 
 Because I wrote these functions and scripts for my "setup", the following may not be useful or may have to be modified for your "setup".
 
@@ -949,7 +949,7 @@ Because I wrote these functions and scripts for my "setup", the following may no
 | The variables `All_PCS` and `OTHER_PCS` are related to my internal DNS |
 | The network functions |
 
-####Specifics
+####i Specifics
 
 | WHAT | WHY |
 |--|--|
