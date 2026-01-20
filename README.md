@@ -910,7 +910,7 @@ First an explanation of the arguments to the `SORT_ARGS_WS` examples below.
 | -V SORTED_NAMES | Store the result in SORTED_NAMES. |
 | -A | And make it an array. |
 | -S "-n -r -t- -k2,2" | Pass options to the `sort` command<br>-n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A numeric sort.<br>-r&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sort in reverse order.<br>-t-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The field separator is "-"<br>-k2,2&nbsp;Sort on the second field |
-| ${FILE_NAMES_ARRAY[@]}" | The contents of the file-name array (requoted) as the remaining arguments. |
+| `${FILE_NAMES_ARRAY[@]}` | The contents of the file-name array (requoted) as the remaining arguments. |
 
 ```bash
 # Create the array of file names.
@@ -929,17 +929,35 @@ RUNME SORT_ARGS_WS -V SORTED_NAMES -A -S "-n -r -t- -k2,2" "${FILE_NAMES_ARRAY[@
 
 -----------------------------
 
-## <a id="bugs">Bugs and Not Yet Complete<a/>
+## <a id="bugs">Bugs</a>
+
+####Definition
+
+A Pandora's box of nasty little Boggarts hiding in your code just waiting to pop up with a knowing grin.  
+Removing one seems to invite friends and relations to the party.
 
 Where would Linux be if there weren't any bugs or unfinished business?
 
-| | |
-| ----------------------------------- | ------------------------- |
-| GET_IP_FROM_DOMAIN | Minimum usefulness |
-| GET_MATCHING_NFS_DOMAIN_IN_FSTAB | Ditto |
-| GET_ALL_UNIQUE_NFS_DOMAINS_IN_FSTAB | Ditto |
+###Limited Usefulness
+
+Because I wrote these functions and scripts for my "setup", the following may not be useful or may have to be modified for your "setup".
+
+| THINGS THAT DEPEND UPON MY SETUP |
+|--|
+| Any function using `/etc/fstab` |
+| The `MOUNT` function uses preset directories and system links in `/media` |
+| The variables `All_PCS` and `OTHER_PCS` are related to my internal DNS |
+| The network functions |
+
+####Specifics
+
+| WHAT | WHY |
+|--|--|
+| `GET_IP_FROM_DOMAIN` | Minimum usefulness |
+| `GET_MATCHING_NFS_DOMAIN_IN_FSTAB` | Ditto |
+| `GET_ALL_UNIQUE_NFS_DOMAINS_IN_FSTAB` | Ditto |
 | ... | ... |
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-<a id="bottom"><a/>
+<a id="bottom"></a>
