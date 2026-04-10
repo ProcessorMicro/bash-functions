@@ -1,5 +1,7 @@
 # <a id="top">Useful Bash Functions</a>
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+
 ## <a id="purpose">Purpose</a>
 
 The bash functions in the file `functions.sh` can be used to enhance and manage bash scripts.
@@ -12,7 +14,7 @@ This distribution is designed to work in a bash shell environment on a system ex
 There are three major functions in `functions.sh`: `GET_ARGS`, `IS_EXCCLUSIVE` and the set of `ASK` functions.
 
 In a parent script, `GET_ARGS` is called with arguments (directives) that "define" the options and arguments
-available to the parent script.
+available to the parent script and provide built-in help.
 When the parent script is invoked as a command, GET_ARGS parses the parent script options on the command line
 and presents the script with a deterministic summary of the options used.
 The `GET_ARGS_DIRECTIVES` also enable the user to describe the script purpose and the meaning of each option/argument
@@ -77,7 +79,7 @@ The intention of this distribution is to provide, to the home user writing bash 
 It is, and always will be, a work in progress.
 For more advanced scripting users they provide a quick way to implement some standard scripting capability.
 
-I have carefully checked and re-checked everything ad-nauseam. So, of course, there are many undiscovered errors.
+I have carefully checked and re-checked everything ad-nauseam. So, of course, there are many undiscovered bugs.
 
 Note: The coding is not necessarily the best or the most efficient. Therefore it is suggested that `functions.sh` not be used in a production or multi-user environment.
 However, be that as it may, The functions allow one to concentrate on the purpose of a new script rather than having to duplicate common requirements.
@@ -91,7 +93,7 @@ However, be that as it may, The functions allow one to concentrate on the purpos
 ### <a id="installation-procedure">Installation Procedure</a>
 
 The installation script `install.sh` installs the bash scripts in the directory `/usr/local/bin` except for
-       `FUNCTIONS-SH-EXTRA-FUNCTIONS.sh` and `FUNCTIONS-SH-GLOBAL-DEFAULTS.sh`  
+       `FUNCTIONS-SH-EXTRA-FUNCTIONS.sh` and `FUNCTIONS-SH-GLOBAL-DEFAULTS.sh`
 which are installed in the directory `/etc/profile.d`
 
 #### Step 1
@@ -127,8 +129,8 @@ Install `bash` and re-execute `install.sh`.
 
 #### Step 4
 
-`MKSCRIPT` creates a script "shell" that contains a copyright notice.
-Edit the file `/usr/local/bin/MKSCRIPT` to reflect your needs for the generated copyright
+`MKSCRIPT` creates a script "template" that inserts YOUR copyright notice into the generated script.
+Edit the file `/usr/local/bin/MKSCRIPT` to reflect your needs for your generated copyright.
 
 - Modify the generated name:
 ```bash
@@ -171,12 +173,12 @@ The install script checks fo the the existance of these commands.
 
 | COMMAND | REQUIREMENT |
 |--|--|
-| bash    | Required |
-| gawk    | Required (or a link to awk) |
+| bash    | Required. |
+| gawk    | Required (or a link to awk). |
 | less    | The default "pager". Required unless you configure a different pager. |
-| nmap    | Only if you use the network functions |
-| yad     | Only if you use the -G (GUI) option in any "GIU-enabled" functions |
-| sort    | Only if you use the functions `SORT_ARGS` and `SORT_ARGS_WS` |
+| nmap    | Only if you use the network functions. |
+| yad     | Only if you use the -G (GUI) option in any "GIU-enabled" functions. |
+| sort    | Only if you use the functions `SORT_ARGS` and `SORT_ARGS_WS`. |
 
 if you don't have `gawk` then a symbolic link to awk will work as well. This is done by the intall script.
 
@@ -291,10 +293,10 @@ FIND-FUNCTIONS --HELP
 An example of `FIND-FUNCTIONS` usage:
 
 ```bash
-FIND-FUNCTIONS -c TRIM         # Shows the documentation (comments) paged with "less"
-                               # for the `TRIM` function in functions.sh
+FIND-FUNCTIONS -c -l SORT_ARGS   # Shows the documentation (comments) paged with "less"
+                                 # for the `SORT_ARGS` function in `functions.sh`
 ```
-To get a list of all the functions available in `functions.sh`, type:
+To get a (paged) list of all the functions available in `functions.sh`, type:
 
 ```bash
 FIND-FUNCTIONS --ns -f -l "[^_].*"    			# The pattern "[^_].*" eliminates internal (reserved) functions
@@ -365,7 +367,7 @@ Three extra functions are available:
 |--|--|
 | FUNCTIONS    | Typing this at a command line loads `functions.sh` into your current environment. It also turns off bash debugging (set +x) and sets all `exit` statements in `functions.sh` to be `return` thus preventing any error exits from closing your terminal session. |
 | HIGHLIGHT    | A complex grep command that highlights, in a script, salient functions and arguments related to the major functions `GET_ARGS` and `IS_EXCLUSIVE` in this distribution.<br>&nbsp;&nbsp;&nbsp;&nbsp;[(see Sample Code for GET_ARGS and IS_EXCLUSIVE below)](#coding-of-get-args) |
-| RUNME        | A function that executes any function in `functions.sh` (or another function library) in a safe environment and displays the result(s). |
+| RUNME        | A function that executes any function in `functions.sh` (or another function library) in a safe (child process) environment and displays the result(s). |
 
 For example, full documentation of function `RUNME` in `FUNCTIONS-SH-EXTRA-FUNCTIONS.sh` can be viewed by:
 
@@ -424,7 +426,8 @@ It has three basic purposes:
 | The following GET_ARGS defaults are fully configurable: basic options, variable names, section headers, color usage, ... |
 | Functions IS_EXCLUSIVE, USAGE, ERROR and WARNING compliment GET_ARGS option processing. |
 
-Full documentation of `GET_ARGS` (it is extensive) can be viewed by:
+`GET_ARGS` is fully configurable. Every default variable name, default variable value or default action cn be modified.
+full documentation of `GET_ARGS` (it is extensive) can be viewed by:
 
 ```bash
 functions.sh GET_ARGS
@@ -434,8 +437,7 @@ functions.sh GET_ARGS
 
 #### <a id="example-of-help">Examples of Help Implemented by GET_ARGS</a>
 
-Before you look at an example of the coding for `GET_ARGS`, see how help is implemented by `GET_ARGS`.
-We will use help for `FIND-FUNCTIONS` and to see how it works. Try the following:
+Before we look at an example of the coding for `GET_ARGS` we will use help for `FIND-FUNCTIONS` to see how it works. Try the following:
 
 ```bash
 FIND-FUNCTIONS -h              # This displays the help text in the global default mode.
@@ -780,7 +782,7 @@ The following examples show some of the capability available.
 The functions related to colors are interesting. Try:
 
 ```bash
-FIND_FUNCTIONS -f '.*COLOR.*'              # Display the function names containing "COLOR"
+FIND-FUNCTIONS -f '.*COLOR.*'              # Display the function names containing "COLOR"
 ```
 
 ```bash
@@ -940,14 +942,14 @@ Where would Linux be if there weren't any bugs or unfinished business?
 
 #### Limited Usefulness
 
-Because I wrote these functions and scripts for my "setup", the following may not be useful or may have to be modified for your "setup".
+Because I wrote these functions and scripts for my personal use, the following may not be useful or may have to be modified for your "setup".
 
 | THINGS THAT DEPEND UPON MY SETUP |
 |--|
 | Any function using `/etc/fstab` |
 | The `MOUNT` function uses preset directories and system links in `/media` |
 | The variables `All_PCS` and `OTHER_PCS` are related to my internal DNS |
-| The network functions in general |
+| The network functions in general are based upon my internal DNS |
 
 #### Specifics
 
@@ -961,3 +963,4 @@ Because I wrote these functions and scripts for my "setup", the following may no
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 <a id="bottom"></a>
+will use help forwill use help for
