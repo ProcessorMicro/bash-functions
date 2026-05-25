@@ -11,7 +11,7 @@ Also included in the distribution are a few additional and useful bash support s
 
 This distribution is designed to work in a bash shell environment on a system executing the Linux O/S.
 
-There are three major functions in `functions.sh`: `GET_ARGS`, `IS_EXCCLUSIVE` and the set of `ASK` functions.
+There are three major functions in ``functions.sh``: `GET_ARGS`, `IS_EXCCLUSIVE` and the set of `ASK` functions.
 
 In a parent script, `GET_ARGS` is called with arguments (directives) that "define" the options and arguments
 available to the parent script and provide built-in help.
