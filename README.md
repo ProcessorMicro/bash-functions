@@ -33,6 +33,8 @@ ASK can interact with the user with a text-based interface or a GUI dialog box i
 
 ## <a id="contents">Contents</a>
 
+<details>
+
 &nbsp;&nbsp;&nbsp;&nbsp;[Purpose](#purpose)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Contents](#contents)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Caveat](#caveat)<br>
@@ -68,6 +70,8 @@ ASK can interact with the user with a text-based interface or a GUI dialog box i
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[SORT_ARGS & SORT_ARGS_WS](#sort-args-ws)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Bugs](#bugs)<br>
 
+</details>
+       
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 -----------------------------
