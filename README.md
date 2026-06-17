@@ -28,6 +28,36 @@ The ASK prompt is fully configurable. Acceptable responses can be specified with
 ASK can interact with the user with a text-based interface or a GUI dialog box interface.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+# <a id="top">Useful Bash Functions</a>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+
+## <a id="purpose">Purpose</a>
+
+The bash functions in the file `functions.sh` can be used to enhance and manage bash scripts.
+When the file `functions.sh` is included (sourced) in a parent script more than 70 useful functions and many variables are available to the parent script.
+Some additional gawk scripts present in this distribution are used by and provide support for `functions.sh`.
+Also included in the distribution are a few additional and useful bash support scripts.
+
+This distribution is designed to work in a bash shell environment on a system executing the Linux O/S.
+
+There are three major functions in ``functions.sh``: `GET_ARGS`, `IS_EXCCLUSIVE` and the set of `ASK` functions.
+
+In a parent script, `GET_ARGS` is called with arguments (directives) that "define" the options and arguments
+available to the parent script and provide built-in help.
+When the parent script is invoked as a command, GET_ARGS parses the parent script options on the command line
+and presents the script with a deterministic summary of the options used.
+The `GET_ARGS_DIRECTIVES` also enable the user to describe the script purpose and the meaning of each option/argument
+defined. This makes the parent script self documenting with man-like pages.
+
+The `IS_EXCLUSIVE` function allows you to easily verify combinations and defaults of parent script options .
+
+The `ASK` set of functions provide mechanisms for asking a question and verifying the response.
+The ASK prompt is fully configurable. Acceptable responses can be specified with the -C "CHOICES" option.
+`ASK_WITH_MENU` presents a menu created from an array or from a argument list.
+ASK can interact with the user with a text-based interface or a GUI dialog box interface.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 -----------------------------
 
