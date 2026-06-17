@@ -11,79 +11,16 @@ Also included in the distribution are a few additional and useful bash support s
 
 This distribution is designed to work in a bash shell environment on a system executing the Linux O/S.
 
-There are three major functions in ``functions.sh``: `GET_ARGS`, `IS_EXCCLUSIVE` and the set of `ASK` functions.
+There are three major functions in `functions.sh`: `GET_ARGS`, `IS_EXCLUSIVE` and the set of `ASK` functions.
 
 In a parent script, `GET_ARGS` is called with arguments (directives) that "define" the options and arguments
 available to the parent script and provide built-in help.
 When the parent script is invoked as a command, GET_ARGS parses the parent script options on the command line
 and presents the script with a deterministic summary of the options used.
-The `GET_ARGS_DIRECTIVES` also enable the user to describe the script purpose and the meaning of each option/argument
+The `GET_ARGS_DIRECTIVES` also allow the user to describe the script purpose and the meaning of each option/argument
 defined. This makes the parent script self documenting with man-like pages.
 
-The `IS_EXCLUSIVE` function allows you to easily verify combinations and defaults of parent script options .
-
-The `ASK` set of functions provide mechanisms for asking a question and verifying the response.
-The ASK prompt is fully configurable. Acceptable responses can be specified with the -C "CHOICES" option.
-`ASK_WITH_MENU` presents a menu created from an array or from a argument list.
-ASK can interact with the user with a text-based interface or a GUI dialog box interface.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
-# <a id="top">Useful Bash Functions</a>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
-# <a id="top">Useful Bash Functions</a>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
-
-## <a id="purpose">Purpose</a>
-
-The bash functions in the file `functions.sh` can be used to enhance and manage bash scripts.
-When the file `functions.sh` is included (sourced) in a parent script more than 70 useful functions and many variables are available to the parent script.
-Some additional gawk scripts present in this distribution are used by and provide support for `functions.sh`.
-Also included in the distribution are a few additional and useful bash support scripts.
-
-This distribution is designed to work in a bash shell environment on a system executing the Linux O/S.
-
-There are three major functions in ``functions.sh``: `GET_ARGS`, `IS_EXCCLUSIVE` and the set of `ASK` functions.
-
-In a parent script, `GET_ARGS` is called with arguments (directives) that "define" the options and arguments
-available to the parent script and provide built-in help.
-When the parent script is invoked as a command, GET_ARGS parses the parent script options on the command line
-and presents the script with a deterministic summary of the options used.
-The `GET_ARGS_DIRECTIVES` also enable the user to describe the script purpose and the meaning of each option/argument
-defined. This makes the parent script self documenting with man-like pages.
-
-The `IS_EXCLUSIVE` function allows you to easily verify combinations and defaults of parent script options .
-
-The `ASK` set of functions provide mechanisms for asking a question and verifying the response.
-The ASK prompt is fully configurable. Acceptable responses can be specified with the -C "CHOICES" option.
-`ASK_WITH_MENU` presents a menu created from an array or from a argument list.
-ASK can interact with the user with a text-based interface or a GUI dialog box interface.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
-# <a id="top">Useful Bash Functions</a>
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
-
-## <a id="purpose">Purpose</a>
-
-The bash functions in the file `functions.sh` can be used to enhance and manage bash scripts.
-When the file `functions.sh` is included (sourced) in a parent script more than 70 useful functions and many variables are available to the parent script.
-Some additional gawk scripts present in this distribution are used by and provide support for `functions.sh`.
-Also included in the distribution are a few additional and useful bash support scripts.
-
-This distribution is designed to work in a bash shell environment on a system executing the Linux O/S.
-
-There are three major functions in ``functions.sh``: `GET_ARGS`, `IS_EXCCLUSIVE` and the set of `ASK` functions.
-
-In a parent script, `GET_ARGS` is called with arguments (directives) that "define" the options and arguments
-available to the parent script and provide built-in help.
-When the parent script is invoked as a command, GET_ARGS parses the parent script options on the command line
-and presents the script with a deterministic summary of the options used.
-The `GET_ARGS_DIRECTIVES` also enable the user to describe the script purpose and the meaning of each option/argument
-defined. This makes the parent script self documenting with man-like pages.
-
-The `IS_EXCLUSIVE` function allows you to easily verify combinations and defaults of parent script options .
+The `IS_EXCLUSIVE` function allows you to easily verify combinations and defaults of parent script options.
 
 The `ASK` set of functions provide mechanisms for asking a question and verifying the response.
 The ASK prompt is fully configurable. Acceptable responses can be specified with the -C "CHOICES" option.
@@ -95,8 +32,6 @@ ASK can interact with the user with a text-based interface or a GUI dialog box i
 -----------------------------
 
 ## <a id="contents">Contents</a>
-
-<details>
 
 &nbsp;&nbsp;&nbsp;&nbsp;[Purpose](#purpose)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Contents](#contents)<br>
@@ -133,8 +68,6 @@ ASK can interact with the user with a text-based interface or a GUI dialog box i
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[SORT_ARGS & SORT_ARGS_WS](#sort-args-ws)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Bugs](#bugs)<br>
 
-</details>
-       
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 -----------------------------
@@ -196,15 +129,15 @@ Install `bash` and re-execute `install.sh`.
 
 #### Step 4
 
-`MKSCRIPT` creates a script "template" that inserts YOUR copyright notice into the generated script.
-Edit the file `/usr/local/bin/MKSCRIPT` to reflect your needs for your generated copyright.
+`MKSCRIPT` creates a script "template" and inserts YOUR copyright notice into the generated script.
+To reflect your needs for the generated copyright, edit the file `/usr/local/bin/MKSCRIPT`.
 
 - Modify the generated name:
 ```bash
 DEFAULT_NAME="Mike Armstrong"
 ```
 
-- Modify the generated copyright lines following the line:
+- Modify the generated copyright lines following the comment line:
 ```bash
 # = Modify the following copyright information as appropriate. =
 ```
@@ -271,7 +204,7 @@ The following is a description of the functions and variables in `functions.sh` 
 | IS_EXCLUSIVE                | Detects and manages combinations of parent script options when the parent script is executed as a command. Described in more detail below. |
 | USAGE, ERROR, WARNING       | A set of functions to manage error or warning parent script messages. |
 | ASK, ASK_GUI                | Manages parent script questions and validates the answers. Described in more detail below. |
-| ASK_WITH_MENU, ASK_WITH_MENU_GUI | Same as `ASK` but presents a menu of choices and accepts single or multiple answers. Described in more detail below. |
+| ASK_WITH_MENU, ASK_WITH_MENU_GUI | Same as `ASK` but presents a menu of choices generated from an array and accepts single or multiple answers. Described in more detail below. |
 | IS_ROOT, IS_NUMERIC, IS_... | A set of testing functions. for example `IS_ROOT` returns TRUE if the parent script is running with root privileges. |
 | TEST_...                    | A set of functions and variables that can be used while testing the parent script to surround commands that make a (critical) 'change'. Executing the parent script with the option `-t` or `--test` will cause those commands to be displayed (after all expansions) rather than being executed. |
 | SORT_ARGS, SORT_ARGS_WS     | Functions that sorts the arguments to the function and display the sorted result. |
@@ -366,7 +299,7 @@ FIND-FUNCTIONS -c -l SORT_ARGS   # Shows the documentation (comments) paged with
 To get a (paged) list of all the functions available in `functions.sh`, type:
 
 ```bash
-FIND-FUNCTIONS --ns -f -l "[^_].*"    			# The pattern "[^_].*" eliminates internal (reserved) functions
+FIND-FUNCTIONS --ns -f -l "[^_].*"              # The pattern "[^_].*" eliminates internal (reserved) functions
 ```
 
 The same command as above but using long options.
@@ -478,15 +411,15 @@ It has three basic purposes:
 | Options can be single character `-a` or multiple character `--all`. |
 | Any option can be defined to have several spellings (`-a` and `--all` and ...). |
 | Any option can be defined (and enforced) with: no value, a required value or an optional value. |
-| In a parent script, multiple use of an option can be configured ( i.e. `-x abc -x def -x ghi`) |
+| By default any option can be specified only once. But multiple use of an option can be configured ( i.e. `-x abc -x def -x ghi`) |
 | When the parent script is invoked the options and arguments can be specified in any order. |
-| Options and valuesspecified when the parent script is invoked are identified as variables `Opt_<XXX>` and `Opt_<XXX>_Var`. |
+| Options and values specified when the parent script is invoked are identified in the parent script as variables `Opt_<XXX>` and `Opt_<XXX>_Var`. |
 | Arguments are collected into an array `Args[*]` (origin 1). |
 | The number of options or arguments can be defined (and enforced). Vis: `--Opts_Min 1`, `--Args_Req 3` ... |
 | Options `-h` `--help` `-H` `--HELP` `-v` `--version` `-t` `--test` are automatically implemented. |
 | A manpage-like USAGE display (help with color highlights) is generated from the GET_ARGS_DIRECTIVES. |
 | For help when the parent script is invoked, three display formats are available: expanded, compact and brief. |
-| Help output is divided into sections. GET_ARGS_DIRECTIVES can be used to create text in each section in addition to the text generated automatically.<br>E.G. `--Para "..."` inserts a paragraph, `--Example "..."` creates an EXAMPLE section. |
+| Help output is divided into sections. GET_ARGS_DIRECTIVES can be used to create text in each section in addition to the text generated automatically.<br>E.G. `--Para O "..."` inserts a paragraph in the options section, `--Example "..."` creates an EXAMPLE section. |
 | Help output is automatically folded and (usually) properly indented to fit ${COLUMNS} wide.
 | Help output can be filtered to only display portions of the complete help output. This is useful for scripts that have many options or large help displays. |
 | GET_ARGS saves the results of parsing the GET_ARGS_DIRECTIVES and restores them at subsequent invocations of the parent script. This can save a few milliseconds of CPU time for scripts that have a lot of options. |
@@ -599,27 +532,27 @@ The table below gives a description of the lines containing highlights.
 |  | Note 2:                      | To make it easier to see the GET_ARGS_DIRECTIVES, each is on a separate line and each line ends with the line continuation characters " \\". |
 |  | Note 3:                      | To help explain the highlighted code, I have added the line continuation characters " \\" at the end of some comments so they are included in the displayed output. |
 | 4 | SCRIPT_PURPOSE              | A variable that summarizes what the script does. The value is displayed in the help output. |
-| 6 | SCRIPT_VERSION              | The value of this variable is displayed if the script is invoked with option -v or --version. |
+| 6 | SCRIPT_VERSION              | The value of this variable is displayed if the script is invoked with option `-v` or `--version`. |
 | 7-12 | Load and/or Initialize   | The bash coding that ensures `functions.sh` is loaded and/or initialized. |
 | 10 | COMMON_FUNCTIONS           | Variable containing the pathname of `functions.sh`. |
-| 17-51 | GET_ARGS coding         | The call to the GET_ARGS function. The following highlighted lines are GET_ARGS_DIRECTIVES.|
-| 17 | --Args_Array               | Instructs GET_ARGS to create an array `Args` which contains the `FIND-FUNCTIONS` non-option arguments found. |
-| 18 | --Copyright                | Causes the default copyright notice to be inserted into the help text. |
-| 19-40 | --Opt_D and --Des_D     | Defines and describes the `FIND-FUNCTIONS` options allowed. |
-| 29 | --Hid_D                    | This is like --Opt_D in that it defines a parent script option `--highlight`. But this option is is not displayed by help. |
-| 29 | ${CMD}                     | `functions.sh` creates this variable with the basename of the parent script name as the value. (Other useful variables are created as well.) |
-| 41-46 | --Where and --Info      | Create the sections `WHERE` and `INFO` which provide extra information in the help display. |
-| 47-50 | --Exam                  | Creates an EXAMPLE section in the help display. |
-| 51 | -- "$@"                    | These two arguments must always be the last of the GET_ARGS arguments. |
-| 55-65 | IS_EXCLUSIVE            | These are examples of IS_EXCLUSIVE that define rules for acceptable combinations of parent script options. |
-| 71 | Opt_list                   | Is a variable created if the parent script is invoked with the option --list or --ListOptions.
-| 71 | Opt_list_Val               | Is the (optional) value created by using the syntax --list=VALUE or --ListOptions=VALUE.
-| 71-106 | Opt_X, Opt_XXX         | When executing `FIND-FUNCTIONS` these variables are created (incremented) each time option -X or --XXX is encountered on the command line. I.E. If Opt_X tests TRUE (oe > 0) then option -X was used. |
-| 71-106 | Opt_X_Val, Opt_XXX_Val | At parent script execution, these variables contain the value if option -X VALUE or --XXX=VALUE is followed by a value. |
-| 94 | For example:               | The line:<br>&nbsp;&nbsp;&nbsp;&nbsp;`(( Opt_E )) && TheOutputCommand="${Opt_E_Val}"`<br>is interptreterd as:<br>&nbsp;&nbsp;&nbsp;&nbsp;If -E /mybin/myeditor or --editor=/mybin/myeditor was used (I.E. Opt_E > 0) then set "TheOutputCommand" to the value "/mybin/myeditor" ( the variable Opt_E_Val contains the option value). |
-| 112-119 | ${TEST_CMD}           | Causes the command line to be displayed if option --test (-t) was used. Otherwise the command is executed. Useful for testing a script. |
-| 121 | IS_TESTING                | A function that returns TRUE if --test (-t) was used. |
-| 124 | ERROR                     | A function that displays the error message and immediately exits `FIND-FUNCTIONS`. |
+| 17-54 | GET_ARGS coding         | The call to the GET_ARGS function. The following highlighted lines are GET_ARGS_DIRECTIVES.|
+| 17 | `--Args_Array`             | Instructs GET_ARGS to create an array `Args` which contains the `FIND-FUNCTIONS` non-option arguments found. |
+| 18 | `--Copyright`              | Causes the default copyright notice to be inserted into the help text. |
+| 19-43 | `--Opt_D` `--Hid_D` `--Des_D`     | Defines and describes the `FIND-FUNCTIONS` options allowed. |
+| 28  | `--Para O` | Adds an aditional paragraph at this point in the OPTIONS section |
+| 31 | `--Hid_D`                  | This is like `--Opt_D` in that it defines a parent script option ``--highlight``. But this option is is not displayed by help. |
+| 31 | ${`CMD`}                   | `functions.sh` creates this variable with the basename of the parent script name as the value. (Other useful variables are created as well.) |
+| 44-49 | `--Where` and `--Info`  | Create the sections `WHERE` and `INFO` which provide extra information in the help display. |
+| 50-53 | `--Exam`                | Creates an EXAMPLE section in the help display. |
+| 54 | `--` `"$@"`                | These two arguments must always be the last of the GET_ARGS arguments. |
+| 58-68 | IS_EXCLUSIVE            | These are examples of IS_EXCLUSIVE that define rules for acceptable combinations of parent script options. |
+| 74 | Opt_list                   | Is a variable created if the parent script is invoked with the option `--list` or `--ListOptions`.
+| 74 | Opt_list_Val               | Is the (optional) value created by using the syntax `--list=VALUE` or `--ListOptions=VALUE`.
+| 74-109 | Opt_X, Opt_XXX         | When executing `FIND-FUNCTIONS` these variables are created (incremented) each time option `-X` or `--XXX` is encountered on the command line. I.E. If Opt_X tests TRUE then option `-X` was used. |
+| 74-107 | Opt_X_Val, Opt_XXX_Val | At parent script execution, these variables contain the value if option `-X VALUE` or `--XXX=VALUE` was speciified. |
+| 95 | E.G `(( Opt_c ))`          | If option `-c` (or `--comments`) was used then set the variable `OnlyComments` to `1`. |
+| 119-126 | ${TEST_CMD}           | Causes the command line to be displayed if option `--test` (`-t`) was used. Otherwise the command is executed. Useful for testing a script. |
+| 129 | ERROR                     | A function that displays the error message and immediately exits `FIND-FUNCTIONS`. |
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -653,6 +586,8 @@ Full documentation of the set of `ASK` functions can be viewed by:
 
 ```bash
 FIND-FUNCTIONS -c -l "ASK.*"
+functions.sh ASK.*
+
 ```
 
 or
