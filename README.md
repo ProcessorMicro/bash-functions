@@ -83,7 +83,7 @@ For more advanced scripting users they provide a quick way to implement some sta
 I have carefully checked and re-checked everything ad-nauseam. So, of course, there are many undiscovered bugs.
 
 Note: The coding is not necessarily the best or the most efficient. Therefore it is suggested that `functions.sh` not be used in a production or multi-user environment.
-However, be that as it may, The functions allow one to concentrate on the purpose of a new script rather than having to duplicate common requirements.
+However, be that as it may, The functions allow one to concentrate on the purpose of a new script rather than having to duplicate common requirements. 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
