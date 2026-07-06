@@ -10,6 +10,7 @@ Some additional gawk scripts present in this distribution are used by and provid
 Also included in the distribution are a few additional and useful bash support scripts.
 
 This distribution is designed to work in a bash shell environment on a system executing the Linux O/S.
+It has only been tested on the KDE terminal emulator `konsole` and partially tested on GNOME `terminal`.
 
 There are three major functions in `functions.sh`: `GET_ARGS`, `IS_EXCLUSIVE` and the set of `ASK` functions.
 
@@ -727,16 +728,16 @@ Try making an invalid choice before entering a valid one.
 
 ```bash
 # Setup: Create a sparse array (one with some elements missing) and initiate with 4 elements.
-unset Array ; declare -a Array
-Array+=( [1]="Question1: Array index=1" )
-Array+=( [9]="Question4: Array index=9" )
-Array+=( [4]="Question2: Array index=4" )
-Array+=( [7]="Question3: Array index=7" )
+unset array ; declare -a array
+array+=( [1]="Question1: array index=1" )
+array+=( [9]="Question4: array index=9" )
+array+=( [4]="Question2: array index=4" )
+array+=( [7]="Question3: array index=7" )
 ```
 
 ```bash
 # Execute ASK_WITH_MENU (with a header to make it nice)
-RUNME ASK_WITH_MENU -H "\n\tMake your choice\n" Array
+RUNME ASK_WITH_MENU -H "\n\tMake your choice\n" array
 ```
 
 The results are displayed.
@@ -749,17 +750,16 @@ Try making an invalid choice before entering a valid one.
 ```bash
 # Setup: Create an associative array and initiate with 5 elements (random order).
 # Note:  The array elements can contain spaces.
-#        However I removed them so the results display is more readable.
-unset Array ; declare -A Array
-Array+=( [2nd]="Question2,index=2nd" )
-Array+=( [1st]="Question1,index=1st" )
-Array+=( [3rd]="Question3,index=3rd" )
-Array+=( [8th]="Question5,index=8th" )
-Array+=( [4th]="Question4,index=4th" )
+unset ARRAY ; declare -A ARRAY
+ARRAY+=( [2nd]="Question2: the index is 2nd" )
+ARRAY+=( [1st]="Question1: the index is 1st" )
+ARRAY+=( [3rd]="Question3: the index is 3rd" )
+ARRAY+=( [8th]="Question5: the index is 8th" )
+ARRAY+=( [6th]="Question4: the index is 6th" )
 ```
 ```bash
 # Execute ASK_WITH_MENU with the results in variable QED and allowing multiple answers.
-RUNME ASK_WITH_MENU -V QED -M -H "\n\tMake your choice\n" Array
+RUNME ASK_WITH_MENU -V QED -M -H "\n\tMake your choice\n" ARRAY
 ```
 The results are displayed.
 Notice that for an associative array the order of the elements is non-determinant.
