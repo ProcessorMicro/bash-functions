@@ -61,6 +61,7 @@ ASK can interact with the user with a text-based interface or a GUI dialog box i
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Experiment with ASK](#experiment-with-ask)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Experiment with ASK_WITH_MENU](#experiment-with-ask-with-menu)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Fancy Sparse Arrays with ASK_WITH_MENU](#fancy-ask-with-menu)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Fancy Multi-Menus with ASK_WITH_MENU](#fancy-ask-with-menu2)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Experiment with Some Other Functions](#experiment-with-other-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[COLOR Functions](#color-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ERROR & WARNING](#error-warning)<br>
@@ -759,16 +760,16 @@ RUNME ASK_WITH_MENU -H "\n\tMake your choice\n" sarray
 
 The results are displayed.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                  -->[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 #### <a id="fancy-ask-with-menu">Fancy Sparse Arrays with ASK_WITH_MENU</a>
 
-Again try ASK_WITH_MENU but with an associative array (an array with non-numeric indices).
+Again try ASK_WITH_MENU but with an associative `Array` (an array with non-numeric indices).
 Also we will implement multiple answers.
 Copy the code below and paste it into your terminal command line.
 
 ```bash
-# Setup: Create an associative array and initiate with 5 elements (random order).
+# Setup: Create an associative Array and initiate with 5 elements (random order).
 # Note:  The array elements can contain spaces.
 unset Array ; declare -A Array
 Array+=( [2nd]="Question2: the index is 2nd" )
@@ -783,10 +784,14 @@ Array+=( [6th]="Question4: the index is 6th" )
 RUNME ASK_WITH_MENU -V QED -M -H "\n\tMake your choice\n" Array
 ```
 The results are displayed.
-Notice that for an associative array the order of the elements is non-determinant.
+Notice that for an associative Array the order of the elements is non-determinant.
 Add the option `-S` (before `Array`) to sort the Array indices.
 
-Just for fun, create an "array" with the following and see how multi-menus work.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     [contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+
+#### <a id="fancy-ask-with-menu2">Fancy Multi-Menus with ASK_WITH_MENU</a>
+
+Just for fun to see how multi-menus work, create an "array" with the following.
 
 ```
 # Create an associative, 20-element array with random, 1-char indices.
