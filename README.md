@@ -801,16 +801,16 @@ while read -u 3 app ; do                   # Get names from /usr/bin/...
 done 3< <(ls /usr/bin/[bB]* | sed -e 's;.*/;;')
 ```
 
-The following command will split the array menu into 3 sub-menus (-MM=3) starting with sub-menu 2 (-MM=3:2).  
-Run it as is. Then, in the space, add -I (use the indices as the selectors).  
-Then add the sort option -S (ASCII) or -S=n (natural) or -S=nr (natural reversed)
-Note: "array" must be the last argument.
+The following command will split the array menu into 3 sub-menus (`-MM=3`) starting with sub-menu 2 (`-MM=3:2`).  
+Run it as is. Then, in the space, add `-I` (use the indices as the selectors).  
+Then add the sort option -S (ASCII) or `-S=n` (natural) or `-S=nr` (natural reversed)
+Note: `array` must be the last argument.
 
 ```
 RUNME ASK_WITH_MENU -M -MM=3:2       array
 ```
 
-xxx
+A menu of "version" choices.
 
 ```
 # Create a 30-element ARRAY with random "version-like" indices.
@@ -832,14 +832,14 @@ for (( i=0;i<=${Elements};i++ )) ; do
 done
 ```
 
-And try the following "version" ARRAY inserting combinations of: nothing, -I and -S=v or -S=vr  
-Note: "ARRAY" must be the last argument.
+And try the following "version" ARRAY inserting combinations of: nothing, `-I` and `-S=v` or `-S=vr`  
+Note: `ARRAY` must be the last argument.
 
 ```
 RUNME ASK_WITH_MENU -M -MM=3          ARRAY
 ```
 
-Finally try any of the above in a GUI environment (by adding -G) and with a default response (using -D <X>).
+Finally try any of the above in a GUI environment (by adding `-G`) and with a default response (using `-D <X>`).
 
 ```bash
 RUNME ASK_WITH_MENU -V QED -M -D "*" -G -H "A GUI Example\n\tMake your choice\n" array
