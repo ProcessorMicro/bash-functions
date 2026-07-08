@@ -25,7 +25,7 @@ The `IS_EXCLUSIVE` function allows you to easily verify combinations and default
 
 The `ASK` set of functions provide mechanisms for asking a question and verifying the response.
 The ASK prompt is fully configurable. Acceptable responses can be specified with the -C "CHOICES" option.
-`ASK_WITH_MENU` presents a menu created from an array or from a argument list.
+`ASK_WITH_MENU` presents a menu created from an array or from an argument list.
 ASK can interact with the user with a text-based interface or a GUI dialog box interface.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
@@ -83,7 +83,7 @@ For more advanced scripting users they provide a quick way to implement some sta
 I have carefully checked and re-checked everything ad-nauseam. So, of course, there are many undiscovered bugs.
 
 Note: The coding is not necessarily the best or the most efficient. Therefore it is suggested that `functions.sh` not be used in a production or multi-user environment.
-However, be that as it may, The functions allow one to concentrate on the purpose of a new script rather than having to duplicate common requirements. 
+However, be that as it may, the functions allow one to concentrate on the purpose of a new script rather than having to duplicate common requirements.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -111,8 +111,8 @@ Then download the zipfile and begin the installation process.
 #### Step 3
 
 ```bash
-unzip bash-functions-main.zip             # Unzip the file
-sudo /tmp/bash-functions-main/install.sh  # And install it as "root"
+unzip useful-bash-functions.zip             # Unzip the file
+sudo ./bash-functions-main/install.sh       # And install it as "root"
 ```
 
 - The install script should first display the following message:  
@@ -125,7 +125,9 @@ sudo /tmp/bash-functions-main/install.sh  # And install it as "root"
 - or a message something like:  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;./install.sh: cannot execute: required file not found
 
-It means the command `bash` is not installed.
+- Or an error message
+
+It means the command `bash` is not installed.  
 Install `bash` and re-execute `install.sh`.
 
 #### Step 4
@@ -605,7 +607,21 @@ functions.sh ASK
 Several functions manage temporary files and directories.
 Any files or directories created are automatically deleted when the parent script terminates.
 Unless directed otherwise, the files/dirs are created in `/tmp`.  
-The functions are summarized below.
+Theunset ARRAY
+declare -A ARRAY
+for (( i=0;i<=20;i++ )) ; do
+  a="$(( ${SRANDOM} % 10 ))"
+  (( ${SRANDOM} % 2 == 0 )) && a=$a$a
+  b="$(( ${SRANDOM} % 10 ))"
+  (( ${SRANDOM} % 2 == 0 )) && b=.$b$b || b=.$b
+  c="$(( ${SRANDOM} % 10 ))"
+  (( ${SRANDOM} % 2 == 0 )) && c=.$c$c || c=.$c
+  k="$(( ${SRANDOM} % 4 ))"
+  (( k == 0 )) && unset c
+  (( k == 3 )) && unset b c
+  ARRAY+=( [$a$b$c]="Version $a$b$c" )
+done
+ functions are summarized below.
 
 | FUNCTION | Description |
 | -------- | ----------- |
@@ -764,10 +780,69 @@ RUNME ASK_WITH_MENU -V QED -M -H "\n\tMake your choice\n" ARRAY
 The results are displayed.
 Notice that for an associative array the order of the elements is non-determinant.
 
-Finally try the above in a GUI environment (using -G) and with a default response (using -D).
+Just for fun, create an "array" with the following and see how multi-menus work.
+
+```
+# Create an associative, 20-element array with random, 1-char indices.
+a=( {A..Z} {a..z} )
+unset array count
+indexlen=1
+declare -A array
+while read -u 3 app ; do                   # Get names from /usr/bin/...
+  unset l
+  j=$(( ${SRANDOM} % ${indexlen} ))
+  for (( i=0;i<=j;i++ )) ; do
+    k=$(( ${SRANDOM} % ${#a[*]} ))
+    l+=${a[k]}
+  done
+  [[ -n ${array[$l]} ]] && continue        # Ignore duplicates
+  array+=( [$l]=${app} )
+  (( ++count < 20 )) || break
+done 3< <(ls /usr/bin/[bB]* | sed -e 's;.*/;;')
+```
+
+The following command will split the array menu into 3 sub-menus (-MM=3) starting with sub-menu 2 (-MM=3:2).  
+Run it as is. Then, in the space, add -I (use the indices as the selectors).  
+Then add the sort option -S (ASCII) or -S=n (natural) or -S=nr (natural reversed)
+Note: "array" must be the last argument.
+
+```
+RUNME ASK_WITH_MENU -M -MM=3:2       array
+```
+
+xxx
+
+```
+# Create a 30-element ARRAY with random "version-like" indices.
+unset ARRAY
+declare -A ARRAY
+Elements=30
+for (( i=0;i<=${Elements};i++ )) ; do
+  a="$(( ${SRANDOM} % 10 ))"
+  (( ${SRANDOM} % 2 == 0 )) && a=$a$a
+  b="$(( ${SRANDOM} % 10 ))"
+  (( ${SRANDOM} % 2 == 0 )) && b=.$b$b || b=.$b
+  c="$(( ${SRANDOM} % 10 ))"
+  (( ${SRANDOM} % 2 == 0 )) && c=.$c$c || c=.$c
+  k="$(( ${SRANDOM} % 4 ))"
+  (( k == 0 )) && unset c
+  (( k == 3 )) && unset b c
+  [[ -n ${ARRAY[$a$b$c]} ]] && continue
+  ARRAY+=( [$a$b$c]="Version $a$b$c" )
+done
+```
+
+And try the following "version" ARRAY inserting combinations of: nothing, -I and -S=v or -S=vr  
+Note: "ARRAY" must be the last argument.
+
+```
+RUNME ASK_WITH_MENU -M -MM=3          ARRAY
+```
+
+Finally try any of the above in a GUI environment (by adding -G) and with a default response (using -D <X>).
 
 ```bash
-RUNME ASK_WITH_MENU -V QED -M -D "*" -G -H "A GUI Example\n\tMake your choice\n" Array
+RUNME ASK_WITH_MENU -V QED -M -D "*" -G -H "A GUI Example\n\tMake your choice\n" array
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
