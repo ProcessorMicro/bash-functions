@@ -106,6 +106,7 @@ Change your working directory to an available one (say `/tmp`).
 ```bash
 cd /tmp                                         # Or wherever you want
 ```
+
 #### Step 2
 
 Download the zipfile and begin the installation process.
@@ -114,7 +115,7 @@ Download the zipfile and begin the installation process.
 
 ```bash
 unzip --quiet useful-bash-functions.zip         # Unzip the file
-sudo $(pwd)/useful-bash-functions/install.sh   # And install it as "root"
+sudo $(pwd)/useful-bash-functions/install.sh    # And install it as "root"
 ```
 
 - The install script should first display the following message:  
@@ -257,6 +258,7 @@ Assuming `functions.sh` was installed in a directory listed in `PATH` (/usr/loca
 ```bash
 functions.sh                        # Displays the complete help for every function and variable.
 ```
+
 ```bash
 functions.sh <FUNCTION_NAME>        # Displays the documentation for `<FUNCTION_NAME>`
 ```
@@ -270,12 +272,15 @@ The `functions.sh` self help displays additional information. Vis:
 ```bash
 functions.sh INTRODUCTION        # Introduction to `functions.sh`
 ```
+
 ```bash
 functions.sh FUNCTIONS           # A list of the functions available.
 ```
+
 ```bash
 functions.sh VARIABLES           # A list of the global variables used.
 ```
+
 ```bash
 functions.sh <FUNCTION_NAME>     # Displays the documentation for <FUNCTION_NAME>
 ```
@@ -319,16 +324,21 @@ So, for the functions contained in the script `/etc/profile.d/FUNCTIONS-SH-EXTRA
 ```bash
 FIND-FUNCTIONS --comments --script /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh
 ```
+
 or (using shorter options)
+
 ```bash
 FIND-FUNCTIONS -c -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh         # Display the comments for all functions
 ```
+
 ```bash
 FIND-FUNCTIONS -c -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh RUNME   # Display the comments for the function `RUNME`
 ```
+
 ```bash
 FIND-FUNCTIONS -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh            # Display the source code for all the functions
 ```
+
 ```bash
 FIND-FUNCTIONS -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh RUNME      # Display the source code for the function `RUNME`
 ```
@@ -345,9 +355,11 @@ MKSCRIPT My_Script           # Creates the script My_Script with execute permiss
                              # My_Script contains the code to implement functions.sh
                              # And a copyright notice and a small sample of GET_ARGS
 ```
+
 ```bash
 MKSCRIPT -H                  # Displays help for MKSCRIPT (paged with less)
 ```
+
 ```bash
 MKSCRIPT -h                  # Displays help for MKSCRIPT (not paged)
 ```
@@ -366,6 +378,7 @@ Full documentation of `FUNCTIONS-SH-EXTRA-FUNCTIONS.sh` can be viewed by:
 ```bash
 FIND-FUNCTIONS -c -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh
 ```
+
 Three extra functions are available:
 
 | FUNCTION     | DESCRIPTION |
@@ -379,6 +392,7 @@ For example, full documentation of function `RUNME` in `FUNCTIONS-SH-EXTRA-FUNCT
 ```bash
 FIND-FUNCTIONS -c -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh RUNME
 ```
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 ### <a id="get-args-global-defaults">FUNCTIONS-SH-GLOBAL-DEFAULTS.sh Script</a>
@@ -447,18 +461,23 @@ Before we look at an example of the coding for `GET_ARGS` we will use help for `
 ```bash
 FIND-FUNCTIONS -h              # This displays the help text in the global default mode.
 ````
+
 ```bash
 FIND-FUNCTIONS -he             # This displays the help text in expanded mode.
 ````
+
 ```bash
 FIND-FUNCTIONS -He             # So will this but paged with "less".
 ```
+
 ```bash
 COLUMNS=70 FIND-FUNCTIONS -H   # Simulate a 70-column terminal. The folding is (almost) perfect.
 ```
+
 ```bash
 FIND-FUNCTIONS --HELP=c        # An example of compressed and paged output (or use "-Hc").
 ```
+
 ```bash
 FIND-FUNCTIONS -hb             # Brief (not paged) help displaying help sections:
                                #   purpose, synopsis and options.
@@ -503,6 +522,7 @@ Within the script `FIND-FUNCTIONS` you can see the coding that generates the hel
 ```bash
 FIND-FUNCTIONS -H
 ```
+
 View the source code with:
 
 ```bash
@@ -524,6 +544,7 @@ So type:
 ```bash
 FIND-FUNCTIONS --highlight         # There is a hidden option in FIND-FUNCTIONS to highlight itself.
 ```
+
 ```bash
 FIND-FUNCTIONS --highlight=light   # The same as above but for screens with a light background
 ```
@@ -592,7 +613,6 @@ Full documentation of the set of `ASK` functions can be viewed by:
 ```bash
 FIND-FUNCTIONS -c -l "ASK.*"
 functions.sh ASK.*
-
 ```
 
 or
@@ -600,6 +620,7 @@ or
 ```bash
 functions.sh ASK
 ```
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 -----------------------------
@@ -669,9 +690,11 @@ Or, slightly less useful, by loading `functions.sh` into your environment:
 ```bash
 FUNCTIONS                          # load `functions.sh` into your environment and set every "exit" to a "return".
 ```
+
 ```bash
 FUNCTION_WITH_ARGUMENTS            # Execute the function
 ```
+
 ```bash
 echo <VARIABLES_CREATED>           # Display the created variables
 ```
@@ -778,11 +801,13 @@ Array+=( [3rd]="Question3: the index is 3rd" )
 Array+=( [8th]="Question5: the index is 8th" )
 Array+=( [6th]="Question4: the index is 6th" )
 ```
+
 ```bash
 # Execute ASK_WITH_MENU with the results in variable QED and allowing multiple answers.
 # Try making an invalid choice before entering a valid one.
 RUNME ASK_WITH_MENU -V QED -M -H "\n\tMake your choice\n" Array
 ```
+
 The results are displayed.
 Notice that for an associative Array the order of the elements is non-determinant.
 Add the option `-S` (before `Array`) to sort the Array indices.
@@ -793,7 +818,7 @@ Add the option `-S` (before `Array`) to sort the Array indices.
 
 Just for fun to see how multi-menus work, create an "array" with the following.
 
-```
+```bash
 # Create an associative, 20-element array with random, 1-char indices.
 a=( {A..Z} {a..z} )
 unset array ; declare -A array
@@ -816,13 +841,13 @@ Run it as is. Then, in the space, add `-I` (use the indices as the selectors).
 Then add the sort option `-S` (ASCII) or `-S=n` (natural) or `-S=nr` (natural reversed).  
 Note: `array` must be the last argument.
 
-```
+```bash
 RUNME ASK_WITH_MENU -H "  \t${UL}Fancy Menus${DEF}" -M -MM=3:2        array
 ```
 
 A menu of "version" choices.
 
-```
+```bash
 # Create a 30-element VARRAY with random "version-like" indices.
 unset VARRAY ; declare -A VARRAY
 Count=0 ; Elements=30
@@ -845,7 +870,7 @@ done
 And try the following "version" VARRAY inserting combinations of: nothing, `-I` or `-I=11` and `-S=v` or `-S=vr`  
 Note: `VARRAY` must be the last argument.
 
-```
+```bash
 RUNME ASK_WITH_MENU -H "\t\t${UL}Fancy Menus${DEF}" -M -MM=3       VARRAY
 ```
 
@@ -875,12 +900,15 @@ FIND-FUNCTIONS -f '.*COLOR.*'              # Display the function names containi
 ```bash
 FIND-FUNCTIONS -c -l ".*COLOR.*"           # Display the comments (help) for the COLOR functions
 ```
+
 ```bash
 FIND-FUNCTIONS -l ".*COLOR.*"              # Now display the code
 ```
+
 ```bash
 RUNME COLORS_DISPLAY                    # See the built-in colors
 ```
+
 ```bash
 echo -e "\nExample of 'echo' using a color: A ${UL}book${DEF} that is ${GRN}read${DEF} doesn't have to be ${RED}red${DEF}.\n"
 ```
@@ -895,6 +923,7 @@ Note: Normal operation of `ERROR` forces immediate exit from the parent script
 ```bash
 RUNME ERROR "This is an error message.\nThe error is..."
 ```
+
 ```bash
 RUNME WARNING "This is a warning message.\nThe correct..."
 ```
@@ -908,27 +937,35 @@ The next three functions deal with spaces and zeros surrounding a string.
 ```bash
 FIND-FUNCTIONS -c -l PAD_IT TRIM ZERO_FILL
 ```
+
 ```bash
 RUNME PAD_IT -V RESULT -L 6 "abc"           # Padding left justified (the default), 6 charaters
 ```
+
 ```bash
 RUNME PAD_IT -V RESULT -L 15 -P "HO " "Santa: "
 ```
+
 ```bash
 RUNME PAD_IT -R -V RESULT -L 9 abc          # Padding right justified, 9 characters
 ```
+
 ```bash
 RUNME TRIM -V RESULT  "   abc def   "       # Trim surrounding whitespace
 ```
+
 ```bash
 RUNME TRIM -V RESULT -L "   abc def   "     # Trim (-L) the whitespace on the left
 ```
+
 ```bash
 RUNME TRIM -V RESULT -R "   abc def   "     # Trim (-R) the whitespace on the right
 ```
+
 ```bash
 RUNME ZERO_FILL -V RESULT -L 6 123          # Zero fill on the left
 ```
+
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 
@@ -939,6 +976,7 @@ The function `PAUSE` is a simple way to "wait and continue".
 ```bash
 FIND-FUNCTIONS -c PAUSE               # View the documentation
 ```
+
 ```bash
 RUNME PAUSE "\nAn easy way for the program to wait for user input before continuing.\n\t"
 ```
@@ -953,9 +991,11 @@ It displays (on /dev/stderr) a dot "." every time it is executed.
 ```bash
 FIND-FUNCTIONS -c PROGRESS            # View the documentation
 ```
+
 ```bash
 FUNCTIONS                             # Load `functions.sh` into the environment
 ```
+
 ```bash
 PROGRESS 2                            # Setup to display "." every 2 iterations
 echo -n "Processing your request. Please wait: "
@@ -977,11 +1017,13 @@ In simple form...
 ```bash
 RUNME SORT_ARGS ddd ggg qwqq aaa ccc bbb zzz jjj
 ```
+
 Now see what happens to an argument with whitespace.
 We displays the results line-by-line with -L.
 ```bash
 RUNME SORT_ARGS -L ddd ggg qwqq aaa ccc bbb zzz "jj j"
 ```
+
 The same as above but using `SORT_ARGS_WS`.
 ```bash
 RUNME SORT_ARGS_WS -L ddd ggg qwqq aaa ccc bbb zzz "jj j"
@@ -1005,10 +1047,12 @@ First an explanation of the arguments to the `SORT_ARGS_WS` examples below.
 # Create the array of file names.
 FILE_NAMES_ARRAY=( "my file-11" file-20 "our file-10" file-2 "new file-1.x" file-3 file-30 )
 ```
+
 ```bash
 # The simple case. Just sort by file name.
 RUNME SORT_ARGS_WS -V SORTED_NAMES -A "${FILE_NAMES_ARRAY[@]}"
 ```
+
 ```bash
 # Now sort by the number in the name and in decreasing order.
 RUNME SORT_ARGS_WS -V SORTED_NAMES -A -S "-n -r -t- -k2,2" "${FILE_NAMES_ARRAY[@]}"
