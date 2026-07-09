@@ -119,8 +119,8 @@ sudo $(pwd)/useful-bash-functions/install.sh    # And install it as "root"
 ```
 
 - The install script should first display the following message:  
-&nbsp;&nbsp;&nbsp;&nbsp;Install script for the "functions.sh" package.  
-&nbsp;&nbsp;&nbsp;&nbsp;Beginning installation...
+&nbsp;&nbsp;&nbsp;&nbsp;**Install script for the "functions.sh" package.**  
+&nbsp;&nbsp;&nbsp;&nbsp;**Beginning installation...**
 
 - Instead, if the first message is an error something like:  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Command not found.
