@@ -123,10 +123,10 @@ sudo $(pwd)/useful-bash-functions/install.sh    # And install it as "root"
 &nbsp;&nbsp;&nbsp;&nbsp;**Beginning installation...**
 
 - Instead, if the first message is an error something like:  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Command not found.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Command not found.**
 
 - or a message something like:  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;./install.sh: cannot execute: required file not found
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**./install.sh: cannot execute: required file not found.**
 
 - Or an error message
 
