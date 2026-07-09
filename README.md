@@ -104,17 +104,17 @@ which are installed in the directory `/etc/profile.d`
 Change your working directory to an available one (say `/tmp`).
 
 ```bash
-cd /tmp                                   # Or wherever you want
+cd /tmp                                         # Or wherever you want
 ```
 #### Step 2
 
-Then download the zipfile and begin the installation process.
+Download the zipfile and begin the installation process.
 
 #### Step 3
 
 ```bash
-unzip useful-bash-functions.zip             # Unzip the file
-sudo ./bash-functions-main/install.sh       # And install it as "root"
+unzip --quiet useful-bash-functions.zip         # Unzip the file
+sudo $(pwd)/useful-bash-functions/install.sh   # And install it as "root"
 ```
 
 - The install script should first display the following message:  
