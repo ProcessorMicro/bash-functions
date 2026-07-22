@@ -44,7 +44,7 @@ ASK can interact with the user with a text-based interface or a GUI dialog box i
 &nbsp;&nbsp;&nbsp;&nbsp;[Major Functions](#major-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Major Global Variables](#major-global-variables)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Introduction to Some Major Components](#documentation)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Scripts](#script-documentation)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script `functions.sh`](#script-documentation)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[FIND-FUNCTIONS](#find-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[MKSCRIPT](#mkscript)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[EXTRA BASH FUNCTIONS Script](#extra-bash-functions)<br>
@@ -139,11 +139,13 @@ Install `bash` and re-execute `install.sh`.
 To reflect your needs for the generated copyright, edit the file `/usr/local/bin/MKSCRIPT`.
 
 - Modify the generated name:
+
 ```bash
 DEFAULT_NAME="Mike Armstrong"
 ```
 
-- Modify the generated copyright lines following the comment line:
+- Modify the generated copyright lines after the following comment line:
+
 ```bash
 # = Modify the following copyright information as appropriate. =
 ```
@@ -212,6 +214,7 @@ The following is a description of the functions and variables in `functions.sh` 
 | ASK, ASK_GUI                | Manages parent script questions and validates the answers. Described in more detail below. |
 | ASK_WITH_MENU, ASK_WITH_MENU_GUI | Same as `ASK` but presents a menu of choices generated from an array and accepts single or multiple answers. Described in more detail below. |
 | IS_ROOT, IS_NUMERIC, IS_... | A set of testing functions. for example `IS_ROOT` returns TRUE if the parent script is running with root privileges. |
+| ROOT_ONLY | Exits the parent script if it is not executed as `root`. |
 | TEST_...                    | A set of functions and variables that can be used while testing the parent script to surround commands that make a (critical) 'change'. Executing the parent script with the option `-t` or `--test` will cause those commands to be displayed (after all expansions) rather than being executed. |
 | SORT_ARGS, SORT_ARGS_WS     | Functions that sorts the arguments to the function and display the sorted result. |
 | TMP_FILE_..., TMP_DIR_...   | A set of functions to manage creation and deletion of temporary files and directories. |
@@ -250,7 +253,7 @@ And all the functions are preceded by documentation describing the function usag
 
 -----------------------------
 
-## <a id="script-documentation">Scripts</a>
+## <a id="script-documentation">Script `functions.sh`</a>
 
 `functions.sh` is self documenting.
 Assuming `functions.sh` was installed in a directory listed in `PATH` (/usr/local/bin), then typing:
@@ -259,13 +262,15 @@ Assuming `functions.sh` was installed in a directory listed in `PATH` (/usr/loca
 functions.sh                        # Displays the complete help for every function and variable.
 ```
 
-```bash
-functions.sh <FUNCTION_NAME>        # Displays the documentation for `<FUNCTION_NAME>`
-```
-
 The display is paged with 'less'.  
 The first page displays the purpose of `functions.sh`.
 Followed by the suggested coding to implement `functions.sh` that either should be entered into the environment or at the beginning of a parent script.
+
+Documentation for any `<FUNCTION_NAME>` can be displayed with:
+
+```bash
+functions.sh <FUNCTION_NAME>        # Displays the documentation for <FUNCTION_NAME>
+```
 
 The `functions.sh` self help displays additional information. Vis:
 
@@ -280,12 +285,6 @@ functions.sh FUNCTIONS           # A list of the functions available.
 ```bash
 functions.sh VARIABLES           # A list of the global variables used.
 ```
-
-```bash
-functions.sh <FUNCTION_NAME>     # Displays the documentation for <FUNCTION_NAME>
-```
-
-The script `MKSCRIPT` [(see MKSCRIPT below)](#mkscript) automatically creates the the required lines.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
