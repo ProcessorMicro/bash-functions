@@ -258,8 +258,8 @@ And all the functions are preceded by documentation describing the function usag
 
 ### <a id="functionssh">`functions.sh`</a>
 
-`functions.sh` is self documenting.
-Assuming `functions.sh` was installed in a directory listed in `PATH` (/usr/local/bin), then typing:
+`functions.sh` is a bash script that contains the functions for this distribution.  
+It is self documenting. So, typing:
 
 ```bash
 functions.sh                        # Displays the complete help for every function and variable.
