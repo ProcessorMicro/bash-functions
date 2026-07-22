@@ -44,11 +44,12 @@ ASK can interact with the user with a text-based interface or a GUI dialog box i
 &nbsp;&nbsp;&nbsp;&nbsp;[Major Functions](#major-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Major Global Variables](#major-global-variables)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Introduction to Some Major Components](#documentation)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Script `functions.sh`](#script-documentation)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Scripts](#script-documentation)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[`functions.sh`](#functionssh)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[FIND-FUNCTIONS](#find-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[MKSCRIPT](#mkscript)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[EXTRA BASH FUNCTIONS Script](#extra-bash-functions)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[GET ARGS GLOBAL DEFAULTS Script](#get-args-global-defaults)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[EXTRA BASH FUNCTIONS](#extra-bash-functions)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[GET ARGS GLOBAL DEFAULTS](#get-args-global-defaults)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Functions](#function-documentation)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[GET_ARGS](#get-args)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Examples of Help Implemented by GET_ARGS](#example-of-help)<br>
@@ -253,7 +254,9 @@ And all the functions are preceded by documentation describing the function usag
 
 -----------------------------
 
-## <a id="script-documentation">Script `functions.sh`</a>
+## <a id="script-documentation">Scripts</a>
+
+### <a id="functionssh">`functions.sh`</a>
 
 `functions.sh` is self documenting.
 Assuming `functions.sh` was installed in a directory listed in `PATH` (/usr/local/bin), then typing:
@@ -365,7 +368,7 @@ MKSCRIPT -h                  # Displays help for MKSCRIPT (not paged)
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-### <a id="extra-bash-functions">FUNCTIONS-SH-EXTRA-FUNCTIONS.sh Script</a>
+### <a id="extra-bash-functions">FUNCTIONS-SH-EXTRA-FUNCTIONS.sh</a>
 
 The script 'FUNCTIONS-SH-EXTRA-FUNCTIONS.sh' contains additional useful functions.
 `install.sh` copies it to the directory `/etc/profile.d`.
@@ -394,7 +397,7 @@ FIND-FUNCTIONS -c -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh RUNME
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-### <a id="get-args-global-defaults">FUNCTIONS-SH-GLOBAL-DEFAULTS.sh Script</a>
+### <a id="get-args-global-defaults">FUNCTIONS-SH-GLOBAL-DEFAULTS.sh</a>
 
 This script sets global variables (`_GET_ARGS_GLOBAL_HELP_DEFAULT_` etc.) and contains instructions on how to change it's value.
 Note: The variable establishes a default format for the GET_ARGS help display.
