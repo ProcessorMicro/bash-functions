@@ -103,7 +103,7 @@ which are installed in the directory `/etc/profile.d`
 
 #### Step 1
 
-Change your working directory to an available one (say `/tmp`).
+Change your working directory to an available one: e.g., `/tmp`
 
 ```bash
 cd /tmp                                         # Or wherever you want
@@ -204,8 +204,8 @@ The uninstall script `uninstall.sh` removes the components of `functions.sh`.
 
 #### Step 1
 
-Change your working directory to the unzipped contents of  (say `/tmp/useful-bash-functions`).  
-ANd issue the followong commands:
+Change your working directory to the unzipped contents: e.g., `/tmp/useful-bash-functions`  
+And issue the following commands:
 
 ```bash
 cd /tmp/useful-bash-functions                   # Or wherever you unzipped the installation
