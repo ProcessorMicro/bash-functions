@@ -55,7 +55,7 @@ ASK can interact with the user with a text-based interface or a GUI dialog box i
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[GET_ARGS](#get-args)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Examples of Help Implemented by GET_ARGS](#example-of-help)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[IS_EXCLUSIVE](#is-exclusive)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Examples of GET_ARGS and IS_EXCLUSIVE](#example-of-get-args)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Example of GET_ARGS and IS_EXCLUSIVE working together](#example-of-get-args)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ASK Functions](#ask-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[TMP_FILE_CREATE Functions](#tmp-file-create-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Examples of Functions](#examples-of-functions)<br>
@@ -382,17 +382,15 @@ Try the following examples:
 MKSCRIPT My_Script           # Creates the script My_Script with execute permission.
                              # My_Script contains the code to implement functions.sh,
                              # a copyright notice and a small sample of GET_ARGS.
-less My_Script
-
-./My_Script -H               # View the generated help
 ```
 
 ```bash
-MKSCRIPT -H                  # Displays help for MKSCRIPT (paged with less)
+less My_Script               # View the generated script code
+
 ```
 
 ```bash
-MKSCRIPT -h                  # Displays help for MKSCRIPT (not paged)
+./My_Script -H               # View the generated help for My_Script
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
@@ -415,7 +413,7 @@ Three extra functions are available:
 | FUNCTION     | DESCRIPTION |
 |--|--|
 | FUNCTIONS    | Typing this at a command line loads `functions.sh` into your current environment. It also turns off bash debugging (set +x) and sets all `exit` statements in `functions.sh` to be `return` thus preventing any error exits from closing your terminal session. |
-| HIGHLIGHT    | A complex grep command that highlights, in a script, salient functions and arguments related to the major functions `GET_ARGS` and `IS_EXCLUSIVE` in this distribution.<br>&nbsp;&nbsp;&nbsp;&nbsp;[(see Sample Code for GET_ARGS and IS_EXCLUSIVE below)](#coding-of-get-args) |
+| HIGHLIGHT    | A complex grep command that highlights, in a script, salient functions and arguments related to the major functions `GET_ARGS` and `IS_EXCLUSIVE` in this distribution.<br>&nbsp;&nbsp;&nbsp;&nbsp;[(see below: Example of GET_ARGS and IS_EXCLUSIVE working together)](#example-of-get-args) |
 | RUNME        | A function that executes any function in `functions.sh` (or another function library) in a safe (child process) environment and displays the result(s). |
 
 For example, full documentation of function `RUNME` in `FUNCTIONS-SH-EXTRA-FUNCTIONS.sh` can be viewed by:
@@ -545,7 +543,7 @@ functions.sh IS_EXCLUSIVE
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-#### <a id="example-of-get-args">Examples of GET_ARGS and IS_EXCLUSIVE</a>
+#### <a id="example-of-get-args">Example of GET_ARGS and IS_EXCLUSIVE working together</a>
 
 To see how `GET_ARGS` and `IS_EXCLUSIVE` work together and to see some other features we will use the `FIND-FUNCTIONS` command.
 Within the script `FIND-FUNCTIONS` you can see the coding that generates the help that is displayed by:
