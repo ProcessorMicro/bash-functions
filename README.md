@@ -40,6 +40,7 @@ ASK can interact with the user with a text-based interface or a GUI dialog box i
 &nbsp;&nbsp;&nbsp;&nbsp;[Installation](#installation)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Installation Procedure](#installation-procedure)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Required Commands](#required-commands)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Uninstall Procedure](#uninstall-procedure)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Summary of the Major Functions and Variables](#summary)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Major Functions](#major-functions)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Major Global Variables](#major-global-variables)<br>
@@ -193,6 +194,34 @@ if you don't have `gawk` then a symbolic link to awk will work as well. This is 
 
 ```bash
 sudo ln -s /usr/bin/awk /usr/bin/gawk
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+
+### <a id="uninstall-procedure">Uninstall Procedure</a>
+
+The uninstall script `uninstall.sh` removes the components of `functions.sh`.
+
+#### Step 1
+
+Change your working directory to the unzipped contents of  (say `/tmp/useful-bash-functions`).  
+ANd issue the followong commands:
+
+```bash
+cd /tmp/useful-bash-functions                   # Or wherever you unzipped the installation
+```
+
+#### Step 2
+
+```bash
+sudo $(pwd)/uninstall.sh                        # Execute the uninstall script
+```
+
+#### Step 3
+
+```bash
+cd ..                                           # Backup to the parent directory
+sudo rm -rf $(pwd)/useful-bash-functions        # Remove the installation files
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
