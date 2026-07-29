@@ -205,7 +205,6 @@ The uninstall script `uninstall.sh` removes the components of `functions.sh`.
 #### Step 1
 
 Change your working directory to the unzipped contents: e.g., `/tmp/useful-bash-functions`  
-And issue the following commands:
 
 ```bash
 cd /tmp/useful-bash-functions                   # Or wherever you unzipped the installation
@@ -311,11 +310,11 @@ functions.sh INTRODUCTION        # Introduction to `functions.sh`
 ```
 
 ```bash
-functions.sh FUNCTIONS           # A list of the functions available.
+functions.sh FUNCTIONS           # A list and brief description of the functions available.
 ```
 
 ```bash
-functions.sh VARIABLES           # A list of the global variables used.
+functions.sh VARIABLES           # A list and brief description of the global variables used.
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
@@ -337,7 +336,7 @@ An example of `FIND-FUNCTIONS` usage:
 FIND-FUNCTIONS -c -l SORT_ARGS   # Shows the documentation (comments) paged with "less"
                                  # for the `SORT_ARGS` function in `functions.sh`
 ```
-To get a (paged) list of all the functions available in `functions.sh`, type:
+To get a simpple, paged list of all the functions available in `functions.sh`, type:
 
 ```bash
 FIND-FUNCTIONS --ns -f -l "[^_].*"              # The pattern "[^_].*" eliminates internal (reserved) functions
@@ -353,38 +352,39 @@ You can use `FIND-FUNCTIONS` to display the comments or functions in another scr
 So, for the functions contained in the script `/etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh`, try:
 
 ```bash
-FIND-FUNCTIONS --comments --script /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh
+FIND-FUNCTIONS --comments --less --script /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh
 ```
 
 or (using shorter options)
 
 ```bash
-FIND-FUNCTIONS -c -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh         # Display the comments for all functions
+FIND-FUNCTIONS -c -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh
 ```
 
 ```bash
-FIND-FUNCTIONS -c -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh RUNME   # Display the comments for the function `RUNME`
+# Display the comments for the function `RUNME`
+FIND-FUNCTIONS -c -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh RUNME
 ```
 
 ```bash
-FIND-FUNCTIONS -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh            # Display the source code for all the functions
-```
-
-```bash
-FIND-FUNCTIONS -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh RUNME      # Display the source code for the function `RUNME`
+# Display the source code for the function `RUNME`
+FIND-FUNCTIONS -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh RUNME
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
 ### <a id="mkscript">MKSCRIPT</a>
 
-The script MKSCRIPT creates a script file containing the  lines recommended for a parent script. It also sets execute permission on the created script.  
+The script MKSCRIPT creates a script template containing the lines recommended for a parent script. It also sets execute permission on the created script.  
 Try the following examples:
 
 ```bash
-MKSCRIPT My_Script           # Creates the script My_Script with execute permission
-                             # My_Script contains the code to implement functions.sh
-                             # And a copyright notice and a small sample of GET_ARGS
+MKSCRIPT My_Script           # Creates the script My_Script with execute permission.
+                             # My_Script contains the code to implement functions.sh,
+                             # a copyright notice and a small sample of GET_ARGS.
+less My_Script
+
+./My_Script -H               # View the generated help
 ```
 
 ```bash
