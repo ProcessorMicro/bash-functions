@@ -119,7 +119,7 @@ unzip --quiet useful-bash-functions.zip         # Unzip the file
 sudo $(pwd)/useful-bash-functions/install.sh    # And install it as "root"
 ```
 
-- The install script should first display the following message:  
+- The install script should display the following message:  
 &nbsp;&nbsp;&nbsp;&nbsp;**Install script for the "functions.sh" package.**  
 &nbsp;&nbsp;&nbsp;&nbsp;**Beginning installation...**
 
