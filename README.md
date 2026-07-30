@@ -4,7 +4,7 @@
 
 ## <a id="purpose">Purpose</a>
 
-The bash functions in the file `functions.sh`  can be used to enhance and manage bash scripts.
+The bash functions in the file `functions.sh` can be used to enhance and manage bash scripts.
 When the file `functions.sh` is included (sourced) in a parent script more than 70 useful functions and many variables are available to the parent script.
 Some additional gawk scripts present in this distribution are used by and provide support for `functions.sh`.
 Also included in the distribution are a few additional and useful bash support scripts.
@@ -590,7 +590,7 @@ The table below gives a description of the lines containing highlights.
 | :--: |--|--|
 |  | Note 1:                      | The GET_ARGS function requires arguments. These are known as GET_ARGS_DIRECTIVES. They define the options allowed when executing `FIND-FUNCTIONS`. |
 |  | Note 2:                      | To make it easier to see the GET_ARGS_DIRECTIVES, each is on a separate line and each line ends with the line continuation characters ` \`. |
-|  | Note 3:                      | To help explain the highlighted code, I have added the line continuation characters " \\" at the end of some comments so they are included in the displayed output. |
+|  | Note 3:                      | To help explain the highlighted code, I have added the line continuation characters ` \` at the end of some comments so they are included in the displayed output. |
 | 4 | SCRIPT_PURPOSE              | A variable that summarizes what the script does. The value is displayed in the help output. |
 | 6 | SCRIPT_VERSION              | The value of this variable is displayed if the script is invoked with option `-v` or `--version`. |
 | 7-12 | Load and/or Initialize   | The bash coding that ensures `functions.sh` is loaded and/or initialized. |
