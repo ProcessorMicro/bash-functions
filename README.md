@@ -573,11 +573,14 @@ This invokes a rather complex egrep pattern to display and highlight how `functi
 So type:
 
 ```bash
-FIND-FUNCTIONS --highlight         # There is a hidden option in FIND-FUNCTIONS to highlight itself.
+# There is a hidden option in FIND-FUNCTIONS to highlight itself.
+# For screens that have a dark background...
+FIND-FUNCTIONS --highlight
 ```
 
 ```bash
-FIND-FUNCTIONS --highlight=light   # The same as above but for screens with a light background
+# The same as above but for screens with a light background...
+FIND-FUNCTIONS --highlight=light
 ```
 
 The result is a list of lines containing highlighted words and comments.
@@ -586,7 +589,7 @@ The table below gives a description of the lines containing highlights.
 | &nbsp;&nbsp;LINE&nbsp;#&nbsp;&nbsp; | HIGHLIGHTED TEXT       | DESCRIPTION |
 | :--: |--|--|
 |  | Note 1:                      | The GET_ARGS function requires arguments. These are known as GET_ARGS_DIRECTIVES. They define the options allowed when executing `FIND-FUNCTIONS`. |
-|  | Note 2:                      | To make it easier to see the GET_ARGS_DIRECTIVES, each is on a separate line and each line ends with the line continuation characters " \\". |
+|  | Note 2:                      | To make it easier to see the GET_ARGS_DIRECTIVES, each is on a separate line and each line ends with the line continuation characters "&nbsp;\\". |
 |  | Note 3:                      | To help explain the highlighted code, I have added the line continuation characters " \\" at the end of some comments so they are included in the displayed output. |
 | 4 | SCRIPT_PURPOSE              | A variable that summarizes what the script does. The value is displayed in the help output. |
 | 6 | SCRIPT_VERSION              | The value of this variable is displayed if the script is invoked with option `-v` or `--version`. |
