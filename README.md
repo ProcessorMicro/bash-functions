@@ -111,7 +111,15 @@ cd /tmp                                         # Or wherever you want
 
 #### Step 2
 
-Download the zipfile and begin the installation process.
+```bash
+wget https://github.com/ProcessorMicro/bash-functions/blob/main/useful-bash-functions.zip
+```
+
+Download the zipfile ![download icon](/home/marmstro/projects/useful-bash-functions/DownloadIcon.png "Download icon"){width=15% height=15%} and begin the installation process.
+
+Download the zipfile <img src="/home/marmstro/projects/useful-bash-functions/DownloadIcon.png" width="300"> and begin the installation process.
+
+![aaa](/home/marmstro/projects/useful-bash-functions/DownloadIcon.png  "bbb")
 
 #### Step 3
 
