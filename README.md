@@ -1117,7 +1117,7 @@ Where would Linux be if there weren't any bugs or unfinished business?
 
 Because I wrote these functions and scripts for my personal use, the following may not be useful or may have to be modified for your "setup".
 
-| THINGS THAT DEPEND UPON MY SETUP |
+| THINGS THAT DEPEND UPON MY SETUP  |
 |--|
 | Any function using `/etc/fstab` |
 | The `MOUNT` function uses preset directories and system links in `/media` |
