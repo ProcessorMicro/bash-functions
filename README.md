@@ -103,29 +103,29 @@ which are installed in the directory `/etc/profile.d`
 
 #### Step 1
 
-Change your working directory to an available one: e.g., `/tmp`
+From the command line create an empty download directory.
+Then change your working directory to it.
 
 ```bash
-cd /tmp                                         # Or wherever you want
+md ~/MyDownLoad                      # Or to wherever you want
+cd ~/MyDownLoad                      # And set your working directory
 ```
 
 #### Step 2
+
+Download the zip file:
 
 ```bash
 wget https://github.com/ProcessorMicro/bash-functions/blob/main/useful-bash-functions.zip
 ```
 
-Download the zipfile ![download icon](/home/marmstro/projects/useful-bash-functions/DownloadIcon.png "Download icon"){width=15% height=15%} and begin the installation process.
-
-Download the zipfile <img src="/home/marmstro/projects/useful-bash-functions/DownloadIcon.png" width="300"> and begin the installation process.
-
-![aaa](/home/marmstro/projects/useful-bash-functions/DownloadIcon.png  "bbb")
-
 #### Step 3
 
+Unzip the file and install it.
+
 ```bash
-unzip --quiet useful-bash-functions.zip         # Unzip the file
-sudo $(pwd)/useful-bash-functions/install.sh    # And install it as "root"
+unzip --quiet useful-bash-functions.zip           # Unzip the file
+sudo "$(pwd)/useful-bash-functions/install.sh"    # And install it as "root"
 ```
 
 - The install script should display the following message:  
@@ -153,18 +153,22 @@ To reflect your needs for the generated copyright, edit the file `/usr/local/bin
 ```bash
 DEFAULT_NAME="Mike Armstrong"
 ```
-
-- Modify the generated copyright lines after the following comment line:
+-  Modify the generated copyright lines after the following comment lines:
 
 ```bash
+# ==============================================================
 # = Modify the following copyright information as appropriate. =
+# ==============================================================
+
 ```
 
 #### Step 5
+
 - Edit the file `/etc/profile.d/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh` and change the value of the global environment variables
 (as instructed within the script) to meet your needs.
 
 #### Step 6
+
 Implement `functions.sh`  
 After installation,there are three ways to implement `functions.sh`.
 
@@ -212,19 +216,23 @@ The uninstall script `uninstall.sh` removes the components of `functions.sh`.
 
 #### Step 1
 
-Change your working directory to the unzipped contents: e.g., `/tmp/useful-bash-functions`  
+Change your working directory to the unzipped contents: e.g., `~/MyDownload/useful-bash-functions`  
 
 ```bash
-cd /tmp/useful-bash-functions                   # Or wherever you unzipped the installation
+cd ~/MyDownload/useful-bash-functions                   # Or wherever you unzipped the installation
 ```
 
 #### Step 2
 
+Execute the uninstall script.
+
 ```bash
-sudo $(pwd)/uninstall.sh                        # Execute the uninstall script
+sudo $(pwd)/uninstall.sh
 ```
 
 #### Step 3
+
+clean up.
 
 ```bash
 cd ..                                           # Backup to the parent directory
@@ -1117,7 +1125,7 @@ Where would Linux be if there weren't any bugs or unfinished business?
 
 Because I wrote these functions and scripts for my personal use, the following may not be useful or may have to be modified for your "setup".
 
-| THINGS THAT DEPEND UPON MY SETUP  |
+| THINGS THAT DEPEND UPON MY SETUP |
 |--|
 | Any function using `/etc/fstab` |
 | The `MOUNT` function uses preset directories and system links in `/media` |
