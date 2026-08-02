@@ -128,7 +128,7 @@ unzip -q useful-bash-functions.zip                # Unzip the file
 sudo "$(pwd)/useful-bash-functions/install.sh"    # And install it as "root"
 ```
 
-- The install script should display the following message:  
+The install script should display the following message:  
 &nbsp;&nbsp;&nbsp;&nbsp;**Install script for the "functions.sh" package.**  
 &nbsp;&nbsp;&nbsp;&nbsp;**Beginning installation...**
 
@@ -164,7 +164,7 @@ DEFAULT_NAME="Mike Armstrong"
 
 #### Step 5
 
-- Edit the file `/etc/profile.d/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh` and change the value of the global environment variables
+Edit the file `/etc/profile.d/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh` and change the value of the global environment variables
 (as instructed within the script) to meet your needs.
 
 #### Step 6
