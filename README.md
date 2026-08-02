@@ -116,15 +116,25 @@ cd ~/MyDownLoad                      # And set your working directory
 Download the zip file:
 
 ```bash
-wget https://github.com/ProcessorMicro/useful-bash-functions/main/useful-bash-functions.zip
+wget https://github.com/ProcessorMicro/test-project/archive/refs/heads/main.zip
 ```
 
 #### Step 3
 
-Unzip the file and install it.
+Unzip the downloaded `main.zip`file. Then unzip the the distribution file.
+and install it.
+ 
+```bash
+unzip -q main.zip                                 # Unzip the downloaded file
+cd useful-bash-functions
+unzip -q useful-bash-functions.zip                # Unzip the file
+```
+
+#### Step 4
+
+Install the distribution.
 
 ```bash
-unzip -q useful-bash-functions.zip                # Unzip the file
 sudo "$(pwd)/useful-bash-functions/install.sh"    # And install it as "root"
 ```
 
@@ -143,7 +153,7 @@ The install script should display the following message:
 It means the command `bash` is not installed.  
 Install `bash` and re-execute `install.sh`.
 
-#### Step 4
+#### Step 5
 
 `MKSCRIPT` creates a script "template" and inserts YOUR copyright notice into the generated script.
 To reflect your needs for the generated copyright, edit the file `/usr/local/bin/MKSCRIPT`.
@@ -162,14 +172,13 @@ DEFAULT_NAME="Mike Armstrong"
 
 ```
 
-#### Step 5
+#### Step 6
 
 Edit the file `/etc/profile.d/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh` and change the value of the global environment variables
 (as instructed within the script) to meet your needs.
 
-#### Step 6
+#### Step 7
 
-Implement `functions.sh`  
 After installation,there are three ways to implement `functions.sh`.
 
 1. Like a bull in a china shop:  
