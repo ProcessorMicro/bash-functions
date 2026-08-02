@@ -107,7 +107,7 @@ From the command line create an empty download directory.
 Then change your working directory to it.
 
 ```bash
-md ~/MyDownLoad                      # Or to wherever you want
+mkdir ~/MyDownLoad                   # Or to wherever you want
 cd ~/MyDownLoad                      # And set your working directory
 ```
 
@@ -116,7 +116,7 @@ cd ~/MyDownLoad                      # And set your working directory
 Download the zip file:
 
 ```bash
-wget https://github.com/ProcessorMicro/bash-functions/blob/main/useful-bash-functions.zip
+wget https://github.com/ProcessorMicro/useful-bash-functions/main/useful-bash-functions.zip
 ```
 
 #### Step 3
@@ -124,7 +124,7 @@ wget https://github.com/ProcessorMicro/bash-functions/blob/main/useful-bash-func
 Unzip the file and install it.
 
 ```bash
-unzip --quiet useful-bash-functions.zip           # Unzip the file
+unzip -q useful-bash-functions.zip                # Unzip the file
 sudo "$(pwd)/useful-bash-functions/install.sh"    # And install it as "root"
 ```
 
@@ -196,11 +196,11 @@ The install script checks fo the the existance of these commands.
 | COMMAND | REQUIREMENT |
 |--|--|
 | bash    | Required. |
-| gawk    | Required (or a link to awk). |
+| gawk/awk    | Required (or a link to awk). |
+| sort    | Required. |
 | less    | The default "pager". Required unless you configure a different pager. |
 | nmap    | Only if you use the network functions. |
 | yad     | Only if you use the -G (GUI) option in any "GIU-enabled" functions. |
-| sort    | Only if you use the functions `SORT_ARGS` and `SORT_ARGS_WS`. |
 
 if you don't have `gawk` then a symbolic link to awk will work as well. This is done by the intall script.
 
@@ -866,7 +866,8 @@ Add the option `-S` (before `Array`) to sort the Array indices.
 
 #### <a id="fancy-ask-with-menu2">Fancy Multi-Menus with ASK_WITH_MENU</a>
 
-Just for fun to see how multi-menus work, create an "array" with the following.
+Just for fun to see how multi-menus work, create a 20-element array named `array`.
+Copy and execute the following:
 
 ```bash
 # Create an associative, 20-element array with random, 1-char indices.
@@ -886,16 +887,17 @@ while read -u 3 app ; do                   # Get names from /usr/bin/...
 done 3< <(ls /usr/bin/[bB]* | sed -e 's;.*/;;')
 ```
 
-The following command will split the array menu into 3 sub-menus (`-MM=3`) starting with sub-menu 2 (`-MM=3:2`).  
+The command below will split the array menu into 3 sub-menus (`-MM=3`) starting with sub-menu 2 (`-MM=3:2`).  
 Run it as is. Then, in the space, add `-I` (use the indices as the selectors).  
-Then add the sort option `-S` (ASCII) or `-S=n` (natural) or `-S=nr` (natural reversed).  
+Then add the sort option `-S` (ASCII) or `-S=n` (numeric) or `-S=nr` (numeric reversed).  
 Note: `array` must be the last argument.
 
 ```bash
 RUNME ASK_WITH_MENU -H "  \t${UL}Fancy Menus${DEF}" -M -MM=3:2        array
 ```
 
-A menu of "version" choices.
+Now try a 30-element array named `VARRAY` of random "version" choices.
+Copy and execute the following:
 
 ```bash
 # Create a 30-element VARRAY with random "version-like" indices.
@@ -917,7 +919,7 @@ while true ; do
 done
 ```
 
-And try the following "version" VARRAY inserting combinations of: nothing, `-I` or `-I=11` and `-S=v` or `-S=vr`  
+And try the following command inserting combinations of: nothing, `-I` or `-I=11` and `-S=v` or `-S=vr`  
 Note: `VARRAY` must be the last argument.
 
 ```bash
