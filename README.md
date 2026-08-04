@@ -103,7 +103,7 @@ which are installed in the directory `/etc/profile.d`
 
 #### Step 1
 
-From the command line create an empty download directory.
+From the command line in your terminal emulator create an empty download directory.
 Then change your working directory to it.
 
 ```bash
@@ -111,23 +111,44 @@ mkdir ~/MyDownLoad                   # Or to wherever you want
 cd ~/MyDownLoad                      # And set your working directory
 ```
 
-#### Step 2
+There are two ways to get the distribution file:
+
+- With your web browser: **Step 2 Web**
+
+- From the command line: **Step 2 Commald Line**
+
+#### Step 2 Web
+
+Click on the URL: https://github.com/processormicro/useful-bash-functions
+
+Then, in the list of files, click on: useful-bash-functions.zip
+
+Then, at the right hand side of the line `Code Blame ...`, click on `RAW` and save the donloaded file to ~/MyDownload
+
+Return to your terminal emulator.
+
+#### Step 2 Command Line
 
 Download the zip file:
 
 ```bash
-wget https://github.com/ProcessorMicro/test-project/archive/refs/heads/main.zip
+wget https://github.com/ProcessorMicro/useful-bash-functions/archive/refs/heads/main.zip
+```
+
+Unzip the downloaded `main.zip`file.
+
+
+```bash
+unzip -q -u main.zip                              # Unzip the downloaded file
+cd useful-bash-functions-main                     # Then change your workng directory
 ```
 
 #### Step 3
 
-Unzip the downloaded `main.zip`file. Then unzip the the distribution file.
-and install it.
- 
+Unzip the the distribution file.
+
 ```bash
-unzip -q main.zip                                 # Unzip the downloaded file
-cd useful-bash-functions
-unzip -q useful-bash-functions.zip                # Unzip the file
+unzip -q -u  useful-bash-functions.zip            # Unzip the distribution file
 ```
 
 #### Step 4
