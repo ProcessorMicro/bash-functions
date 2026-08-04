@@ -124,7 +124,7 @@ Click on the URL: https://github.com/processormicro/useful-bash-functions
 Then, in the list of files, click on: `useful-bash-functions.zip`
 
 Then, at the right hand side of the line `Code Blame ...`, click on `RAW`  
-and save the donloaded file to ~/MyDownload
+and save the downloaded file to ~/MyDownload
 
 Return to your terminal emulator.
 
@@ -140,8 +140,8 @@ Unzip the downloaded `main.zip`file.
 
 
 ```bash
-unzip -q -u main.zip                              # Unzip the downloaded file
-cd useful-bash-functions-main                     # Then change your workng directory
+unzip -q -u main.zip               # Unzip the downloaded file
+cd useful-bash-functions-main      # Then change your workng directory
 ```
 
 #### Step 3
