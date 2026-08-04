@@ -247,10 +247,10 @@ The uninstall script `uninstall.sh` removes the components of `functions.sh`.
 
 #### Step 1
 
-Change your working directory to the unzipped contents: e.g., `~/MyDownload/useful-bash-functions`  
+Change your working directory to the unzipped contents: e.g., `~/MyDownload/useful-bash-functions`
 
 ```bash
-cd ~/MyDownload/useful-bash-functions                   # Or wherever you unzipped the installation
+cd ~/MyDownload/useful-bash-functions       # Or wherever you unzipped the distribution
 ```
 
 #### Step 2
