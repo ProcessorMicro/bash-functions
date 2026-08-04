@@ -227,7 +227,7 @@ The install script checks fo the the existance of these commands.
 | COMMAND | REQUIREMENT |
 |--|--|
 | bash    | Required. |
-| gawk/awk    | Required (or a link to awk). |
+| gawk/awk    | gawk (or a link to awk) is required. |
 | sort    | Required. |
 | less    | The default "pager". Required unless you configure a different pager. |
 | nmap    | Only if you use the network functions. |
