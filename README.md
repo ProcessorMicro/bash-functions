@@ -231,7 +231,7 @@ The install script checks fo the the existance of these commands.
 | sort    | Required. |
 | less    | The default "pager". Required unless you configure a different pager. |
 | nmap    | Only if you use the network functions. |
-| yad     | Only if you use the -G (GUI) option in any "GIU-enabled" functions. |
+| yad     | Only if you use the -G (GUI) option in any "GUI-enabled" functions. |
 
 if you don't have `gawk` then a symbolic link to awk will work as well. This is done by the intall script.
 
