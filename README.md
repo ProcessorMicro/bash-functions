@@ -121,9 +121,10 @@ There are two ways to get the distribution file:
 
 Click on the URL: https://github.com/processormicro/useful-bash-functions
 
-Then, in the list of files, click on: useful-bash-functions.zip
+Then, in the list of files, click on: `useful-bash-functions.zip`
 
-Then, at the right hand side of the line `Code Blame ...`, click on `RAW` and save the donloaded file to ~/MyDownload
+Then, at the right hand side of the line `Code Blame ...`, click on `RAW`  
+and save the donloaded file to ~/MyDownload
 
 Return to your terminal emulator.
 
