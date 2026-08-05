@@ -1,5 +1,9 @@
+2026.08.05
+Updated the install.sh and uninstall.sh scripts to install system-wide or for just one user.
+Also added a -h --help option.
+
 2026.08.04
-Corrections to the install and uninstall scripts.
+Corrections to the install.sh and uninstall.sh scripts.
 
 2026.08.01
 Original distribution of useful-bash-functions.
