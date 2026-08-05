@@ -157,7 +157,8 @@ unzip -q -u  useful-bash-functions.zip            # Unzip the distribution file
 Install the distribution.
 
 ```bash
-sudo "$(pwd)/useful-bash-functions/install.sh"    # And install it as "root"
+# Open a terminal session as "root"
+<PATH_TO_UNZIPPED_DISTRIBUTION>/install.sh"       # And install it as "root"
 ```
 
 The install script should display the following message:  
@@ -712,21 +713,7 @@ functions.sh "ASK.*"
 Several functions manage temporary files and directories.
 Any files or directories created are automatically deleted when the parent script terminates.
 Unless directed otherwise, the files/dirs are created in `/tmp`.  
-Theunset ARRAY
-declare -A ARRAY
-for (( i=0;i<=20;i++ )) ; do
-  a="$(( ${SRANDOM} % 10 ))"
-  (( ${SRANDOM} % 2 == 0 )) && a=$a$a
-  b="$(( ${SRANDOM} % 10 ))"
-  (( ${SRANDOM} % 2 == 0 )) && b=.$b$b || b=.$b
-  c="$(( ${SRANDOM} % 10 ))"
-  (( ${SRANDOM} % 2 == 0 )) && c=.$c$c || c=.$c
-  k="$(( ${SRANDOM} % 4 ))"
-  (( k == 0 )) && unset c
-  (( k == 3 )) && unset b c
-  ARRAY+=( [$a$b$c]="Version $a$b$c" )
-done
- functions are summarized below.
+The functions are summarized below.
 
 | FUNCTION | Description |
 | -------- | ----------- |
@@ -749,12 +736,6 @@ functions.sh TMP_FILE_CREATE                # Display help for the function TMP_
 
 ## <a id="examples-of-functions">Examples of Functions</a>
 
-Once installation is complete either open another terminal session or type the following:
-
-```bash
-source /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh
-```
-
 There are two ways you can practice using the functions.
 The better way is to use the RUNME function as it also displays the result(s) from executing a function.
 
@@ -771,13 +752,7 @@ Or, slightly less useful, by loading `functions.sh` into your environment:
 
 ```bash
 FUNCTIONS                          # load `functions.sh` into your environment and set every "exit" to a "return".
-```
-
-```bash
 FUNCTION_WITH_ARGUMENTS            # Execute the function
-```
-
-```bash
 echo <VARIABLES_CREATED>           # Display the created variables
 ```
 
@@ -800,12 +775,12 @@ Try the following `ASK TYPE` command with each of the possible response types.
 |--|--|
 |      | Yes or no (If TYPE is missing, -yn is the default) |
 | -yn  | Yes or no |
-| -d   | A number |
+| -n   | A number |
 | -a   | An alphabetic character |
 | -u   | An uppercase character |
 | -l   | A lowercase character |
 | -c   | Any character |
-| -w   | A word. First character alphabetic, the remainder alphanumeric and "_" |
+| -w   | A word. First character alphabetic or "_", the remainder alphanumeric and "_" |
 | -e   | Anything at all |
 
 ```bash
@@ -861,9 +836,9 @@ sarray+=( [7]="Question3: sarray index=7" )
 ```bash
 # Execute ASK_WITH_MENU (with a header to make it nice)
 RUNME ASK_WITH_MENU -H "\n\tMake your choice\n" sarray
-```
 
-The results are displayed.
+# The results are displayed.
+```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -892,7 +867,7 @@ RUNME ASK_WITH_MENU -V QED -M -H "\n\tMake your choice\n" Array
 
 The results are displayed.
 Notice that for an associative Array the order of the elements is non-determinant.
-Add the option `-S` (before `Array`) to sort the Array indices.
+Add the option `-S` (before `Array`) to sort the Array indices or -S=r for a reverst sort.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     [contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
@@ -946,7 +921,7 @@ while true ; do
   (( k == 0 )) && unset c
   (( k == 3 )) && unset b c
   [[ -n ${VARRAY[$a$b$c]} ]] && continue            # Ignore duplicates
-  VARRAY+=( [$a$b$c]="Release=$a\tMajor=${b:1}\tMinor=${c:1}" )
+  VARRAY+=( [$a$b$c]="Release=$a  Major=${b:1}  Minor=${c:1}" )
   (( ++Count < Elements )) || break
 done
 ```
