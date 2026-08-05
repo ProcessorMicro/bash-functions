@@ -673,33 +673,34 @@ It defines both the type of response and the type of choices available.
 
 `ASK` functionality is summarized as follows:
 
-| ASK FEATURES |
-|--|
-| Expected response types can be: yes or no, a number, a character (UPPER CASE, lower case, mixed case, alphanumeric or any), a range, a word, a phrase or anything at all, |
-| `ASK` verifies that the response matches the type (or is one of) the choices. |
-| If it is not, `ASK` displays an error message and re-prompts for an answer. |
-| `ASK` always recognizes a "quit" response (usually "q") that exits the parent script or return with an error code. |
-| You can configure `ASK` to have a default result inserted for a null (empty) response. |
-| By default the response is placed in the variable ANSWER. The variable name can be changed.
-| Multiple responses can be configured in which case the responses are placed in the array ANSWER. |
-| `ASK_WITH_MENU` is an extension where the "questions" are elements of an array. The elements become the choices available. |
-| The array can be an indexed array, an associative array or arguments to `ASK_WITH_MENU`. Either array can be "sparse" I.E. have noncontiguous elements. |
-| `ASK_WITH_MENU` creates a numbered menu from the array elements and waits for a response. |
-| Like `ASK`, `ASK_WITH_MENU` can be configured to accept multiple responses and there is always a "quit" response. |
-| The results are placed in three arrays: ANSWER, ANSWER_IDX and ANSWER_VAL. The default prefix "ANSWER" can be changed. |
-| The `ASK` functions can be executed with a GUI interface using `yad` to implement dialog boxes. |
+| FEATURE | EXPLANATION |
+|--|--|
+| Responses | Expected response types can be: yes or no, a number, a character (UPPER CASE, lower case, mixed case, alphanumeric or any character), a range, a word, a phrase or anything at all, |
+| Answers | `ASK` verifies that the response matches the type and/or is one of the choices. |
+| Verification | If it is not, `ASK` displays an error message and re-prompts for an answer. |
+| Quit | `ASK` always recognizes a "quit" response (usually "q") that exits the parent script with an error code. |
+| Default Answer | You can configure `ASK` to have a default result inserted for a null (empty) response. |
+| Result | By default the response is placed in the variable ANSWER. The variable name can be changed.
+| Muiltiple Responses | Multiple responses can be configured in which case the responses are placed in the array ANSWER. |
+| 'ASK_WITH_MENU` | An extension where the "questions" are elements of an array or arguments. The elements/args become the choices available. |
+| Array or Args | The array can be an indexed array, an associative array or arguments to `ASK_WITH_MENU`. Either array can be "sparse" I.E. have noncontiguous elements. |
+| Selectors | From the array elements, `ASK_WITH_MENU` creates a menu with sequential number selectors or with the array indices as selectors. |
+| Sorting | The selectors can be sorted a number of ways. |
+| Sub-Menus | Long menus can be split into sub-menus that can be accessed with the arrow keys. |
+| Muiltiple Responses | Like `ASK`, `ASK_WITH_MENU` can be configured to accept multiple responses and there is always a "quit" response. |
+| Result | The results are placed in three arrays: ANSWER, ANSWER_IDX and ANSWER_VAL. The default prefix "ANSWER" can be changed. |
+| GUI Dialog | The `ASK` functions can be executed with a GUI interface using `yad` to implement dialog boxes. |
 
 Full documentation of the set of `ASK` functions can be viewed by:
 
 ```bash
 FIND-FUNCTIONS -c -l "ASK.*"
-functions.sh ASK.*
 ```
 
 or
 
 ```bash
-functions.sh ASK
+functions.sh "ASK.*"
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
