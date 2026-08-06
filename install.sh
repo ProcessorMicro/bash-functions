@@ -42,7 +42,7 @@ function Install() {
   Bash="$( whereis -b bash )"
   [[ -n ${Bash#*:} ]] || ERROR "\"bash\" is not installed on this system."
 
-  echo -e "Install script for the \"functions.sh\" distribution.
+  echo -e "\nInstall script for the \"functions.sh\" distribution.
   Beginning installation..."
 
   mkdir -p "${BinDir}"				# Ensure it exists
@@ -53,7 +53,7 @@ function Install() {
   VERIFY_REQUIREMENTS				# All the apps that are needed
 
   if [[ -f ${EtcDir}/${DefaultsFile} ]] ; then
-    echo -e "The GET_ARGS global defaults file \"${EtcDir}/${DefaultsFile}\" exists\n    so it was not overwritten.\nManually merge the install file with your existing one.\nThe install version is in \"${WhereAmI}/${DefaultsFile}\"."
+    echo -e "\nThe GET_ARGS global defaults file \"${EtcDir}/${DefaultsFile}\" exists\n    so it was not overwritten.\nManually merge the install file with your existing one.\nThe install version is in \"${WhereAmI}/${DefaultsFile}\"."
   else
     cp ${DefaultsFile} ${EtcDir}/${DefaultsFile} || ERROR "Copy of script \"${DefaultsFile}\" failed."
   fi
@@ -65,7 +65,7 @@ function Install() {
     cp -f "${Script}" "${BinDir}" || ERROR "Copy of script \"${Script}\" failed."
     (( $# )) && chown root:root "${BinDir}/${Script}"
     chmod 755 "${BinDir}/${Script}"
-  done 3< <( ls ./{functions.sh,.f*awk,MKSCRIPT,FIND-FUNCTIONS} )
+  done 3< <( ls ./{functions.sh,.f*awk,.f*.txt,MKSCRIPT,FIND-FUNCTIONS} )
   if (( ! $# )) ; then
     if ! grep -q "source .*/functions.sh" ~/.bash_profile ; then
       sed --in-place ~/.bash_profile -e '$a \
@@ -103,7 +103,7 @@ ThisIsMe="$(realpath "${BASH_SOURCE[0]}")"	# Path of this script
 WhoAmI="${ThisIsMe##*/}"			# Basename of this script
 WhoAmIaction="${WhoAmI%.*}"
 WhereAmI="${ThisIsMe%/*}"			# DirName of this script
-pushd "${WhereAmI}"				# Go there
+cd "${WhereAmI}"				# Go there
 
 DefaultsFile="FUNCTIONS-SH-GLOBAL-DEFAULTS.sh"
 ExtraFunctions="FUNCTIONS-SH-EXTRA-FUNCTIONS.sh"
@@ -124,7 +124,7 @@ else
   EtcDir="${BinDir}"				# Where we want to put the user scripts
 fi
 
-read -p "Do you really want to ${WhoAmIaction} ${Ubf} (y, n)? " Ans
+read -p "\nDo you really want to ${WhoAmIaction} ${Ubf} (y, n)? " Ans
 [[ ${Ans,,} == y ]] || exit
 
 if [[ ${WhoAmI} == install.sh ]] ; then
