@@ -59,14 +59,14 @@ function Install() {
     cp ${DefaultsFile} ${EtcDir}/${DefaultsFile} || ERROR "Copy of script \"${DefaultsFile}\" failed."
   fi
   cp -f ${ExtraFunctions} ${EtcDir}/${ExtraFunctions} || ERROR "Copy of script \"${ExtraFunctions}\" failed."
-  chown root:root ${EtcDir}/${ExtraFunctions} ${EtcDir}/${DefaultsFile}
-  chmod 644 ${EtcDir}/${ExtraFunctions} ${EtcDir}/${DefaultsFile}
+  (( $# )) && chown root:root ${EtcDir}/${ExtraFunctions} ${EtcDir}/${DefaultsFile}
+  chmod 755 ${EtcDir}/${ExtraFunctions} ${EtcDir}/${DefaultsFile}
 
   # /usr/local/bin/...
   [[ -d bin ]] && cd bin
   while read -u 3 Script ; do
     cp -f "${Script}" "${BinDir}" || ERROR "Copy of script \"${Script}\" failed."
-    chown root:root "${BinDir}/${Script}"
+    (( $# )) && chown root:root "${BinDir}/${Script}"
     chmod 755 "${BinDir}/${Script}"
   done 3< <( find -type f )
   if (( ! $# )) ; then
@@ -124,7 +124,7 @@ elif (( $# )) ; then				# Any other argument == help
   echo -e "${WhoAmIaction^} the \"${Ubf}\" distribution.\nUsage: ${WhoAmI} [--system-install]\nWhere:\n  --system-install\n    ${WhoAmIaction^} as a system-wide appplication.\n    The default is to ${WhoAmIaction} it for only this user: ${ForWho}"
   exit
 else
-  BinDir="~/bin"				# Where we want to put the user scripts
+  BinDir=~/bin					# Where we want to put the user scripts
   EtcDir="${BinDir}"				# Where we want to put the user scripts
 fi
 
