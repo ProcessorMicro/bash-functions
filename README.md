@@ -38,8 +38,8 @@ ASK can interact with the user with a text-based interface or a GUI dialog box i
 &nbsp;&nbsp;&nbsp;&nbsp;[Contents](#contents)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Caveat](#caveat)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Installation](#installation)<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Installation Procedure](#installation-procedure)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Required Commands](#required-commands)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Installation Procedure](#installation-procedure)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Uninstall Procedure](#uninstall-procedure)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Summary of the Major Functions and Variables](#summary)<br>
 &nbsp;&nbsp;&nbsp;&nbsp;[Major Functions](#major-functions)<br>
@@ -95,6 +95,29 @@ However, be that as it may, the functions allow one to concentrate on the purpos
 
 ## <a id="installation">Installation</a>
 
+### <a id="required-commands">Required Commands</a>
+
+The following linux commands are required for full functionality.
+Most commonly used Linux distributions either include or make available these commands.
+The install script checks fo the the existance of these commands.
+
+| COMMAND | REQUIREMENT |
+|--|--|
+| bash    | Required. |
+| gawk/awk    | gawk (or a link to awk) is required. |
+| sort    | Required. |
+| less    | The default "pager". Required unless you configure a different pager. |
+| nmap    | Only if you use the network functions. |
+| yad     | Only if you use the -G (GUI) option in any "GUI-enabled" functions. |
+
+if you don't have `gawk` then a symbolic link to awk will work as well. This is done by the intall script.
+
+```bash
+sudo ln -s /usr/bin/awk /usr/bin/gawk
+```
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
+
 ### <a id="installation-procedure">Installation Procedure</a>
 
 The installation script `install.sh` installs the bash scripts in the directory `/usr/local/bin` except for
@@ -113,11 +136,11 @@ cd ~/MyDownLoad                      # And set your working directory
 
 There are two ways to get the distribution file:
 
-- With your web browser: **Step 2 Web**
+- With your web browser: **Step 2a Web**
 
-- From the command line: **Step 2 Commald Line**
+- From the command line: **Step 2b Commald Line**
 
-#### Step 2 Web
+#### Step 2a Web
 
 Click on the URL: https://github.com/processormicro/useful-bash-functions
 
@@ -128,7 +151,7 @@ and save the downloaded file to ~/MyDownload
 
 Return to your terminal emulator.
 
-#### Step 2 Command Line
+#### Step 2b Command Line
 
 Download the zip file:
 
@@ -154,12 +177,27 @@ unzip -q -u  useful-bash-functions.zip            # Unzip the distribution file
 
 #### Step 4
 
-Install the distribution.
+Install the distribution.  
+There are two ways to install `useful-bash-functions`: A user install and a system install.  
+The user install is made into your personal directory `~/bin`.
+The functions are only available to your login.  
+In a system install the functions are placed in `/usr/local/bin` and `/etc/profile.d`.
+All users have the functions available.
+
+#### Step 4a - User Install
+
+```bash
+<PATH_TO_UNZIPPED_DISTRIBUTION>/install.sh"   # Install it for your use only
+```
+
+#### Step 4b - System Install
 
 ```bash
 # Open a terminal session as "root"
-<PATH_TO_UNZIPPED_DISTRIBUTION>/install.sh"       # And install it as "root"
+<PATH_TO_UNZIPPED_DISTRIBUTION>/install.sh" --system-install   # Install it for every user
 ```
+
+#### Step 4c - Continue...
 
 The install script should display the following message:  
 &nbsp;&nbsp;&nbsp;&nbsp;**Install script for the "functions.sh" distribution.**  
@@ -219,29 +257,6 @@ source /usr/local/bin/functions.sh
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
 
-### <a id="required-commands">Required Commands</a>
-
-The following linux commands are required for full functionality.
-Most commonly used Linux distributions either include or make available these commands.
-The install script checks fo the the existance of these commands.
-
-| COMMAND | REQUIREMENT |
-|--|--|
-| bash    | Required. |
-| gawk/awk    | gawk (or a link to awk) is required. |
-| sort    | Required. |
-| less    | The default "pager". Required unless you configure a different pager. |
-| nmap    | Only if you use the network functions. |
-| yad     | Only if you use the -G (GUI) option in any "GUI-enabled" functions. |
-
-if you don't have `gawk` then a symbolic link to awk will work as well. This is done by the intall script.
-
-```bash
-sudo ln -s /usr/bin/awk /usr/bin/gawk
-```
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
-
 ### <a id="uninstall-procedure">Uninstall Procedure</a>
 
 The uninstall script `uninstall.sh` removes the components of `functions.sh`.
@@ -256,10 +271,20 @@ cd ~/MyDownload/useful-bash-functions       # Or wherever you unzipped the distr
 
 #### Step 2
 
-Execute the uninstall script.
+Execute the uninstall script.  
+There are two ways cepending whether you did a user install or a system install.
+
+#### Step 2a If You Did a User Install
 
 ```bash
-sudo $(pwd)/uninstall.sh
+./uninstall.sh
+```
+
+#### Step 2b If You Did a System Install
+
+```bash
+# Open a terminal session as "root"
+<PATH_TO_UNZIPPED_DISTRIBUTION>/uninstall.sh" --system-install
 ```
 
 #### Step 3

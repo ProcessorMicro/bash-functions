@@ -63,14 +63,22 @@ function Install() {
   chmod 644 ${Etc}/${ExtraFunctions} ${Etc}/${DefaultsFile}
 
   # /usr/local/bin/...
-  cd bin
+  [[ -d bin ]] && cd bin
   while read -u 3 Script ; do
     cp -f "${Script}" "${BinDir}" || ERROR "Copy of script \"${Script}\" failed."
     chown root:root "${BinDir}/${Script}"
     chmod 755 "${BinDir}/${Script}"
   done 3< <( find -type f )
+  if (( ! $# )) ; then
+    if ! grep -q "source .*/functions.sh" ~/.bash_profile ; then
+      sed --in-place ~/.bash_profile -e '$a \
+source ~/bin/functions.sh \
+declare -x BASH_ENV="${BASH_SOURCE[0]}"'
+    fi
+  fi
 
   echo -e "\nInstallation of \"functions.sh\" complete."
+  popd
 }
 
 function UnInstall() {
@@ -81,7 +89,7 @@ function UnInstall() {
   rm -f "${Etc}/${DefaultsFile}" || ERROR "while removing script \"${Etc}/${DefaultsFile}\"."
   rm -f "${Etc}/${ExtraFunctions}" || ERROR "while removing script \"${Etc}/${ExtraFunctions}\"."
 
-  cd bin
+  [[ -d bin ]] && cd bin
   while read -u 3 Script ; do
     rm -f "${BinDir}/${Script}" || ERROR "while removing script \"${BinDir}/${Script}\"."
   done 3< <( find -type f )
@@ -95,22 +103,22 @@ ThisIsMe="$(realpath "${BASH_SOURCE[0]}")"	# Path of this script
 WhoAmI="${ThisIsMe##*/}"			# Basename of this script
 WhoAmIaction="${WhoAmI%.*}"
 WhereAmI="${ThisIsMe%/*}"			# DirName of this script
-cd "${WhereAmI}"				# Go there
+pushd "${WhereAmI}"				# Go there
 
 DefaultsFile="FUNCTIONS-SH-GLOBAL-DEFAULTS.sh"
 ExtraFunctions="FUNCTIONS-SH-EXTRA-FUNCTIONS.sh"
 ForWho="$( id -u -n )"
 
-if [[ $1 =~ -h ]] ; then
-  echo -e "${WhoAmIaction^} the \"${Ubf}\" distribution.\nUsage: ${WhoAmI} [--system-install]\nWhere:\n  --system-install\n    ${WhoAmIaction^} as a system-wide appplication.\n    The default is to ${WhoAmIaction} it for only this user: ${ForWho}"
-  exit
-elif [[ $1 == --system-${WhoAmIaction} ]] ; then
+if [[ $1 == --system-${WhoAmIaction} ]] ; then
   (( $( id -u ) )) && ERROR "You must run this script as \"root\"."
   BinDir="/usr/local/bin"			# Where we want to put the system scripts
   EtcDir="/etc"					# Where we want to put the system scripts
   DefaultsFile="profile.d/${DefaultsFile}"
   ExtraFunctions="profile.d/${ExtraFunctions}"
   ForWho="root"
+elif (( $# )) ; then				# Any other argument == help
+  echo -e "${WhoAmIaction^} the \"${Ubf}\" distribution.\nUsage: ${WhoAmI} [--system-install]\nWhere:\n  --system-install\n    ${WhoAmIaction^} as a system-wide appplication.\n    The default is to ${WhoAmIaction} it for only this user: ${ForWho}"
+  exit
 else
   BinDir="~/bin"				# Where we want to put the user scripts
   EtcDir="${BinDir}"				# Where we want to put the user scripts

@@ -1,3 +1,6 @@
+2026.08.06
+Update README.md to reflect installation changes.
+
 2026.08.05
 Updated the install.sh and uninstall.sh scripts to install system-wide or for just one user.
 Also added a -h --help option.
