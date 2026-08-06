@@ -46,13 +46,12 @@ function Install() {
   Beginning installation..."
 
   mkdir -p "${BinDir}"				# Ensure it exists
-  if [[ :${PATH}: =~ :${BinDir}: || :${PATH}: =~ :$(echo ${BinDir}): ]] ; then
+  if [[ ! :${PATH}: =~ :${BinDir}: ]] ; then
     WARNING "\nYour search path \"PATH\" doesn't contain the path \"${BinDir}\".\nIt is required for \"functions.sh\" to operate correctly.\n"
   fi
 
   VERIFY_REQUIREMENTS				# All the apps that are needed
 
-  # /etc/profile.d/...
   if [[ -f ${EtcDir}/${DefaultsFile} ]] ; then
     echo -e "The GET_ARGS global defaults file \"${EtcDir}/${DefaultsFile}\" exists\n    so it was not overwritten.\nManually merge the install file with your existing one.\nThe install version is in \"${WhereAmI}/${DefaultsFile}\"."
   else
@@ -62,23 +61,20 @@ function Install() {
   (( $# )) && chown root:root ${EtcDir}/${ExtraFunctions} ${EtcDir}/${DefaultsFile}
   chmod 755 ${EtcDir}/${ExtraFunctions} ${EtcDir}/${DefaultsFile}
 
-  # /usr/local/bin/...
-  [[ -d bin ]] && cd bin
   while read -u 3 Script ; do
     cp -f "${Script}" "${BinDir}" || ERROR "Copy of script \"${Script}\" failed."
     (( $# )) && chown root:root "${BinDir}/${Script}"
     chmod 755 "${BinDir}/${Script}"
-  done 3< <( find -type f )
+  done 3< <( ls ./{functions.sh,.f*awk,MKSCRIPT,FIND-FUNCTIONS} )
   if (( ! $# )) ; then
     if ! grep -q "source .*/functions.sh" ~/.bash_profile ; then
       sed --in-place ~/.bash_profile -e '$a \
 \
-source ~/bin/functions.sh \
-declare -x BASH_ENV="${BASH_SOURCE[0]}"'
+source ~/bin/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh \
+source ~/bin/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh'
     fi
   fi
   echo -e "\nInstallation of \"functions.sh\" complete."
-  popd
 }
 
 function UnInstall() {

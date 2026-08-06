@@ -2,7 +2,7 @@
 # vim: set nomodified number nowrap foldmethod=indent foldnestmax=2 nofoldenable:
 
 SCRIPT_PURPOSE_FUNCTIONS_SH="This script contains a set of common bash functions for use in other bash scripts."
-COMMON_FUNCTIONS_VERSION="14.01.07 - Aug 04, 2026"
+COMMON_FUNCTIONS_VERSION="14.01.08 - Aug 06, 2026"
 
 # Copyright (C) 2013-2026 by Mike Armstrong
 #
@@ -93,7 +93,7 @@ COMMON_FUNCTIONS_VERSION="14.01.07 - Aug 04, 2026"
 FUNCTIONS_SH_PATH="${BASH_SOURCE[0]}"			# The pathname of this common functions script
 FUNCTIONS_SH_NAME="${FUNCTIONS_SH_PATH##*/}"		# The name of this common functions script
 FUNCTIONS_SH_DIR="${FUNCTIONS_SH_PATH%/*}"		# The directory containing this common functions script
-FUNCTIONS_SH_SHARED_DIR="$( realpath ${FUNCTIONS_SH_DIR}/../share )"	# Shared data for the user defined scripts "data"
+FUNCTIONS_SH_SHARED_DIR="${FUNCTIONS_SH_DIR}"		# Shared data for the user defined scripts "data"
 FUNCTIONS_SH_BASENAME="${FUNCTIONS_SH_NAME%%.NEW}"
 FUNCTIONS_SH_SUFFIX="${FUNCTIONS_SH_NAME##${FUNCTIONS_SH_BASENAME}}"
 
@@ -2049,7 +2049,7 @@ function CLEANUP_ALWAYS() {
 function COLOR_MAKE() {
   local Cdx="3" _COLOR_="X" Gui Idx Result Warning
   if [[ -z ${_COLOR_FILE_} ]] ; then			# Do once
-    _COLOR_FILE_="${FUNCTIONS_SH_SHARED_DIR}/${FUNCTIONS_SH_NAME}/.${FUNCTIONS_SH_NAME}.COLOR_MAKE.ColorTable.txt"
+    _COLOR_FILE_="${FUNCTIONS_SH_SHARED_DIR}/.${FUNCTIONS_SH_NAME}.COLOR_MAKE.ColorTable.txt"
     _PRE_G_="<span" _PRE_GF_="fgcolor=\\\"" _PRE_GB_="bgcolor=\\\"" _CLOSE_G_="\\\"" _POST_G_=">" _DEF_G_="</span>"
     _PRE_T_="["   _PRE_TF_="38;5;"        _PRE_TB_="48;5;"        _CLOSE_T_=""     _POST_T_="m" _DEF_T_="[0m"
                 _PRE_TF_RGB_="38;2;"    _PRE_TB_RGB_="48;2;"
