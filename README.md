@@ -120,8 +120,14 @@ sudo ln -s /usr/bin/awk /usr/bin/gawk
 
 ### <a id="installation-procedure">Installation Procedure</a>
 
-The installation script `install.sh` installs the bash scripts in the directory `/usr/local/bin` except for
-       `FUNCTIONS-SH-EXTRA-FUNCTIONS.sh` and `FUNCTIONS-SH-GLOBAL-DEFAULTS.sh`
+There are two ways to install `useful-bash-functions` - a user install and a system install.  
+
+1. The user install is made into your personal directory `~/bin`.
+The functions are only available to your login.  
+
+2. In a system install the functions are available to all users.
+The installation script `install.sh` installs the bash scripts in the directory `/usr/local/bin` except for:  
+       &nbsp;&nbsp;&nbsp;&nbsp;`FUNCTIONS-SH-EXTRA-FUNCTIONS.sh` and `FUNCTIONS-SH-GLOBAL-DEFAULTS.sh`  
 which are installed in the directory `/etc/profile.d`
 
 #### Step 1
@@ -134,24 +140,7 @@ mkdir ~/MyDownLoad                   # Or to wherever you want
 cd ~/MyDownLoad                      # And set your working directory
 ```
 
-There are two ways to get the distribution file:
-
-- With your web browser: **Step 2a Web**
-
-- From the command line: **Step 2b Commald Line**
-
-#### Step 2a Web
-
-Click on the URL: https://github.com/processormicro/useful-bash-functions
-
-Then, in the list of files, click on: `useful-bash-functions.zip`
-
-Then, at the right hand side of the line `Code Blame ...`, click on `RAW`  
-and save the downloaded file to ~/MyDownload
-
-Return to your terminal emulator.
-
-#### Step 2b Command Line
+#### Step 2
 
 Download the zip file:
 
@@ -161,7 +150,6 @@ wget https://github.com/ProcessorMicro/useful-bash-functions/archive/refs/heads/
 
 Unzip the downloaded `main.zip`file.
 
-
 ```bash
 unzip -q -u main.zip               # Unzip the downloaded file
 cd useful-bash-functions-main      # Then change your workng directory
@@ -169,35 +157,22 @@ cd useful-bash-functions-main      # Then change your workng directory
 
 #### Step 3
 
-Unzip the the distribution file.
+Install the distribution either for just one user or for all users.  
+
+#### Step 3a - User install
 
 ```bash
-unzip -q -u  useful-bash-functions.zip            # Unzip the distribution file
+bash <PATH_TO_UNZIPPED_DISTRIBUTION>/install.sh"                    # Install it for your use only
 ```
 
-#### Step 4
-
-Install the distribution.  
-There are two ways to install `useful-bash-functions`: A user install and a system install.  
-The user install is made into your personal directory `~/bin`.
-The functions are only available to your login.  
-In a system install the functions are placed in `/usr/local/bin` and `/etc/profile.d`.
-All users have the functions available.
-
-#### Step 4a - User Install
-
-```bash
-<PATH_TO_UNZIPPED_DISTRIBUTION>/install.sh"   # Install it for your use only
-```
-
-#### Step 4b - System Install
+#### Step 3b - System install
 
 ```bash
 # Open a terminal session as "root"
-<PATH_TO_UNZIPPED_DISTRIBUTION>/install.sh" --system-install   # Install it for every user
+bash <PATH_TO_UNZIPPED_DISTRIBUTION>/install.sh" --system-install   # Install it for every user
 ```
 
-#### Step 4c - Continue...
+#### Step 3c - Continue...
 
 The install script should display the following message:  
 &nbsp;&nbsp;&nbsp;&nbsp;**Install script for the "functions.sh" distribution.**  
@@ -214,7 +189,7 @@ The install script should display the following message:
 It means the command `bash` is not installed.  
 Install `bash` and re-execute `install.sh`.
 
-#### Step 5
+#### Step 4
 
 `MKSCRIPT` creates a script "template" and inserts YOUR copyright notice into the generated script.
 To reflect your needs for the generated copyright, edit the file `/usr/local/bin/MKSCRIPT`.
@@ -233,12 +208,12 @@ DEFAULT_NAME="Mike Armstrong"
 
 ```
 
-#### Step 6
+#### Step 5
 
 Edit the file `/etc/profile.d/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh` and change the value of the global environment variables
 (as instructed within the script) to meet your needs.
 
-#### Step 7
+#### Step 6
 
 After installation,there are three ways to implement `functions.sh`.
 
@@ -266,7 +241,7 @@ The uninstall script `uninstall.sh` removes the components of `functions.sh`.
 Change your working directory to the unzipped contents: e.g., `~/MyDownload/useful-bash-functions`
 
 ```bash
-cd ~/MyDownload/useful-bash-functions       # Or wherever you unzipped the distribution
+cd ~/MyDownload/useful-bash-functions-main       # Or wherever you unzipped the distribution
 ```
 
 #### Step 2
@@ -274,17 +249,17 @@ cd ~/MyDownload/useful-bash-functions       # Or wherever you unzipped the distr
 Execute the uninstall script.  
 There are two ways cepending whether you did a user install or a system install.
 
-#### Step 2a If You Did a User Install
+#### Step 2a - If you did a user install
 
 ```bash
-./uninstall.sh
+bash ./uninstall.sh
 ```
 
-#### Step 2b If You Did a System Install
+#### Step 2b - If You did a system install
 
 ```bash
 # Open a terminal session as "root"
-<PATH_TO_UNZIPPED_DISTRIBUTION>/uninstall.sh" --system-install
+bash <PATH_TO_UNZIPPED_DISTRIBUTION>/uninstall.sh" --system-install
 ```
 
 #### Step 3
@@ -293,7 +268,7 @@ clean up.
 
 ```bash
 cd ..                                           # Backup to the parent directory
-sudo rm -rf $(pwd)/useful-bash-functions        # Remove the installation files
+rm -rf $(pwd)/useful-bash-functions             # Remove the installation files
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)

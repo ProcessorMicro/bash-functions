@@ -53,14 +53,14 @@ function Install() {
   VERIFY_REQUIREMENTS				# All the apps that are needed
 
   # /etc/profile.d/...
-  if [[ -f ${Etc}/${DefaultsFile} ]] ; then
-    echo -e "The GET_ARGS global defaults file \"${Etc}/${DefaultsFile}\" exists\n    so it was not overwritten.\nManually merge the install file with your existing one.\nThe install version is in \"${WhereAmI}/${DefaultsFile}\"."
+  if [[ -f ${EtcDir}/${DefaultsFile} ]] ; then
+    echo -e "The GET_ARGS global defaults file \"${EtcDir}/${DefaultsFile}\" exists\n    so it was not overwritten.\nManually merge the install file with your existing one.\nThe install version is in \"${WhereAmI}/${DefaultsFile}\"."
   else
-    cp ${DefaultsFile} ${Etc}/${DefaultsFile} || ERROR "Copy of script \"${DefaultsFile}\" failed."
+    cp ${DefaultsFile} ${EtcDir}/${DefaultsFile} || ERROR "Copy of script \"${DefaultsFile}\" failed."
   fi
-  cp -f ${ExtraFunctions} ${Etc}/${ExtraFunctions} || ERROR "Copy of script \"${ExtraFunctions}\" failed."
-  chown root:root ${Etc}/${ExtraFunctions} ${Etc}/${DefaultsFile}
-  chmod 644 ${Etc}/${ExtraFunctions} ${Etc}/${DefaultsFile}
+  cp -f ${ExtraFunctions} ${EtcDir}/${ExtraFunctions} || ERROR "Copy of script \"${ExtraFunctions}\" failed."
+  chown root:root ${EtcDir}/${ExtraFunctions} ${EtcDir}/${DefaultsFile}
+  chmod 644 ${EtcDir}/${ExtraFunctions} ${EtcDir}/${DefaultsFile}
 
   # /usr/local/bin/...
   [[ -d bin ]] && cd bin
@@ -72,11 +72,11 @@ function Install() {
   if (( ! $# )) ; then
     if ! grep -q "source .*/functions.sh" ~/.bash_profile ; then
       sed --in-place ~/.bash_profile -e '$a \
+\
 source ~/bin/functions.sh \
 declare -x BASH_ENV="${BASH_SOURCE[0]}"'
     fi
   fi
-
   echo -e "\nInstallation of \"functions.sh\" complete."
   popd
 }
@@ -86,13 +86,17 @@ function UnInstall() {
   Beginning uninstall...\n"
 
   [[ ${Ans,,} =~ ^y ]] || exit
-  rm -f "${Etc}/${DefaultsFile}" || ERROR "while removing script \"${Etc}/${DefaultsFile}\"."
-  rm -f "${Etc}/${ExtraFunctions}" || ERROR "while removing script \"${Etc}/${ExtraFunctions}\"."
+  rm -f "${EtcDir}/${DefaultsFile}" || ERROR "while removing script \"${EtcDir}/${DefaultsFile}\"."
+  rm -f "${EtcDir}/${ExtraFunctions}" || ERROR "while removing script \"${EtcDir}/${ExtraFunctions}\"."
 
   [[ -d bin ]] && cd bin
   while read -u 3 Script ; do
     rm -f "${BinDir}/${Script}" || ERROR "while removing script \"${BinDir}/${Script}\"."
   done 3< <( find -type f )
+
+  if ! grep -q "^source .*/functions.sh" ~/.bash_profile ; then
+    sed --in-place ~/.bash_profile -e '/^source ?.*/bin/functions.sh/d' -e '//d' -e '^declare -x BASH_ENV="${BASH_SOURCE[0]}"/d' -e '//d'
+  fi
 
   cd "${WhereAmI}/.."
   ( sleep 3; rm -rf "${WhereAmI}" ; echo -e "\nUninstall of \"functions.sh\" complete.\n" ) &
