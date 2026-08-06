@@ -106,6 +106,7 @@ The install script checks fo the the existance of these commands.
 | bash    | Required. |
 | gawk/awk    | gawk (or a link to awk) is required. |
 | sort    | Required. |
+| wget    | Required to downlaod the distribution. |
 | less    | The default "pager". Required unless you configure a different pager. |
 | nmap    | Only if you use the network functions. |
 | yad     | Only if you use the -G (GUI) option in any "GUI-enabled" functions. |
@@ -162,7 +163,7 @@ Install the distribution either for just one user or for all users.
 #### Step 3a - User install
 
 ```bash
-bash <PATH_TO_UNZIPPED_DISTRIBUTION>/install.sh"                    # Install it for your use only
+bash ./install.sh                  # Install it for your use only
 ```
 
 #### Step 3b - System install
