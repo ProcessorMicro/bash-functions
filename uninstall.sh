@@ -115,21 +115,19 @@ cd "${WhereAmI}"				# Go there
 
 DefaultsFile="FUNCTIONS-SH-GLOBAL-DEFAULTS.sh"
 ExtraFunctions="FUNCTIONS-SH-EXTRA-FUNCTIONS.sh"
-ForWho="$( id -u -n )"
 
 if [[ $1 == --system-${WhoAmIaction} ]] ; then
   (( $( id -u ) )) && ERROR "You must run this script as \"root\"."
   BinDir="/usr/local/bin"			# Where we want to put the system scripts
-  EtcDir="/etc"					# Where we want to put the system scripts
-  DefaultsFile="profile.d/${DefaultsFile}"
-  ExtraFunctions="profile.d/${ExtraFunctions}"
+  EtcDir="/etc/profile.d"					# Where we want to put the system scripts
   ForWho="root"
 elif (( $# )) ; then				# Any other argument == help
-  echo -e "${WhoAmIaction^} the \"${Ubf}\" distribution.\nUsage: ${WhoAmI} [--system-install]\nWhere:\n  --system-install\n    ${WhoAmIaction^} as a system-wide appplication.\n    The default is to ${WhoAmIaction} it for only this user: ${ForWho}"
+  echo -e "${WhoAmIaction^} the \"${Ubf}\" distribution.\n\nUsage: ${WhoAmI} [--system-install]\nWhere:\n  --system-install\n    ${WhoAmIaction^} as a system-wide appplication.\n    The default is to ${WhoAmIaction} it for only this user: ${ForWho}"
   exit
 else
   BinDir=~/bin					# Where we want to put the user scripts
   EtcDir="${BinDir}"				# Where we want to put the user scripts
+  ForWho="$( id -u -n )"
 fi
 
 read -p "\nDo you really want to ${WhoAmIaction} ${Ubf} (y, n)? " Ans
