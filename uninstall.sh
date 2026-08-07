@@ -58,7 +58,7 @@ function Install() {
     if (( $# )) ; then
       cp ${DefaultsFile} ${EtcDir}/${DefaultsFile} || ERROR "Copy of script \"${DefaultsFile}\" failed."
     else
-      sed -e 's;source /usr/local/bin/functions.sh;source ~/bin/functions.sh;' > ${DefaultsFile} ${EtcDir}/${DefaultsFile} || ERROR "Copy of script \"${DefaultsFile}\" failed."
+      sed -e 's;source /usr/local/bin/functions.sh;source ~/bin/functions.sh;' ${DefaultsFile} > ${EtcDir}/${DefaultsFile} || ERROR "Copy of script \"${DefaultsFile}\" failed."
     fi
   fi
   cp -f ${ExtraFunctions} ${EtcDir}/${ExtraFunctions} || ERROR "Copy of script \"${ExtraFunctions}\" failed."
