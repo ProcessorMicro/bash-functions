@@ -102,9 +102,13 @@ function RUNME() {
       shift 1
     done
     # Load the functions and the global defaults into this environment.
-    source "/etc/profile.d/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh"
-    source "/usr/local/bin/functions.sh${_New_}"
-    FUNCTIONS_SH_INIT					# Ensure fully initilized
+    if (( _functions_sh_loaded_ )) ; then           # Is functions.sh loaded?
+      FUNCTIONS_SH_INIT                             # Initialize functions.sh
+    else                                            # functions.sh not loaded
+      COMMON_FUNCTIONS="$(type -p functions.sh)"    # Locate and load functions.sh
+      [[ -x ${COMMON_FUNCTIONS} ]] && source "${COMMON_FUNCTIONS}" || { echo -e "Cannot locate "${COMMON_FUNCTIONS:-functions.sh}"." 1>&2 ; exit ; }
+    fi
+
     for _i_ in ${_Lib_[*]} ; do echo source "${_i_}${_New_}" ; source "${_i_}${_New_}" ; done	# Load other libraries
     if (( _Debug_ > 1 )) ; then
       TEST_SET

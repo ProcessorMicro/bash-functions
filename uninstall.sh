@@ -71,12 +71,12 @@ function Install() {
     chmod 755 "${BinDir}/${Script}"
   done 3< <( ls ./{functions.sh,.f*awk,.f*.txt,MKSCRIPT,FIND-FUNCTIONS} )
   if (( ! $# )) ; then
-    if ! grep -q "source .*/functions.sh" ~/.bash_profile ; then
+    if ! grep -q "source .*/functions.sh" ~/.bashrc ; then
       sed --in-place ~/.bashrc -e '$a \
 \
-if (( _functions_sh_loaded_ )) ; then
-  FUNCTIONS_SH_INIT
-else
+if (( _functions_sh_loaded_ )) ; then \
+  FUNCTIONS_SH_INIT \
+else \
   source ~/bin/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh \
   source ~/bin/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh \
 fi '
@@ -99,7 +99,7 @@ function UnInstall() {
   done 3< <( find -type f )
 
   if ! grep -q "^source .*/functions.sh" ~/.bash_profile ; then
-    sed --in-place ~/.bash_profile -e ';^source ?.*/bin/functions.sh;d' -e ';^declare -x BASH_ENV="${BASH_SOURCE[0]}";d' -e '//d'
+    sed --in-place ~/.bashrc -e '/^source ?.*\/bin\/functions.sh/d' -e '/^declare -x BASH_ENV="${BASH_SOURCE[0]}"/d'
   fi
 
   cd "${WhereAmI}/.."
