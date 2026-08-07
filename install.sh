@@ -55,7 +55,7 @@ function Install() {
   if [[ -f ${EtcDir}/${DefaultsFile} ]] ; then
     echo -e "\nThe GET_ARGS global defaults file \"${EtcDir}/${DefaultsFile}\" exists\n    so it was not overwritten.\nManually merge the install file with your existing one.\nThe install version is in \"${WhereAmI}/${DefaultsFile}\"."
   else
-    if (( $# )) ; then
+    if [[ ${EtcDir} =~ /etc ]] ; then
       cp ${DefaultsFile} ${EtcDir}/${DefaultsFile} || ERROR "Copy of script \"${DefaultsFile}\" failed."
     else
       sed -e 's;source /usr/local/bin/functions.sh;source ~/bin/functions.sh;' ${DefaultsFile} > ${EtcDir}/${DefaultsFile} || ERROR "Copy of script \"${DefaultsFile}\" failed."
@@ -77,7 +77,7 @@ if (( _USER_functions_sh_loaded_ )) ; then\
   FUNCTIONS_SH_INIT\
 else\
   source ~/bin/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh\
-  _USER_functions_sh_loaded_="1"\
+  export _USER_functions_sh_loaded_="1"\
   source ~/bin/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh\
 fi'
     fi
@@ -116,7 +116,7 @@ cd "${WhereAmI}"				# Go there
 DefaultsFile="FUNCTIONS-SH-GLOBAL-DEFAULTS.sh"
 ExtraFunctions="FUNCTIONS-SH-EXTRA-FUNCTIONS.sh"
 
-if [[ $1 == --system-${WhoAmIaction} ]] ; then
+if [[ $1 == --system-${WhoAmIaction/un/} ]] ; then
   (( $( id -u ) )) && ERROR "You must run this script as \"root\"."
   BinDir="/usr/local/bin"			# Where we want to put the system scripts
   EtcDir="/etc/profile.d"					# Where we want to put the system scripts

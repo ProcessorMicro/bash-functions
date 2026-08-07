@@ -160,7 +160,7 @@ cd useful-bash-functions-main      # Then change your workng directory
 
 Install the distribution either for just one user or for all users.  
 
-#### Step 3a - User install
+#### Step 3a - User install (recommended)
 
 ```bash
 bash ./install.sh                  # Install it for your use only
