@@ -55,7 +55,11 @@ function Install() {
   if [[ -f ${EtcDir}/${DefaultsFile} ]] ; then
     echo -e "\nThe GET_ARGS global defaults file \"${EtcDir}/${DefaultsFile}\" exists\n    so it was not overwritten.\nManually merge the install file with your existing one.\nThe install version is in \"${WhereAmI}/${DefaultsFile}\"."
   else
-    cp ${DefaultsFile} ${EtcDir}/${DefaultsFile} || ERROR "Copy of script \"${DefaultsFile}\" failed."
+    if (( $# )) ; then
+      cp ${DefaultsFile} ${EtcDir}/${DefaultsFile} || ERROR "Copy of script \"${DefaultsFile}\" failed."
+    else
+      sed -e 's;source /usr/local/bin/functions.sh;source ~/bin/functions.sh;' > ${DefaultsFile} ${EtcDir}/${DefaultsFile} || ERROR "Copy of script \"${DefaultsFile}\" failed."
+    fi
   fi
   cp -f ${ExtraFunctions} ${EtcDir}/${ExtraFunctions} || ERROR "Copy of script \"${ExtraFunctions}\" failed."
   (( $# )) && chown root:root ${EtcDir}/${ExtraFunctions} ${EtcDir}/${DefaultsFile}
@@ -68,10 +72,14 @@ function Install() {
   done 3< <( ls ./{functions.sh,.f*awk,.f*.txt,MKSCRIPT,FIND-FUNCTIONS} )
   if (( ! $# )) ; then
     if ! grep -q "source .*/functions.sh" ~/.bash_profile ; then
-      sed --in-place ~/.bash_profile -e '$a \
+      sed --in-place ~/.bashrc -e '$a \
 \
-source ~/bin/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh \
-source ~/bin/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh'
+if (( _functions_sh_loaded_ )) ; then
+  FUNCTIONS_SH_INIT
+else
+  source ~/bin/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh \
+  source ~/bin/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh \
+fi '
     fi
   fi
   echo -e "\nInstallation of \"functions.sh\" complete."
@@ -91,7 +99,7 @@ function UnInstall() {
   done 3< <( find -type f )
 
   if ! grep -q "^source .*/functions.sh" ~/.bash_profile ; then
-    sed --in-place ~/.bash_profile -e '/^source ?.*/bin/functions.sh/d' -e '//d' -e '^declare -x BASH_ENV="${BASH_SOURCE[0]}"/d' -e '//d'
+    sed --in-place ~/.bash_profile -e ';^source ?.*/bin/functions.sh;d' -e ';^declare -x BASH_ENV="${BASH_SOURCE[0]}";d' -e '//d'
   fi
 
   cd "${WhereAmI}/.."
