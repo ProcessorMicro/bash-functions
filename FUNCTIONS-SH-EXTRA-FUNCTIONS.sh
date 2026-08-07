@@ -4,7 +4,7 @@
 #	/etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh
 
 SCRIPT_PURPOSE="This script contains a set of extra bash functions for use in the command line."
-SCRIPT_VERSION="12.04.02 - Oct 03, 2025"
+SCRIPT_VERSION="12.04.03 - Aug 07, 2026"
 
 # Copyright (C) 2013-2025 by Mike Armstrong
 #
