@@ -71,7 +71,7 @@ function Install() {
     chmod 755 "${BinDir}/${Script}"
   done 3< <( ls ./{functions.sh,.f*awk,.f*.txt,MKSCRIPT,FIND-FUNCTIONS} )
   if (( ! $# )) ; then
-    if ! grep -q "source .*/functions.sh" ~/.bashrc ; then
+    if ! grep -q "^if .*_USER_functions_sh_loaded_" ~/.bashrc ; then
       sed --in-place ~/.bashrc -e '$a \
 if (( _USER_functions_sh_loaded_ )) ; then\
   FUNCTIONS_SH_INIT\
@@ -98,7 +98,7 @@ function UnInstall() {
     rm -f "${BinDir}/${Script}" || ERROR "while removing script \"${BinDir}/${Script}\"."
   done 3< <( find -type f )
 
-  if ! grep -q "^source .*/functions.sh" ~/.bash_profile ; then
+  if ! grep -q "^if .*_USER_functions_sh_loaded_" ~/.bash_profile ; then
     sed --in-place ~/.bashrc -e '/^if .*_USER_functions_sh_loaded_.*; *then/,/^fi/d'
   fi
 
