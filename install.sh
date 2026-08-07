@@ -73,13 +73,13 @@ function Install() {
   if (( ! $# )) ; then
     if ! grep -q "source .*/functions.sh" ~/.bashrc ; then
       sed --in-place ~/.bashrc -e '$a \
-\
-if (( _functions_sh_loaded_ )) ; then \
-  FUNCTIONS_SH_INIT \
-else \
-  source ~/bin/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh \
-  source ~/bin/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh \
-fi '
+if (( _USER_functions_sh_loaded_ )) ; then\
+  FUNCTIONS_SH_INIT\
+else\
+  source ~/bin/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh\
+  _USER_functions_sh_loaded_="1"\
+  source ~/bin/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh\
+fi'
     fi
   fi
   echo -e "\nInstallation of \"functions.sh\" complete."
@@ -99,7 +99,7 @@ function UnInstall() {
   done 3< <( find -type f )
 
   if ! grep -q "^source .*/functions.sh" ~/.bash_profile ; then
-    sed --in-place ~/.bashrc -e '/^source ?.*\/bin\/functions.sh/d' -e '/^declare -x BASH_ENV="${BASH_SOURCE[0]}"/d'
+    sed --in-place ~/.bashrc -e '/^if .*_USER_functions_sh_loaded_.*; *then/,/^fi/d'
   fi
 
   cd "${WhereAmI}/.."
