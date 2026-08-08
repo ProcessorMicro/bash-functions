@@ -128,9 +128,17 @@ There are two ways to install `useful-bash-functions` - a user install and a sys
 The functions are only available to your login.  
 
 2. In a system install the functions are available to all users.
-The installation script `install.sh` installs the bash scripts in the directory `/usr/local/bin` except for:  
+The installation script `install.sh` installs the bash scripts in the directory `<WHERE_BIN_DIR>` except for:  
        &nbsp;&nbsp;&nbsp;&nbsp;`FUNCTIONS-SH-EXTRA-FUNCTIONS.sh` and `FUNCTIONS-SH-GLOBAL-DEFAULTS.sh`  
-which are installed in the directory `/etc/profile.d`
+which are installed in the directory `<WHERE_ETC_DIR>`
+
+> [!IMPORTANT]
+> The terms `<WHERE_BIN_DIR>` and `<WHERE_ETC_DIR>` have different values depending upon a user install or a system install.
+>
+> | TERM | User Install | System install |
+> |--|--|--|
+> | <WHERE_BIN_DIR> | ~/bin | /usr/local/bin |
+> | <WHERE_ETC_DIR> | ~/bin | /etc/profile.g |
 
 #### Step 1
 
@@ -202,7 +210,7 @@ Install `bash` and re-execute `install.sh`.
 #### Step 4
 
 `MKSCRIPT` creates a script "template" and inserts YOUR copyright notice into the generated script.
-To reflect your needs for the generated copyright, edit the file `/usr/local/bin/MKSCRIPT`.
+To reflect your needs for the generated copyright, edit the file `<WHERE_BIN_DIR>/MKSCRIPT`.
 
 - Modify the generated name:
 
@@ -220,7 +228,7 @@ DEFAULT_NAME="Mike Armstrong"
 
 #### Step 5
 
-Edit the file `/etc/profile.d/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh` and change the value of the global environment variables
+Edit the file `<WHERE_ETC_DIR>/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh` and change the value of the global environment variables
 (as instructed within the script) to meet your needs.
 
 #### Step 6
@@ -235,8 +243,8 @@ After installation,there are three ways to implement `functions.sh`.
 
 3. Laborious - Type the commands:
 ```bash
-source /etc/profile.d/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh
-source /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh
+source <WHERE_ETC_DIR>/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh
+source <WHERE_ETC_DIR>/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
@@ -380,7 +388,7 @@ functions.sh VARIABLES           # A list and brief description of the global va
 
 The bash script `FIND-FUNCTIONS` displays the function source code or the documentation for a single function (or a set of functions matching a PATTERN) in `functions.sh`.
 However it also can be used for any script that has a recognizable PATTERN for documentation.
-It assumes `functions.sh` is installed in the directory /usr/local/bin.
+It assumes `functions.sh` is installed in the directory <WHERE_BIN_DIR>.
 To see the options available for `FIND-FUNCTIONS` type:
 
 ```bash
@@ -406,26 +414,26 @@ FIND-FUNCTIONS --no-separator --function-names-only --less "[^_].*"
 ```
 
 You can use `FIND-FUNCTIONS` to display the comments or functions in another script.
-So, for the functions contained in the script `/etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh`, try:
+So, for the functions contained in the script `<WHERE_ETC_DIR>/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh`, try:
 
 ```bash
-FIND-FUNCTIONS --comments --less --script /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh
+FIND-FUNCTIONS --comments --less --script <WHERE_ETC_DIR>/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh
 ```
 
 or (using shorter options)
 
 ```bash
-FIND-FUNCTIONS -c -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh
+FIND-FUNCTIONS -c -l -s <WHERE_ETC_DIR>/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh
 ```
 
 ```bash
 # Display the comments for the function `RUNME`
-FIND-FUNCTIONS -c -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh RUNME
+FIND-FUNCTIONS -c -l -s <WHERE_ETC_DIR>/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh RUNME
 ```
 
 ```bash
 # Display the source code for the function `RUNME`
-FIND-FUNCTIONS -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh RUNME
+FIND-FUNCTIONS -l -s <WHERE_ETC_DIR>/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh RUNME
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
@@ -455,14 +463,14 @@ less My_Script               # View the generated script code
 ### <a id="extra-bash-functions">FUNCTIONS-SH-EXTRA-FUNCTIONS.sh</a>
 
 The script 'FUNCTIONS-SH-EXTRA-FUNCTIONS.sh' contains additional useful functions.
-`install.sh` copies it to the directory `/etc/profile.d`.
+`install.sh` copies it to the directory `<WHERE_ETC_DIR>`.
 These functions are particularly useful in debugging other functions.
 And they are always available at the bash command line in a terminal session.
 
 Full documentation of `FUNCTIONS-SH-EXTRA-FUNCTIONS.sh` can be viewed by:
 
 ```bash
-FIND-FUNCTIONS -c -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh
+FIND-FUNCTIONS -c -l -s <WHERE_ETC_DIR>/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh
 ```
 
 Three extra functions are available:
@@ -476,7 +484,7 @@ Three extra functions are available:
 For example, full documentation of function `RUNME` in `FUNCTIONS-SH-EXTRA-FUNCTIONS.sh` can be viewed by:
 
 ```bash
-FIND-FUNCTIONS -c -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh RUNME
+FIND-FUNCTIONS -c -l -s <WHERE_ETC_DIR>/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh RUNME
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
@@ -485,11 +493,11 @@ FIND-FUNCTIONS -c -l -s /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh RUNME
 
 This script sets global variables (`_GET_ARGS_GLOBAL_HELP_DEFAULT_` etc.) and contains instructions on how to change it's value.
 Note: The variable establishes a default format for the GET_ARGS help display.
-It is installed in the directory `/etc/profile.d`.
+It is installed in the directory `<WHERE_ETC_DIR>`.
 For more information see:
 
 ```bash
-FIND-FUNCTIONS -c -l -s /etc/profile.d/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh
+FIND-FUNCTIONS -c -l -s <WHERE_ETC_DIR>/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
@@ -612,7 +620,7 @@ FIND-FUNCTIONS -H
 View the source code with:
 
 ```bash
-vim /usr/local/bin/FIND-FUNCTIONS
+vim <WHERE_BIN_DIR>/FIND-FUNCTIONS
 ```
 
 `FIND-FUNCTIONS` has a hiddden option --list (it is not displayed by help) that displays a list of the generated variables and the  possibile spellings of all the options defined by GET_ARGS within the script.
@@ -752,7 +760,7 @@ The better way is to use the RUNME function as it also displays the result(s) fr
 RUNME FUNCTION_WITH_ARGUMENTS      # The preferred way
 ```
 
-RUNME is a function that operates in a subshell. It loads `/usr/local/bin/functions.sh` and `/etc/profile.d/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh` into it.
+RUNME is a function that operates in a subshell. It loads `<WHERE_BIN_DIR>/functions.sh` and `<WHERE_ETC_DIR>/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh` into it.
 It then executes the FUNCTION_WITH_ARGUMENTS and attempts to display the contents of the variable(s) created (if any).
 You can freely experiment, in an initialized environment, at the command line with the functions made available.
 RUNME can also turn on bash debugging (-x) so the function can be tested.
