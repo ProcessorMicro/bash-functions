@@ -141,7 +141,7 @@ They have different values depending upon whether you used a user install or a s
 > | TERM | User Install | System install |
 > |--|--|--|
 > | <WHERE_BIN_DIR> | ~/bin | /usr/local/bin |
-> | <WHERE_ETC_DIR> | ~/bin | /etc/profile.g |
+> | <WHERE_ETC_DIR> | ~/bin | /etc/profile.d |
 
 #### Step 1
 
