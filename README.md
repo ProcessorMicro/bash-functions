@@ -288,7 +288,7 @@ bash <PATH_TO_UNZIPPED_DISTRIBUTION>/uninstall.sh" --system-install
 clean up.
 
 ```bash
-cd ~/MyDownload/..                              # Backup to the parent directory
+cd ~/MyDownload                                 # Backup to the parent directory
 rm -rf $(pwd)/useful-bash-functions             # Remove the installation files
 ```
 
