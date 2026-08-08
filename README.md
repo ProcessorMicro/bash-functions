@@ -132,10 +132,10 @@ The installation script `install.sh` installs the bash scripts in the directory 
 except for:  
        &nbsp;&nbsp;&nbsp;&nbsp;`FUNCTIONS-SH-EXTRA-FUNCTIONS.sh`  
        &nbsp;&nbsp;&nbsp;&nbsp;`FUNCTIONS-SH-GLOBAL-DEFAULTS.sh`  
-which are installed in the directory /etc/profile.d (`<WHERE_ETC_DIR>`)
+which are installed in the directory /etc/profile.d (`<WHERE_ETC_DIR>`).
 
 > [!IMPORTANT]
-> In this README, the terms `<WHERE_BIN_DIR>` and `<WHERE_ETC_DIR>` are used in some pathanmes.
+> In this README, the terms `<WHERE_BIN_DIR>` and `<WHERE_ETC_DIR>` are used in some pathnames.
 They have different values depending upon whether you used a user install or a system install.
 >
 > | TERM | User Install | System install |
