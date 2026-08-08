@@ -167,13 +167,14 @@ Extract the downloaded `main.zip` file.
 python -m zipfile -e main.zip .    # Unzip the downloaded file
 ```
 
-Most linux distributions provide a GUI alternative to using python.
-
-1. Open the linux distribution file manager (dolphin, nautilus, files, ...)
-
-2. Locate the downloaded file `main.zip`.
-
-3. Right-click on `main.zip` and select **Extract to here** (or similar wording).
+> [!TIP]
+> Most linux distributions provide a GUI alternative to using python.
+> 
+> 1. Open the linux distribution file manager (dolphin, nautilus, files, ...)
+> 
+> 2. Locate the downloaded file `main.zip`.
+> 
+> 3. Right-click on `main.zip` and select **Extract to here** (or similar wording).
 
 #### Step 3
 
