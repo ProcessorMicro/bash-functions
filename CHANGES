@@ -1,3 +1,8 @@
+2026.08.08
+Modified the README.md installation instructions to specify more
+commonly available commands to download the distribution (curl)
+and to unzip it (python). Also a GUI alternative to python.
+
 2026.08.07
 Fixes to the install script
 

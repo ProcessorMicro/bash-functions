@@ -103,13 +103,14 @@ The install script checks fo the the existance of these commands.
 
 | COMMAND | REQUIREMENT |
 |--|--|
-| bash    | Required. |
-| gawk/awk    | gawk (or a link to awk) is required. |
-| sort    | Required. |
-| wget    | Required to downlaod the distribution. |
-| less    | The default "pager". Required unless you configure a different pager. |
-| nmap    | Only if you use the network functions. |
-| yad     | Only if you use the -G (GUI) option in any "GUI-enabled" functions. |
+| bash      | Required. |
+| gawk/awk  | gawk (or a link to awk) is required. |
+| sort      | Required. |
+| curl      | Required to download the distribution. |
+| python    | Required to extract the distribution. |
+| less      | The default "pager". Required unless you configure a different pager. |
+| nmap      | Only if you use the network functions. |
+| yad       | Only if you use the -G (GUI) option in any "GUI-enabled" functions. |
 
 if you don't have `gawk` then a symbolic link to awk will work as well. This is done by the intall script.
 
@@ -143,27 +144,35 @@ cd ~/MyDownLoad                      # And set your working directory
 
 #### Step 2
 
-Download the zip file:
+Download the distribution file:
 
 ```bash
-wget https://github.com/ProcessorMicro/useful-bash-functions/archive/refs/heads/main.zip
+curl -L -O  https://github.com/ProcessorMicro/useful-bash-functions/archive/refs/heads/main.zip
 ```
 
-Unzip the downloaded `main.zip`file.
+Extract the downloaded `main.zip` file.
 
 ```bash
-unzip -q -u main.zip               # Unzip the downloaded file
-cd useful-bash-functions-main      # Then change your workng directory
+python -m zipfile -e main.zip .    # Unzip the downloaded file
 ```
+
+Most linux distributions provide a GUI alternative to using python.
+
+1. Open the linux distribution file manager (dolphin, nautilus, files, ...)
+
+2. Locate the downloaded file `main.zip`.
+
+3. Right-click on `main.zip` and select **Extract to here** (or similar wording).
 
 #### Step 3
 
-Install the distribution either for just one user or for all users.  
+Install the distribution either: for just one user or for all users.
 
 #### Step 3a - User install (recommended)
 
 ```bash
-bash ./install.sh                  # Install it for your use only
+cd useful-bash-functions-main      # Change your workng directory
+bash ./install.sh                  # And install it for your use only
 ```
 
 #### Step 3b - System install
