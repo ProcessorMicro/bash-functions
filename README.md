@@ -124,16 +124,18 @@ sudo ln -s /usr/bin/awk /usr/bin/gawk
 
 There are two ways to install `useful-bash-functions` - a user install and a system install.  
 
-1. The user install is made into your personal directory `~/bin`.
+1. The user install is made into your personal directory `~/bin` (<WHERE_BIN_DIR>).
 The functions are only available to your login.  
 
 2. In a system install the functions are available to all users.
-The installation script `install.sh` installs the bash scripts in the directory `<WHERE_BIN_DIR>` except for:  
+The installation script `install.sh` installs the bash scripts in the directory /usr/local/bin (`<WHERE_BIN_DIR>`)
+except for:  
        &nbsp;&nbsp;&nbsp;&nbsp;`FUNCTIONS-SH-EXTRA-FUNCTIONS.sh` and `FUNCTIONS-SH-GLOBAL-DEFAULTS.sh`  
-which are installed in the directory `<WHERE_ETC_DIR>`
+which are installed in the directory /etc/profile.d (`<WHERE_ETC_DIR>`)
 
 > [!IMPORTANT]
-> The terms `<WHERE_BIN_DIR>` and `<WHERE_ETC_DIR>` have different values depending upon a user install or a system install.
+> In this README, the terms `<WHERE_BIN_DIR>` and `<WHERE_ETC_DIR>` are used in some pathanmes.
+They have different values depending upon whether you used a user install or a system install.
 >
 > | TERM | User Install | System install |
 > |--|--|--|
