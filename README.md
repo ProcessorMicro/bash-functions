@@ -237,7 +237,6 @@ After installation,there are three ways to implement `functions.sh`.
 ```bash
 source /etc/profile.d/FUNCTIONS-SH-EXTRA-FUNCTIONS.sh
 source /etc/profile.d/FUNCTIONS-SH-GLOBAL-DEFAULTS.sh
-source /usr/local/bin/functions.sh
 ```
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[top](#top)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[contents](#contents)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[bottom](#bottom)
