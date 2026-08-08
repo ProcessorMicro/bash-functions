@@ -130,7 +130,8 @@ The functions are only available to your login.
 2. In a system install the functions are available to all users.
 The installation script `install.sh` installs the bash scripts in the directory /usr/local/bin (`<WHERE_BIN_DIR>`)
 except for:  
-       &nbsp;&nbsp;&nbsp;&nbsp;`FUNCTIONS-SH-EXTRA-FUNCTIONS.sh` and `FUNCTIONS-SH-GLOBAL-DEFAULTS.sh`  
+       &nbsp;&nbsp;&nbsp;&nbsp;`FUNCTIONS-SH-EXTRA-FUNCTIONS.sh`  
+       &nbsp;&nbsp;&nbsp;&nbsp;`FUNCTIONS-SH-GLOBAL-DEFAULTS.sh`  
 which are installed in the directory /etc/profile.d (`<WHERE_ETC_DIR>`)
 
 > [!IMPORTANT]
