@@ -168,7 +168,7 @@ python -m zipfile -e main.zip .    # Unzip the downloaded file
 ```
 
 > [!TIP]
-> Most linux distributions provide a GUI alternative to using python.
+> Most linux distributions provide a GUI **unzip** alternative to using python.
 > 
 > 1. Open the linux distribution file manager (dolphin, nautilus, files, ...)
 > 
